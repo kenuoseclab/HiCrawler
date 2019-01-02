@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "http://www.hidream.tech/HiCrawler/precache-manifest.92dd6ad0aeab7d1e5ef32c8c706af4a0.js"
+  "http://www.hidream.tech/HiCrawler/precache-manifest.49375ed319841b93bf7daa305f3d5cb8.js"
 );
 
 workbox.clientsClaim();

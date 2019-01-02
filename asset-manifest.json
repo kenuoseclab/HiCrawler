@@ -1,15 +1,15 @@
 {
   "main.css": "http://www.hidream.tech/HiCrawler/static/css/main.a33b466a.chunk.css",
-  "main.js": "http://www.hidream.tech/HiCrawler/static/js/main.a8979210.chunk.js",
-  "main.js.map": "http://www.hidream.tech/HiCrawler/static/js/main.a8979210.chunk.js.map",
+  "main.js": "http://www.hidream.tech/HiCrawler/static/js/main.465cc471.chunk.js",
+  "main.js.map": "http://www.hidream.tech/HiCrawler/static/js/main.465cc471.chunk.js.map",
   "static/css/1.a9a4498e.chunk.css": "http://www.hidream.tech/HiCrawler/static/css/1.a9a4498e.chunk.css",
-  "static/js/1.751e50b6.chunk.js": "http://www.hidream.tech/HiCrawler/static/js/1.751e50b6.chunk.js",
-  "static/js/1.751e50b6.chunk.js.map": "http://www.hidream.tech/HiCrawler/static/js/1.751e50b6.chunk.js.map",
+  "static/js/1.f79c38b1.chunk.js": "http://www.hidream.tech/HiCrawler/static/js/1.f79c38b1.chunk.js",
+  "static/js/1.f79c38b1.chunk.js.map": "http://www.hidream.tech/HiCrawler/static/js/1.f79c38b1.chunk.js.map",
   "runtime~main.js": "http://www.hidream.tech/HiCrawler/static/js/runtime~main.b5816fd2.js",
   "runtime~main.js.map": "http://www.hidream.tech/HiCrawler/static/js/runtime~main.b5816fd2.js.map",
-  "static/css/main.a33b466a.chunk.css.map": "http://www.hidream.tech/HiCrawler/static/css/main.a33b466a.chunk.css.map",
   "static/css/1.a9a4498e.chunk.css.map": "http://www.hidream.tech/HiCrawler/static/css/1.a9a4498e.chunk.css.map",
+  "static/css/main.a33b466a.chunk.css.map": "http://www.hidream.tech/HiCrawler/static/css/main.a33b466a.chunk.css.map",
   "index.html": "http://www.hidream.tech/HiCrawler/index.html",
-  "precache-manifest.92dd6ad0aeab7d1e5ef32c8c706af4a0.js": "http://www.hidream.tech/HiCrawler/precache-manifest.92dd6ad0aeab7d1e5ef32c8c706af4a0.js",
+  "precache-manifest.49375ed319841b93bf7daa305f3d5cb8.js": "http://www.hidream.tech/HiCrawler/precache-manifest.49375ed319841b93bf7daa305f3d5cb8.js",
   "service-worker.js": "http://www.hidream.tech/HiCrawler/service-worker.js"
 }
