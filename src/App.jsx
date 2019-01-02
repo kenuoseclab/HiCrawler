@@ -8,7 +8,7 @@ import en from 'react-intl/locale-data/en';
 import ja from 'react-intl/locale-data/ja';
 
 import { IntlProvider, addLocaleData } from 'react-intl';
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
 import CDefaultLayout from './modules/system/components/CDefaultLayout';
 import SLogin from './modules/system/scenes/SLogin';
