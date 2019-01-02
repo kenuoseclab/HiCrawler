@@ -1,0 +1,73 @@
+
+.footer {
+  margin-top: 80px;
+}
+
+.footer p {
+  text-align: center;
+  font-size: 12px;
+}
+
+.form-control:focus {
+  border-color: #009cff;
+}
+
+.login {
+  margin-top: 89px;
+}
+.login .form {
+  width: 350px;
+  margin: 0 auto;
+}
+.login label {
+  font-weight: normal;
+}
+.login h1 {
+  text-align: center;
+  font-size: 46px;
+  font-weight: bold;
+}
+
+.login input {
+  height: 50px;
+}
+
+.login .button-disable {
+  width: 100%;
+  height: 50px;
+  background-color: #C0BCBB;
+  color: white;
+}
+
+.login .button-enable {
+  width: 100%;
+  height: 50px;
+  background-color: #009cff;
+  color: white;
+  font-size: 16px;
+}
+
+.login .button-disabled {
+  width: 100%;
+  height: 50px;
+  font-size: 16px;
+}
+
+.login .button-disabled span {
+  color: #000;
+  opacity: 0.25;
+}
+
+.login button:hover {
+  background-color: #009cff;
+  color: white;
+}
+
+.login .logo {
+  margin-bottom: 15px;
+}
+
+.login .logo img {
+  width: 350px;
+  height: 78px;
+}

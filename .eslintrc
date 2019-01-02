@@ -1,0 +1,43 @@
+{
+  "extends": ["airbnb", "prettier"],
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "globals": {
+    "ga": true,
+    "$": true,
+    "I18n": true,
+    "describe": true,
+    "it": true,
+    "before": true,
+    "after": true,
+    "toJson": true,
+  },
+  "rules": {
+    "func-names": ["error", "never"],
+    "max-len": ["error", 120],
+    "no-underscore-dangle": ["off", { "allowAfterSuper": true }],
+    "no-useless-constructor": ["off"],
+    "no-plusplus": ["off"],
+    "no-restricted-properties": ["off"],
+    "class-methods-use-this": ["off"],
+    "react/forbid-prop-types": ["off"],
+    "react/prefer-stateless-function": ["off"],
+    "import/order":  ["error", {
+      "newlines-between": "always-and-inside-groups"
+    }],
+    "react/jsx-filename-extension":"off",
+    "import/no-named-as-default":"off",
+    "no-trailing-spaces":"off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/destructuring-assignment": "off",
+    "arrow-body-style": "off",
+    "object-shorthand": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/no-noninteractive-element-interactions":"off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/click-events-have-key-events": "off"
+  }
+}

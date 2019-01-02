@@ -1,0 +1,9 @@
+scripts
+node_modules
+test/coverage
+test/setup
+config
+docs
+dist
+lib
+src/static/img
