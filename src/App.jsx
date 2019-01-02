@@ -87,7 +87,7 @@ class App extends React.Component {
   render() {
     return (
       <IntlProvider locale={navigator.language} messages={chooseLocale()}>
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <Switch>
             <PublicRoute path="/" exact component={SLogin} />
             <PublicRoute path={ROUTE_LOGIN} component={SLogin} />
