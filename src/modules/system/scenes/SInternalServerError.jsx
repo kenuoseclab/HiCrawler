@@ -28,7 +28,7 @@ class SInternalServerError extends React.Component {
         <div className="error-message">{message || null}</div>
         <div className="return-btn">
           <Link to={ROUTE_LOGIN}>
-            <Button type="primary">ログインへ</Button>
+            <Button type="primary">登录</Button>
           </Link>
         </div>
       </div>
