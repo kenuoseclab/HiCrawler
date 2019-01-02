@@ -1,15 +1,15 @@
 {
-  "main.css": "./static/css/main.a33b466a.chunk.css",
-  "main.js": "./static/js/main.e7d5e5f1.chunk.js",
-  "main.js.map": "./static/js/main.e7d5e5f1.chunk.js.map",
-  "static/css/1.a9a4498e.chunk.css": "./static/css/1.a9a4498e.chunk.css",
-  "static/js/1.5b872037.chunk.js": "./static/js/1.5b872037.chunk.js",
-  "static/js/1.5b872037.chunk.js.map": "./static/js/1.5b872037.chunk.js.map",
-  "runtime~main.js": "./static/js/runtime~main.4a686d48.js",
-  "runtime~main.js.map": "./static/js/runtime~main.4a686d48.js.map",
-  "static/css/1.a9a4498e.chunk.css.map": "./static/css/1.a9a4498e.chunk.css.map",
-  "static/css/main.a33b466a.chunk.css.map": "./static/css/main.a33b466a.chunk.css.map",
-  "index.html": "./index.html",
-  "precache-manifest.fca42ddb9d8fe6908b8514f1bb7a3b8e.js": "./precache-manifest.fca42ddb9d8fe6908b8514f1bb7a3b8e.js",
-  "service-worker.js": "./service-worker.js"
+  "main.css": "http://www.hidream.tech/HiCrawler/static/css/main.a33b466a.chunk.css",
+  "main.js": "http://www.hidream.tech/HiCrawler/static/js/main.a8979210.chunk.js",
+  "main.js.map": "http://www.hidream.tech/HiCrawler/static/js/main.a8979210.chunk.js.map",
+  "static/css/1.a9a4498e.chunk.css": "http://www.hidream.tech/HiCrawler/static/css/1.a9a4498e.chunk.css",
+  "static/js/1.751e50b6.chunk.js": "http://www.hidream.tech/HiCrawler/static/js/1.751e50b6.chunk.js",
+  "static/js/1.751e50b6.chunk.js.map": "http://www.hidream.tech/HiCrawler/static/js/1.751e50b6.chunk.js.map",
+  "runtime~main.js": "http://www.hidream.tech/HiCrawler/static/js/runtime~main.b5816fd2.js",
+  "runtime~main.js.map": "http://www.hidream.tech/HiCrawler/static/js/runtime~main.b5816fd2.js.map",
+  "static/css/main.a33b466a.chunk.css.map": "http://www.hidream.tech/HiCrawler/static/css/main.a33b466a.chunk.css.map",
+  "static/css/1.a9a4498e.chunk.css.map": "http://www.hidream.tech/HiCrawler/static/css/1.a9a4498e.chunk.css.map",
+  "index.html": "http://www.hidream.tech/HiCrawler/index.html",
+  "precache-manifest.92dd6ad0aeab7d1e5ef32c8c706af4a0.js": "http://www.hidream.tech/HiCrawler/precache-manifest.92dd6ad0aeab7d1e5ef32c8c706af4a0.js",
+  "service-worker.js": "http://www.hidream.tech/HiCrawler/service-worker.js"
 }
