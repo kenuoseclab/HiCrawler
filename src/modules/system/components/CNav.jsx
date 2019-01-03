@@ -3,7 +3,7 @@ import createHistory from 'history/createBrowserHistory';
 import { Menu, Dropdown, Icon, Row, Col } from 'antd';
 import { intlShape, injectIntl } from 'react-intl';
 
-import storage from '../../../util/storage';
+import Storage from '../../../util/storage';
 import { ROUTE_LOGIN } from '../../../util/constants';
 
 const history = createHistory({ forceRefresh: true });
@@ -15,7 +15,7 @@ class CNav extends React.Component {
   }
 
   handleLogout() {
-    storage.clearLocalStorage();
+    Storage.clearLocalStorage();
     history.push(ROUTE_LOGIN);
   }
 
@@ -28,7 +28,7 @@ class CNav extends React.Component {
       </Menu>
     );
 
-    const user = storage.getUser() || { name: '' };
+    const user = Storage.getUser() || { name: '' };
     const name = `${user.name}`;
 
     return (

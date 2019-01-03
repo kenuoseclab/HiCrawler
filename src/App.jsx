@@ -8,7 +8,7 @@ import en from 'react-intl/locale-data/en';
 import ja from 'react-intl/locale-data/ja';
 
 import { IntlProvider, addLocaleData } from 'react-intl';
-import { HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
 import CDefaultLayout from './modules/system/components/CDefaultLayout';
 import SLogin from './modules/system/scenes/SLogin';
@@ -25,7 +25,7 @@ import './static/css/login.css';
 import localZH from './locales/zh';
 import localEN from './locales/en';
 import localJA from './locales/ja';
-import storage from './util/storage';
+import Storage from './util/storage';
 import { ROUTE_HOME, ROUTE_LOGIN, ROUTE_CRAWLER_ADD, ROUTE_ERROR } from './util/constants';
 
 addLocaleData([...zh, ...en, ...ja]);
@@ -35,7 +35,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={props =>
-        storage.isAuthenticatedUser() ? (
+        Storage.isAuthenticatedUser() ? (
           <CDefaultLayout side={rest.side}>
             <Component {...props} />
           </CDefaultLayout>
@@ -55,7 +55,7 @@ const PublicRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props => (!storage.isAuthenticatedUser() ? <Component {...props} /> : <Redirect to={ROUTE_HOME} />)}
+      render={props => (!Storage.isAuthenticatedUser() ? <Component {...props} /> : <Redirect to={ROUTE_HOME} />)}
     />
   );
 };
@@ -87,7 +87,7 @@ class App extends React.Component {
   render() {
     return (
       <IntlProvider locale={navigator.language} messages={chooseLocale()}>
-        <Router basename={process.env.PUBLIC_URL}>
+        <Router>
           <Switch>
             <PublicRoute path="/" exact component={SLogin} />
             <PublicRoute path={ROUTE_LOGIN} component={SLogin} />

@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { intlShape, injectIntl, FormattedMessage } from 'react-intl';
-import { Form, Input, Button, Row } from 'antd';
+import { Form, Input, Button, Row, message } from 'antd';
 
 import logo from '../../../static/img/logo.png';
-import { ROUTE_HOME } from '../../../util/constants';
-import storage from '../../../util/storage';
+import { ROUTE_HOME, API_LOGIN } from '../../../util/constants';
+import Storage from '../../../util/storage';
+import { post } from '../../../util/fetch';
 
 const FormItem = Form.Item;
 
@@ -25,11 +26,16 @@ class SLogin extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFields( async (err, values) => {
       if (!err) {
-        storage.setToken('token');
-        storage.setUser(values);
-        this.props.history.replace(ROUTE_HOME);
+        try {
+          const result = await post(API_LOGIN, values);
+          Storage.setToken(result.token);
+          Storage.setUser(result.user);
+          this.props.history.replace(ROUTE_HOME);
+        } catch (e) {
+          message.error(e.errorMessage);
+        }
       } else {
         console.log(err);
       }

@@ -2,32 +2,32 @@ import fetch from 'axios';
 import createHistory from 'history/createBrowserHistory';
 
 import { ROUTE_ERROR } from './constants';
-import storage from './storage';
+import Storage from './storage';
 
 const history = createHistory({ forceRefresh: true });
-fetch.defaults.baseURL = `${process.env.API_URL}`;
+fetch.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
 
 const setHeaderToken = () => {
-  const token = storage.getToken();
-  return { 'web-crawler-token-template': `${token}` };
+  const token = Storage.getToken();
+  return { 'x-token-crawler': `${token}` };
 };
 
-const commonRequest = (options, callback) => {
-  fetch(options)
-    .then(response => {
-      callback(undefined, response.data.data);
-    })
-    .catch(err => {
-      if (err.response.data.errorCode === 401 || err.response.data.errorCode === 500) {
-        storage.clearLocalStorage();
-        history.push(ROUTE_ERROR, err.response.data);
-      } else {
-        callback(err.response.data, undefined);
-      }
-    });
+const commonRequest = async (options) => {
+
+  try {
+    const response = await fetch(options);
+    return response.data.data;
+  } catch (err) {
+    if (err.response.data.errorCode === 401 || err.response.data.errorCode === 500) {
+      Storage.clearLocalStorage();
+      history.push(ROUTE_ERROR, err.response.data);
+      return null;
+    }
+    throw err.response.data;
+  }
 };
 
-export function get(url, obj = {}, callback) {
+export async function get(url, obj = {}) {
   const options = {
     params: obj,
     headers: setHeaderToken(),
@@ -35,21 +35,22 @@ export function get(url, obj = {}, callback) {
     url,
   };
 
-  commonRequest(options, callback);
+  const result =  await commonRequest(options);
+  return result;
 }
 
-export function post(url, data = {}, callback) {
+export async function post(url, data = {}) {
   const options = {
     headers: setHeaderToken(),
     method: 'post',
     url,
     data,
   };
-
-  commonRequest(options, callback);
+  const result =  await commonRequest(options);
+  return result;
 }
 
-export function put(url, data = {}, callback) {
+export async function put(url, data = {}) {
   const options = {
     headers: setHeaderToken(),
     method: 'put',
@@ -57,10 +58,11 @@ export function put(url, data = {}, callback) {
     data,
   };
 
-  commonRequest(options, callback);
+  const result =  await commonRequest(options);
+  return result;
 }
 
-export function del(url, data = {}, callback) {
+export async function del(url, data = {}) {
   const options = {
     headers: setHeaderToken(),
     method: 'delete',
@@ -68,5 +70,6 @@ export function del(url, data = {}, callback) {
     data,
   };
 
-  commonRequest(options, callback);
+  const result =  await commonRequest(options);
+  return result;
 }
