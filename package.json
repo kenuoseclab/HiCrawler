@@ -1,0 +1,53 @@
+{
+  "name": "hicrawler",
+  "version": "0.1.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test-mocha": "node test/unit/TestLoader.js",
+    "test-unit": "istanbul cover --dir=test/reports/UnitCoverage test/unit/TestLoader.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:DreamHi/HiCrawler.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DreamHi/HiCrawler.git"
+  },
+  "homepage": "https://github.com/DreamHi/HiCrawler.git",
+  "dependencies": {
+    "async": "2.6.0",
+    "body-parser": "1.18.2",
+    "compression": "1.7.2",
+    "cors": "2.8.4",
+    "express": "4.16.3",
+    "helmet": "3.12.0",
+    "http-errors": "1.6.2",
+    "i18n": "0.8.3",
+    "joi": "13.1.2",
+    "lodash": "4.17.5",
+    "log4js": "2.5.3",
+    "method-override": "2.3.10",
+    "mongoose": "5.0.11",
+    "morgan": "1.9.0",
+    "multer": "1.3.0",
+    "response-time": "2.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-plugin-node": "^6.0.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.5.3",
+    "mochawesome": "^2.3.1",
+    "should": "^11.2.1",
+    "simple-mock": "^0.7.3",
+    "sinon": "^1.17.7",
+    "supertest": "^3.3.0"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  }
+}

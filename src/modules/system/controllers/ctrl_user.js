@@ -1,0 +1,67 @@
+const _           = require("lodash");
+const createError = require("http-errors");
+const Joi         = require("joi");
+const Token       = require("./ctrl_token");
+const UserSchema  = require("../models/mod_user");
+const Model       = require("../../../core/model");
+const log         = require("../../../core/logger");
+const helper      = require("../../../core/helper");
+const constant    = require("../../../core/constant");
+
+const { DB_NAME_CRAWLER, SCHEMA_USER, VALID } = constant;
+const UserModel = new Model(DB_NAME_CRAWLER, SCHEMA_USER, UserSchema);
+
+const loginValidate = (obj) => {
+  const schema = Joi.object({
+    name: Joi.string().trim().invalid([":", ";", ",", "\""]).max(40).required(),
+    pass: Joi.string().max(40).required()
+  });
+
+  const output = Joi.validate(obj, schema, {allowUnknown: true});
+  if (output.error) {
+    throw new createError.BadRequest(__("modules.system.user.login.error"));
+  }
+};
+
+exports.simpleLogin = async (req) => {
+
+  log.info("user.simpleLogin() start.");
+  const { name, pass } = req.body;
+
+  loginValidate(req.body);
+
+  const sha256Pass = helper.sha256(pass);
+  const condition = { name, "valid": VALID };
+  const projection = "email name password";
+
+  try {
+    const user = await UserModel.getOne(condition, projection);
+    if (!user || user.password !== sha256Pass) {
+      throw new createError.BadRequest(__("modules.system.user.login.error"));
+    }
+
+    const obj  = { user: {}, token: "" };
+    const tokenObj = await Token.create(obj.user);
+    delete user._doc.password;
+
+    obj.user = user;
+    obj.token = tokenObj.token;
+    log.info("user.simpleLogin() end.");
+    log.operation("simpleLogin", "login success!", obj.user);
+    return obj;
+  } catch (err) {
+    throw err;
+  }
+};
+
+exports.logout = async (req) => {
+
+  log.info("user.logout() start.", req.user);
+  try {
+    await Token.delete(req.token);
+    log.info("user.logout() end.", req.user);
+    log.operation("logout", "logout success!", req.user);
+  } catch (err) {
+    throw err;
+  }
+};
