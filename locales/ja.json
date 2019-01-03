@@ -16,5 +16,6 @@
   "common.param.type.invalid": "パラメターのタイプが正しくない。",
   "common.param.name.validator": "名前に「;:,\"」を含む記号は入力できません。",
   "modules.system.user.login.error": "ユーザ名またはパスワードは正しくない。",
-  "modules.system.token.error": "ログインしてください。"
+  "modules.system.token.error": "ログインしてください。",
+  "modules.system.category.name.invalid": "目录名非空。"
 }

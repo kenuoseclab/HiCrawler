@@ -1,7 +1,6 @@
 const crypto        = require("crypto");
 const createError   = require("http-errors");
 const Model         = require("../../../core/model");
-const log           = require("../../../core/logger");
 const constant      = require("../../../core/constant");
 const app           = require("../../../../config/app");
 const tokenSchema   = require("../models/mod_token");

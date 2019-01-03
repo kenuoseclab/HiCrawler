@@ -56,10 +56,10 @@ exports.simpleLogin = async (req) => {
 
 exports.logout = async (req) => {
 
-  log.info("user.logout() start.", req.user);
+  log.info("user.logout() start.");
   try {
     await Token.delete(req.token);
-    log.info("user.logout() end.", req.user);
+    log.info("user.logout() end.");
     log.operation("logout", "logout success!", req.user);
   } catch (err) {
     throw err;

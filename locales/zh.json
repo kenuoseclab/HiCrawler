@@ -16,5 +16,6 @@
   "common.param.type.invalid": "参数类型不正确。",
   "common.param.name.validator": "名字中只能包含数字和字母。",
   "modules.system.user.login.error": "用户名或者密码不正确。",
-  "modules.system.token.error": "请重新登录。"
+  "modules.system.token.error": "请重新登录。",
+  "modules.system.category.name.invalid": "目录名非空。"
 }
