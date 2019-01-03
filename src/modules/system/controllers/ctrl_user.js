@@ -37,6 +37,7 @@ exports.simpleLogin = async (req) => {
   try {
     const user = await UserModel.getOne(condition, projection);
     if (!user || user.password !== sha256Pass) {
+      log.info("user.simpleLogin() end.");
       throw new createError.BadRequest(__("modules.system.user.login.error"));
     }
 
