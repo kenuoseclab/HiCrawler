@@ -13,6 +13,3 @@ exports.DB_NAME_CRAWLER        = "crawler";
 // db collection
 exports.SCHEMA_USER            = "User";
 exports.SCHEMA_TOKEN           = "Token";
-
-
-

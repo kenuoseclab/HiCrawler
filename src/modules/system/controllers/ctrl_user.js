@@ -13,11 +13,11 @@ const UserModel = new Model(DB_NAME_CRAWLER, SCHEMA_USER, UserSchema);
 
 const loginValidate = (obj) => {
   const schema = Joi.object({
-    name: Joi.string().trim().invalid([":", ";", ",", "\""]).max(40).required(),
-    pass: Joi.string().max(40).required()
+    name: Joi.string().trim().regex(/^[a-zA-Z0-9_-]{4,30}$/).required(),
+    pass: Joi.string().trim().max(30).required()
   });
 
-  const output = Joi.validate(obj, schema, {allowUnknown: true});
+  const output = Joi.validate(obj, schema, { allowUnknown: true });
   if (output.error) {
     throw new createError.BadRequest(__("modules.system.user.login.error"));
   }
