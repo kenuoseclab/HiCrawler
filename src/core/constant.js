@@ -14,4 +14,4 @@ exports.DB_NAME_CRAWLER        = "crawler";
 exports.SCHEMA_USER            = "User";
 exports.SCHEMA_TOKEN           = "Token";
 exports.SCHEMA_CATEGORY        = "Category";
-exports.SCHEMA_Definition      = "Definition";
+exports.SCHEMA_DEFINITION      = "Definition";

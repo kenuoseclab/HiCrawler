@@ -6,10 +6,10 @@ const Model       = require("../../../core/model");
 const log         = require("../../../core/logger");
 const constant    = require("../../../core/constant");
 
-const { DB_NAME_CRAWLER, SCHEMA_CATEGORY, VALID } = constant;
-const CategoryModel = new Model(DB_NAME_CRAWLER, SCHEMA_CATEGORY, DefSchema);
+const { DB_NAME_CRAWLER, SCHEMA_DEFINITION, VALID, MOD_FIND_DEFAULT_SKIP, MOD_FIND_DEFAULT_LIMIT } = constant;
+const DefModel = new Model(DB_NAME_CRAWLER, SCHEMA_DEFINITION, DefSchema);
 
-const categoryValidate = (obj) => {
+const defValidate = (obj) => {
   const schema = Joi.object({
     name: Joi.string().trim().required(),
   });
@@ -22,9 +22,8 @@ const categoryValidate = (obj) => {
 
 exports.list = async (req) => {
   log.info("category.list() start.");
-
   try {
-    const result = await CategoryModel.getList({ valid: VALID }, "", 0, MOD_FIND_MAX_LIMIT, "createdAt");
+    const result = await DefModel.getList({ valid: VALID }, "", MOD_FIND_DEFAULT_SKIP, MOD_FIND_DEFAULT_LIMIT, "createdAt");
     log.info("category.list() end.");
     log.operation("list", "category have been get successfully!", req.user);
     return result;
