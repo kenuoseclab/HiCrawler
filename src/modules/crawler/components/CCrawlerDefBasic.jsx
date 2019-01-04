@@ -1,14 +1,10 @@
 import React from 'react';
-import { Input, Switch, Radio, Button, InputNumber } from 'antd';
+import { Input, Switch, Radio, InputNumber } from 'antd';
 
 const { TextArea } = Input;
 const RadioGroup = Radio.Group;
 
 class CCrawlerDefBasic extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="content">

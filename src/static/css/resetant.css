@@ -1,12 +1,5 @@
-.ant-btn-primary {
-  background-color: #009cff;
-}
-
-.ant-btn-primary:hover,
-.ant-btn-primary:focus {
-  color: #fff;
-  background-color: #009cff;
-  border-color: #009cff;
+.ant-btn-sm {
+  font-size: 12px;
 }
 
 .ant-layout-header {

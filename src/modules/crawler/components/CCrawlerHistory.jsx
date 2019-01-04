@@ -5,10 +5,6 @@ import { Button, Table } from 'antd';
 import Helper from '../../../util/helper';
 
 class CCrawlerHistory extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const dataSource = [];
     for (let i = 0; i < 30; i++) {

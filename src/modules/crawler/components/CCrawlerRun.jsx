@@ -5,10 +5,6 @@ const ButtonGroup = Button.Group;
 const { TextArea } = Input;
 
 class CCrawlerRun extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="content">

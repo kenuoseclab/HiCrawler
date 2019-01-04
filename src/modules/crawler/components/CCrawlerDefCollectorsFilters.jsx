@@ -5,10 +5,6 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 class CCrawlerDefCollectorsFilters extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const formItemLayout = {
       labelCol: { span: 6 },

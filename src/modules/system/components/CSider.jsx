@@ -1,84 +1,111 @@
 import React from 'react';
 import { Button, Tree } from 'antd';
-import { intlShape, injectIntl } from 'react-intl';
+import _ from 'lodash';
 
-const { TreeNode } = Tree;
+import Helper from '../../../util/helper';
+import { get, post, put, del } from '../../../util/fetch';
+import { API_CATEGORY } from '../../../util/constants';
 
-const treeData = [
-  {
-    title: '电影（20）',
-    key: '0-0',
-    children: [],
-  },
-  {
-    title: '图片（100）',
-    key: '0-1',
-    children: [],
-  },
-  {
-    title: '股票（30）',
-    key: '0-2',
-    children: [],
-  },
-  {
-    title: '新闻（15）',
-    key: '0-3',
-    children: [],
-  },
-];
+import CTreeNodeTitle from './CTreeNodeTitle';
+
+const { TreeNode, DirectoryTree } = Tree;
 
 class CSider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      expandedKeys: ['0-0'],
-      autoExpandParent: true,
+      categories: [],
       selectedKeys: ['0-3'],
     };
 
-    this.onSelect = this.onSelect.bind(this);
+    this.handleCreateCategoryButtonOnClick = this.handleCreateCategoryButtonOnClick.bind(this);
+    this.handleCategoryOnSelect = this.handleCategoryOnSelect.bind(this);
+    this.handleCategoryOnRightClick = this.handleCategoryOnRightClick.bind(this);
+    this.handleCategoryNameEditOnEnter = this.handleCategoryNameEditOnEnter.bind(this);
+    this.handleCategoryRemoveOnClick = this.handleCategoryRemoveOnClick.bind(this);
   }
 
-  onSelect(selectedKeys) {
+  componentDidMount() {
+    this.fetchCategories();
+  }
+
+  handleCategoryOnSelect(selectedKeys) {
     this.setState({ selectedKeys });
+  }
+
+  handleCategoryOnRightClick() {}
+
+  handleCreateCategoryButtonOnClick() {
+    const { categories } = this.state;
+    categories.push({
+      _id: Helper.generateUUID(),
+      name: '新规目录',
+    });
+    this.setState({ categories });
+  }
+
+  async handleCategoryNameEditOnEnter(node) {
+    const { _id, name } = node;
+    const isNew = _.includes(_id, '-');
+    if (isNew) {
+      await post(API_CATEGORY, { name });
+    } else {
+      await put(`${API_CATEGORY}/${_id}`, { name });
+    }
+    this.fetchCategories();
+  }
+
+  async handleCategoryRemoveOnClick(id) {
+    await del(`${API_CATEGORY}/${id}`, {});
+    this.fetchCategories();
+  }
+
+  async fetchCategories() {
+    const categories = await get(API_CATEGORY);
+    this.setState({ categories });
   }
 
   renderTreeNodes(data) {
     return data.map(item => {
-      if (item.children) {
-        return (
-          <TreeNode title={item.title} key={item.key} dataRef={item}>
-            {this.renderTreeNodes(item.children)}
-          </TreeNode>
-        );
-      }
-      return <TreeNode {...item} />;
+      return (
+        <TreeNode
+          title={
+            <CTreeNodeTitle
+              node={item}
+              onPressEnter={this.handleCategoryNameEditOnEnter}
+              onRemove={this.handleCategoryRemoveOnClick}
+            />
+          }
+          key={item._id}
+          dataRef={item}
+        />
+      );
     });
   }
 
   render() {
-    const { expandedKeys, autoExpandParent, selectedKeys } = this.state;
+    const { selectedKeys, categories } = this.state;
     return (
       <div className="side-menu">
         <div className="side-button">
-          <Button type="primary">创建目录</Button>
+          <Button type="primary" size="small" onClick={this.handleCreateCategoryButtonOnClick}>
+            创建目录
+          </Button>
         </div>
-        <Tree
+        <DirectoryTree
           className="side-tree"
-          expandedKeys={expandedKeys}
-          autoExpandParent={autoExpandParent}
-          onSelect={this.onSelect}
+          defaultExpandAll
+          onSelect={this.handleCategoryOnSelect}
+          onRightClick={this.handleCategoryOnRightClick}
           selectedKeys={selectedKeys}
         >
-          {this.renderTreeNodes(treeData)}
-        </Tree>
+          {this.renderTreeNodes(categories)}
+        </DirectoryTree>
       </div>
     );
   }
 }
 
-CSider.propTypes = {
-  intl: intlShape.isRequired,
-};
+CSider.propTypes = {};
 
-export default injectIntl(CSider);
+export default CSider;

@@ -12,10 +12,6 @@ const { Content } = Layout;
 const { TabPane } = Tabs;
 
 class SCrawlerAdd extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Layout style={{ padding: '0 12px', height: '100%' }}>

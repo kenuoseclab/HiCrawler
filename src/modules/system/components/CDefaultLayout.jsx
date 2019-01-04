@@ -8,10 +8,6 @@ import CSider from './CSider';
 const { Header, Content, Sider } = Layout;
 
 class CDefaultLayout extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Layout style={{ height: '100%' }}>

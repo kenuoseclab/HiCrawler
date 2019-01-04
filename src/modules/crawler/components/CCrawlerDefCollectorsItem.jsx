@@ -1,14 +1,9 @@
 import React from 'react';
-import { Checkbox, Form, Input, Radio, Select } from 'antd';
+import { Form, Input, Radio, Select } from 'antd';
 
-const { TextArea } = Input;
 const { Option } = Select;
 
 class CCrawlerDefCollectorsItem extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const formItemLayout = {
       labelCol: { span: 10 },

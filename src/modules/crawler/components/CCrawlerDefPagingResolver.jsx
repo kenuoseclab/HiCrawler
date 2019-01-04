@@ -1,11 +1,6 @@
 import React from 'react';
-import { Button } from 'antd';
 
 class CCrawlerDefPagingResolver extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="content">

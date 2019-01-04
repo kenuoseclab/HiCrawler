@@ -58,10 +58,15 @@ class SHome extends React.Component {
         render: () => {
           return (
             <span className="event-table-operation">
-              <Button className="btn-list">
-                <Link to={ROUTE_CRAWLER_ADD}>详细</Link>
+              <Button className="btn-list" size="small">
+                详细
               </Button>&nbsp;&nbsp;
-              <Button className="btn-list">删除</Button>
+              <Button className="btn-list" size="small">
+                编辑
+              </Button>&nbsp;&nbsp;
+              <Button className="btn-list" size="small" type="danger">
+                删除
+              </Button>
             </span>
           );
         },
@@ -71,10 +76,12 @@ class SHome extends React.Component {
     return (
       <div style={{ padding: '12px' }}>
         <div className="list-operation">
-          <Button type="primary">
+          <Button type="primary" size="small">
             <Link to={ROUTE_CRAWLER_ADD}>新建</Link>
           </Button>&nbsp;&nbsp;
-          <Button type="primary">模板导入</Button>
+          <Button type="primary" size="small">
+            模板导入
+          </Button>
         </div>
         <Table
           className="list-table"
