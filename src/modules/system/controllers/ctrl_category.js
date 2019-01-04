@@ -85,7 +85,7 @@ exports.list = async (req) => {
   log.info("category.list() start.");
 
   try {
-    const result = await CategoryModel.getList({ valid: VALID }, "", 0, MOD_FIND_MAX_LIMIT, "");
+    const result = await CategoryModel.getList({ valid: VALID }, "", 0, MOD_FIND_MAX_LIMIT, "createdAt");
     log.info("category.list() end.");
     log.operation("list", "category have been get successfully!", req.user);
     return result;

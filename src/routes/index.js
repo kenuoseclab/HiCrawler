@@ -19,6 +19,7 @@ module.exports = function(app) {
   });
 
   app.use(`/${appName}`, auth.authenticate, system);
+  app.use(`/${appName}/crawler`, auth.authenticate, system);
 
   // catch 404 and forward to error handler
   app.all("*", (req, res) => {
