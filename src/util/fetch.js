@@ -12,22 +12,25 @@ const setHeaderToken = () => {
   return { 'x-token-crawler': `${token}` };
 };
 
-const commonRequest = async (options) => {
-
+const commonRequest = async options => {
   try {
     const response = await fetch(options);
     return response.data.data;
   } catch (err) {
-    if (err.response.data.errorCode === 401 || err.response.data.errorCode === 500) {
-      Storage.clearLocalStorage();
-      history.push(ROUTE_ERROR, err.response.data);
-      return null;
+    if (err.response) {
+      if (err.response.data.errorCode === 401 || err.response.data.errorCode === 500) {
+        Storage.clearLocalStorage();
+        history.push(ROUTE_ERROR, err.response.data);
+        return null;
+      }
+      throw new Error(err.response.data.errorMessage);
+    } else {
+      throw new Error('不能连接服务器。');
     }
-    throw err.response.data;
   }
 };
 
-export async function get(url, obj = {}) {
+export function get(url, obj = {}) {
   const options = {
     params: obj,
     headers: setHeaderToken(),
@@ -35,22 +38,20 @@ export async function get(url, obj = {}) {
     url,
   };
 
-  const result =  await commonRequest(options);
-  return result;
+  return commonRequest(options);
 }
 
-export async function post(url, data = {}) {
+export function post(url, data = {}) {
   const options = {
     headers: setHeaderToken(),
     method: 'post',
     url,
     data,
   };
-  const result =  await commonRequest(options);
-  return result;
+  return commonRequest(options);
 }
 
-export async function put(url, data = {}) {
+export function put(url, data = {}) {
   const options = {
     headers: setHeaderToken(),
     method: 'put',
@@ -58,11 +59,10 @@ export async function put(url, data = {}) {
     data,
   };
 
-  const result =  await commonRequest(options);
-  return result;
+  return commonRequest(options);
 }
 
-export async function del(url, data = {}) {
+export function del(url, data = {}) {
   const options = {
     headers: setHeaderToken(),
     method: 'delete',
@@ -70,6 +70,5 @@ export async function del(url, data = {}) {
     data,
   };
 
-  const result =  await commonRequest(options);
-  return result;
+  return commonRequest(options);
 }

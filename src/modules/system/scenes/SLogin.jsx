@@ -26,15 +26,15 @@ class SLogin extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.form.validateFields( async (err, values) => {
+    this.props.form.validateFields(async (err, values) => {
       if (!err) {
         try {
           const result = await post(API_LOGIN, values);
           Storage.setToken(result.token);
           Storage.setUser(result.user);
           this.props.history.replace(ROUTE_HOME);
-        } catch (e) {
-          message.error(e.errorMessage);
+        } catch (error) {
+          message.error(error.message);
         }
       } else {
         console.log(err);
@@ -86,7 +86,7 @@ class SLogin extends React.Component {
           </div>
         </Row>
         <Row className="footer">
-          <p>Copyright © 2018 HiDream Corporation. All Rights Reserved.</p>
+          <p>Copyright © 2019 HiDream Corporation. All Rights Reserved.</p>
         </Row>
       </div>
     );
