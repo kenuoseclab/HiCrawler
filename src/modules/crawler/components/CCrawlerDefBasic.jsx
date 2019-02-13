@@ -1,11 +1,17 @@
 import React from 'react';
-import { Input, Switch, Radio, InputNumber } from 'antd';
+import {Form, Input, Switch, Radio, InputNumber, Select} from 'antd';
 
 const { TextArea } = Input;
 const RadioGroup = Radio.Group;
+const { Option } = Select;
 
 class CCrawlerDefBasic extends React.Component {
   render() {
+    const formItemLayout = {
+      labelCol: { span: 6 },
+      wrapperCol: { span: 14 },
+    };
+
     return (
       <div className="content">
         <div className="area">
@@ -35,7 +41,12 @@ class CCrawlerDefBasic extends React.Component {
               <tr>
                 <th>字符集</th>
                 <td>
-                  <Input placeholder="响应页面的字符集" />
+                  <div style={{ display: 'flex' }}>
+                    <Select defaultValue="equals" style={{width: 100}}>
+                      <Option value="equals">UTF-8</Option>
+                    </Select>
+                    <Input placeholder="响应页面的字符集" value="UTF-8"/>
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -55,8 +66,15 @@ class CCrawlerDefBasic extends React.Component {
               <tr>
                 <th>User-Agent</th>
                 <td>
-                  <TextArea />
-                  <span>&nbsp;&nbsp;请求间隔时间，单位：毫秒</span>
+                  <Select defaultValue="equals" style={{width: 200}}>
+                    <Option value="equals">Chrome Mac</Option>
+                    <Option value="notEquals">Chrome Windows</Option>
+                    <Option value="greaterThan">Firefox Mac</Option>
+                    <Option value="greaterEqualsThan">Firefox Windows</Option>
+                    <Option value="lessThan">Internet Explorer</Option>
+                    <Option value="lessEqualsThan">Edge</Option>
+                  </Select>
+                  <TextArea value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"/>
                 </td>
               </tr>
               <tr>
@@ -77,10 +95,20 @@ class CCrawlerDefBasic extends React.Component {
               <tr>
                 <th>代理设定</th>
                 <td>
-                  <div style={{ display: 'flex' }}>
-                    <Input placeholder="http://username:password@xxx.com" />&nbsp;:&nbsp;
-                    <Input placeholder="端口" style={{ width: 80 }} />
-                  </div>
+                  <Form>
+                    <Form.Item label="代理服务器地址" {...formItemLayout}>
+                      <div style={{ display: 'flex' }}>
+                        <Input placeholder="服务器地址" />&nbsp;:&nbsp;
+                        <Input placeholder="端口" style={{ width: 80 }} />
+                      </div>
+                    </Form.Item>
+                    <Form.Item label="用户名" {...formItemLayout}>
+                      <Input placeholder="用户名" />
+                    </Form.Item>
+                    <Form.Item label="密码" {...formItemLayout}>
+                      <Input placeholder="密码" />
+                    </Form.Item>
+                  </Form>
                 </td>
               </tr>
             </tbody>
