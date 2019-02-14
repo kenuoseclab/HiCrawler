@@ -110,9 +110,9 @@ h6 {
 .area-title::before {
   border: 2px solid #f95217;
   content: '';
-  position: absolute;
   height: 30px;
-  left: 26px;
+  position: absolute;
+  margin-left: -20px;
 }
 
 .area-table {

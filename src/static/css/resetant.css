@@ -27,3 +27,7 @@
   z-index: 1000;
   background: white;
 }
+
+.ant-steps-item-icon {
+  cursor: pointer;
+}

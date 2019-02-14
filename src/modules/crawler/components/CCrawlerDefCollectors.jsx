@@ -41,17 +41,9 @@ class CCrawlerDefCollectors extends React.Component {
           />
         </Sider>
         <Content style={{ padding: '6', margin: 6, background: '#fff' }}>
-          <Tabs type="card">
-            <TabPane tab="普通采集器" key="1">
-              <CCrawlerDefCollectorsItem />
-            </TabPane>
-            <TabPane tab="后处理器" key="2">
-              <CCrawlerDefCollectorsProcessors />
-            </TabPane>
-            <TabPane tab="过滤器" key="3">
-              <CCrawlerDefCollectorsFilters />
-            </TabPane>
-          </Tabs>
+          <CCrawlerDefCollectorsItem />
+          <CCrawlerDefCollectorsProcessors />
+          <CCrawlerDefCollectorsFilters />
         </Content>
       </Layout>
     );
