@@ -8,12 +8,13 @@
 }
 
 .form-control:focus {
-  border-color: #009cff;
+  border-color: #08979c;
 }
 
 .login {
-  margin-top: 89px;
+  padding-top: 89px;
 }
+
 .login .form {
   width: 350px;
   margin: 0 auto;
@@ -45,7 +46,7 @@
 .login .button-enable {
   width: 100%;
   height: 50px;
-  background-color: #009cff;
+  background-color: #08979c;
   color: white;
   font-size: 16px;
 }
@@ -62,15 +63,20 @@
 }
 
 .login button:hover {
-  background-color: #009cff;
+  background-color: #08979c;
   color: white;
 }
 
 .login .logo {
   margin-bottom: 15px;
+  text-align: center;
 }
 
 .login .logo img {
-  width: 350px;
-  height: 78px;
+  height: 55px;
+}
+
+.login .logo span {
+  font-size: 18px;
+  font-weight: bold;
 }

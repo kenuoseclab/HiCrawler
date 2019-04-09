@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { intlShape, injectIntl, FormattedMessage } from 'react-intl';
-import { Form, Input, Button, Row, message } from 'antd';
+import { Form, Input, Button, Row, message, Icon } from 'antd';
 
 import logo from '../../../static/img/logo.png';
 import { ROUTE_HOME, API_LOGIN } from '../../../util/constants';
@@ -55,12 +55,19 @@ class SLogin extends React.Component {
           <div className="form">
             <div className="logo">
               <img src={logo} alt="" />
+              <span>壁虎・采集器</span>
             </div>
             <Form onSubmit={this.handleSubmit}>
               <FormItem validateStatus={userNameError ? 'error' : ''} help={userNameError || ''}>
                 {getFieldDecorator('name', {
                   rules: [{ required: true, message: formatMessage({ id: 'login.label.name.check' }) }],
-                })(<Input placeholder={formatMessage({ id: 'login.label.name' })} onChange={this.onChange} />)}
+                })(
+                  <Input
+                    prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                    placeholder={formatMessage({ id: 'login.label.name' })}
+                    onChange={this.onChange}
+                  />
+                )}
               </FormItem>
               <FormItem validateStatus={passwordError ? 'error' : ''} help={passwordError || ''}>
                 {getFieldDecorator('pass', {
@@ -68,6 +75,7 @@ class SLogin extends React.Component {
                 })(
                   <Input
                     type="password"
+                    prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                     placeholder={formatMessage({ id: 'login.label.password' })}
                     onChange={this.onChange}
                   />

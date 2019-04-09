@@ -3,24 +3,16 @@ import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 
 import CNav from './CNav';
-import CSider from './CSider';
 
-const { Header, Content, Sider } = Layout;
+const { Content } = Layout;
 
 class CDefaultLayout extends React.Component {
   render() {
     return (
       <Layout style={{ height: '100%' }}>
-        <Header>
-          <CNav />
-        </Header>
-        <Layout>
-          {this.props.side && (
-            <Sider width={200} style={{ background: '#fff' }}>
-              <CSider />
-            </Sider>
-          )}
-          <Content style={{ background: '#fff', padding: '0', margin: 0 }}>{this.props.children}</Content>
+        <CNav />
+        <Layout style={{ background: '#fafafa' }}>
+          <Content style={{ background: '#fafafa', padding: '0', margin: 0 }}>{this.props.children}</Content>
         </Layout>
       </Layout>
     );
