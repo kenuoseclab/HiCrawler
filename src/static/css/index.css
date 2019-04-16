@@ -35,12 +35,41 @@ h6 {
 }
 
 .layout-container {
-  max-width: 1056px;
+  max-width: 1216px;
   padding-left: 16px;
   padding-right: 16px;
   margin-left: auto;
   margin-right: auto;
   height: 100%;
+  width: 100%;
+}
+
+.main-wrapper {
+  width: 100%;
+  min-height: calc(100vh - 114px);
+  background: #fafafa;
+}
+
+.home-side {
+  height: 56px;
+  font-size: 14px;
+  padding: 12px 8px;
+  text-align: center;
+  line-height: 30px;
+}
+
+.home-side .anticon {
+  font-size: 16px;
+  color: #827e7e;
+}
+
+.home-side .line {
+  display: block;
+  height: 1px;
+  background: #e8e8e8;
+  margin-top: 10px;
+  margin-left: 0;
+  margin-bottom: 10px;
 }
 
 .nav {
@@ -101,8 +130,7 @@ h6 {
 }
 
 .nav .ant-menu-horizontal > .ant-menu-item-selected {
-  border-bottom: none;
-  border-top: 2px solid #08979c;
+  border-bottom: 2px solid #08979c;
   color: #08979c;
 }
 
@@ -297,4 +325,31 @@ h6 {
 
 .collectors-filter .ant-form {
   padding: 4px 36px;
+}
+
+.ant-tabs-extra-content {
+  float: left !important;
+  width: 60px;
+  text-align: center;
+}
+
+.home-menu .ant-menu {
+  background: none;
+}
+
+.home-menu .ant-menu-inline {
+  border: none;
+}
+
+.home-menu .ant-menu-submenu-arrow {
+  display: none;
+}
+
+.home-content {
+  padding: 12px;
+  height: 100%;
+}
+
+.home-content .ant-tabs-bar {
+  background: none;
 }

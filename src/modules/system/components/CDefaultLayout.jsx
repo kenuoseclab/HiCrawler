@@ -11,8 +11,8 @@ class CDefaultLayout extends React.Component {
     return (
       <Layout style={{ height: '100%' }}>
         <CNav />
-        <Layout style={{ background: '#fafafa' }}>
-          <Content style={{ background: '#fafafa', padding: '0', margin: 0 }}>{this.props.children}</Content>
+        <Layout className="main-wrapper">
+          <Content className="clearfix layout-container">{this.props.children}</Content>
         </Layout>
       </Layout>
     );
@@ -21,12 +21,10 @@ class CDefaultLayout extends React.Component {
 
 CDefaultLayout.defaultProps = {
   children: null,
-  side: true,
 };
 
 CDefaultLayout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-  side: PropTypes.bool,
 };
 
 export default CDefaultLayout;

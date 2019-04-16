@@ -31,3 +31,33 @@
 .ant-steps-item-icon {
   cursor: pointer;
 }
+
+.ant-tabs-ink-bar,
+.ant-switch-checked,
+.ant-radio-inner::after,
+.ant-steps-item-finish > .ant-steps-item-tail::after,
+.ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon .ant-steps-icon-dot,
+.ant-steps-item-process .ant-steps-item-icon > .ant-steps-icon .ant-steps-icon-dot {
+  background: #08979c;
+}
+
+.ant-pagination-item-active a,
+.ant-tabs-nav .ant-tabs-tab-active,
+.ant-tabs.ant-tabs-card .ant-tabs-card-bar .ant-tabs-tab-active {
+  color: #08979c;
+}
+
+.ant-btn-primary {
+  background: #08979c;
+  border-color: #08979c;
+}
+
+.ant-pagination-item-active,
+.ant-radio-checked .ant-radio-inner {
+  border-color: #08979c;
+}
+
+::selection {
+  background: #08979c;
+  color: #fff;
+}

@@ -1,97 +1,173 @@
 import React from 'react';
-import { Button, Table } from 'antd';
-import { Link } from 'react-router-dom';
+import { Row, Col, Icon, Menu, Tabs } from 'antd';
+import CCrawlerDefinition from '../../crawler/components/CCrawlerDefinition';
+import CCrawlerSetting from '../../crawler/components/CCrawlerSetting';
+import CCrawlerRun from '../../crawler/components/CCrawlerRun';
+import CCrawlerHistory from '../../crawler/components/CCrawlerHistory';
 
-import { ROUTE_CRAWLER_ADD } from '../../../util/constants';
+const { TabPane } = Tabs;
+const { SubMenu } = Menu;
 
 class SHome extends React.Component {
+  constructor(props) {
+    super(props);
+    this.newTabIndex = 0;
+    const panes = [
+      { title: 'Tab 1', content: 'Content of Tab 1', key: '1' },
+      { title: 'Tab 2', content: 'Content of Tab 2', key: '2' },
+      { title: 'Tab 3', content: 'Content of Tab 3', key: '3' },
+    ];
+    this.state = {
+      activeKey: panes[0].key,
+      panes,
+    };
+  }
+
+  onChange = activeKey => {
+    this.setState({ activeKey });
+  };
+
+  onEdit = (targetKey, action) => {
+    this[action](targetKey);
+  };
+
+  add = () => {
+    const panes = this.state.panes;
+    const activeKey = `newTab${this.newTabIndex++}`;
+    panes.push({ title: 'New Tab', content: 'Content of new Tab', key: activeKey });
+    this.setState({ panes, activeKey });
+  };
+
+  remove = targetKey => {
+    let activeKey = this.state.activeKey;
+    let lastIndex;
+    this.state.panes.forEach((pane, i) => {
+      if (pane.key === targetKey) {
+        lastIndex = i - 1;
+      }
+    });
+    const panes = this.state.panes.filter(pane => pane.key !== targetKey);
+    if (panes.length && activeKey === targetKey) {
+      if (lastIndex >= 0) {
+        activeKey = panes[lastIndex].key;
+      } else {
+        activeKey = panes[0].key;
+      }
+    }
+    this.setState({ panes, activeKey });
+  };
+
   render() {
-    const dataSource = [
-      {
-        _id: '1',
-        name: '网易',
-        url: 'www.163.com',
-        prevDate: '2018-12-10 12:20',
-        nextDate: '2018-12-10 12:20',
-      },
-      {
-        _id: '2',
-        name: '新浪',
-        url: 'www.sina.com.cn',
-        prevDate: '2018-12-10 12:20',
-        nextDate: '2018-12-10 12:20',
-      },
-      {
-        _id: '3',
-        name: '开源中国',
-        url: 'www.oschina.net',
-        prevDate: '2018-12-10 12:20',
-        nextDate: '2018-12-10 12:20',
-      },
-    ];
-
-    const columns = [
-      {
-        title: '站名',
-        dataIndex: 'name',
-        key: 'name',
-      },
-      {
-        title: 'URL',
-        dataIndex: 'url',
-        key: 'url',
-      },
-      {
-        title: '上次执行时间',
-        dataIndex: 'prevDate',
-        key: 'prevDate',
-      },
-      {
-        title: '下次次执行时间',
-        dataIndex: 'nextDate',
-        key: 'nextDate',
-      },
-      {
-        title: '操作',
-        dataIndex: 'operation',
-        key: 'operation',
-        render: () => {
-          return (
-            <span className="event-table-operation">
-              <Button className="btn-list" size="small">
-                详细
-              </Button>&nbsp;&nbsp;
-              <Button className="btn-list" size="small">
-                编辑
-              </Button>&nbsp;&nbsp;
-              <Button className="btn-list" size="small" type="danger">
-                删除
-              </Button>
-            </span>
-          );
-        },
-      },
-    ];
-
     return (
-      <div style={{ padding: '12px' }}>
-        <div className="list-operation">
-          <Button type="primary" size="small">
-            <Link to={ROUTE_CRAWLER_ADD}>新建</Link>
-          </Button>&nbsp;&nbsp;
-          <Button type="primary" size="small">
-            模板导入
-          </Button>
-        </div>
-        <Table
-          className="list-table"
-          columns={columns}
-          rowKey={record => {
-            return record._id;
-          }}
-          dataSource={dataSource}
-        />
-      </div>
+      <Row style={{ height: '100%' }}>
+        <Col span={4} style={{ borderRight: '1px solid #e8e8e8', height: '100%' }}>
+          <div className="home-side">
+            <Row>
+              <Col span={16} style={{ textAlign: 'left' }}>
+                <span>分类</span>
+              </Col>
+              <Col span={4}>
+                <Icon type="folder-add" />
+              </Col>
+              <Col span={4}>
+                <Icon type="sort-ascending" />
+              </Col>
+            </Row>
+            <span className="line" />
+          </div>
+          <div className="home-menu">
+            <Menu defaultSelectedKeys={['1']} mode="inline">
+              <SubMenu
+                key="sub1"
+                title={
+                  <span>
+                    <Icon type="folder" />
+                    <span>电影</span>
+                  </span>
+                }
+              >
+                <Menu.Item key="1">爱奇艺</Menu.Item>
+                <Menu.Item key="2">腾讯</Menu.Item>
+                <Menu.Item key="3">优酷</Menu.Item>
+                <Menu.Item key="4">youtube</Menu.Item>
+              </SubMenu>
+              {/*<Menu.Divider />*/}
+              <SubMenu
+                key="sub2"
+                title={
+                  <span>
+                    <Icon type="folder" />
+                    <span>图片</span>
+                  </span>
+                }
+              >
+                <Menu.Item key="1">Option 1</Menu.Item>
+                <Menu.Item key="2">Option 2</Menu.Item>
+                <Menu.Item key="3">Option 3</Menu.Item>
+                <Menu.Item key="4">Option 4</Menu.Item>
+              </SubMenu>
+              {/*<Menu.Divider />*/}
+              <SubMenu
+                key="sub4"
+                title={
+                  <span>
+                    <Icon type="folder" />
+                    <span>音乐</span>
+                  </span>
+                }
+              >
+                <Menu.Item key="9">Option 9</Menu.Item>
+                <Menu.Item key="10">Option 10</Menu.Item>
+                <Menu.Item key="11">Option 11</Menu.Item>
+                <Menu.Item key="12">Option 12</Menu.Item>
+              </SubMenu>
+              {/*<Menu.Divider />*/}
+              <SubMenu
+                key="sub4"
+                title={
+                  <span>
+                    <Icon type="folder" />
+                    <span>书</span>
+                  </span>
+                }
+              >
+                <Menu.Item key="9">简书</Menu.Item>
+                <Menu.Item key="10">Option 10</Menu.Item>
+                <Menu.Item key="11">Option 11</Menu.Item>
+                <Menu.Item key="12">Option 12</Menu.Item>
+              </SubMenu>
+            </Menu>
+          </div>
+        </Col>
+        <Col span={20}>
+          <Tabs
+            onChange={this.onChange}
+            activeKey={this.state.activeKey}
+            type="editable-card"
+            onEdit={this.onEdit}
+            className="home-content"
+          >
+            {this.state.panes.map(pane => (
+              <TabPane tab={pane.title} key={pane.key} closable={pane.closable}>
+                <Tabs defaultActiveKey="1" animated={false} size="small">
+                  <TabPane tab="定义" key="1">
+                    <CCrawlerDefinition />
+                  </TabPane>
+                  <TabPane tab="设置" key="2">
+                    <CCrawlerSetting />
+                  </TabPane>
+                  <TabPane tab="执行" key="3">
+                    <CCrawlerRun />
+                  </TabPane>
+                  <TabPane tab="履历" key="4">
+                    <CCrawlerHistory />
+                  </TabPane>
+                </Tabs>
+              </TabPane>
+            ))}
+          </Tabs>
+        </Col>
+      </Row>
     );
   }
 }

@@ -47,8 +47,8 @@ class CCrawlerDefinition extends React.Component {
     const { current } = this.state;
     return (
       <div className="steps-def">
-        <Steps current={current}>
-          {steps.map(i => <Step key={i.title} title={i.title} onClick={() => this.next(i.current)}/>)}
+        <Steps progressDot current={current} size="small">
+          {steps.map(i => <Step key={i.title} title={i.title} onClick={() => this.next(i.current)} />)}
         </Steps>
         <div className="steps-content">{steps[current].content}</div>
         <div className="steps-action">
