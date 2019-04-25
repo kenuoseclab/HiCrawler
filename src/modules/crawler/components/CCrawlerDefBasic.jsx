@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, Input, Switch, Radio, InputNumber, Select} from 'antd';
+import { Form, Input, Switch, Radio, InputNumber, Select } from 'antd';
 
 const { TextArea } = Input;
 const RadioGroup = Radio.Group;
@@ -15,7 +15,6 @@ class CCrawlerDefBasic extends React.Component {
     return (
       <div className="content">
         <div className="area">
-          <span className="area-title">基本情报</span>
           <table className="area-table" border="1">
             <tbody>
               <tr>
@@ -42,10 +41,10 @@ class CCrawlerDefBasic extends React.Component {
                 <th>字符集</th>
                 <td>
                   <div style={{ display: 'flex' }}>
-                    <Select defaultValue="equals" style={{width: 100}}>
+                    <Select defaultValue="equals" style={{ width: 100 }}>
                       <Option value="equals">UTF-8</Option>
                     </Select>
-                    <Input placeholder="响应页面的字符集" value="UTF-8"/>
+                    <Input placeholder="响应页面的字符集" value="UTF-8" />
                   </div>
                 </td>
               </tr>
@@ -66,7 +65,7 @@ class CCrawlerDefBasic extends React.Component {
               <tr>
                 <th>User-Agent</th>
                 <td>
-                  <Select defaultValue="equals" style={{width: 200}}>
+                  <Select defaultValue="equals" style={{ width: 200 }}>
                     <Option value="equals">Chrome Mac</Option>
                     <Option value="notEquals">Chrome Windows</Option>
                     <Option value="greaterThan">Firefox Mac</Option>
@@ -74,7 +73,7 @@ class CCrawlerDefBasic extends React.Component {
                     <Option value="lessThan">Internet Explorer</Option>
                     <Option value="lessEqualsThan">Edge</Option>
                   </Select>
-                  <TextArea value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"/>
+                  <TextArea value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36" />
                 </td>
               </tr>
               <tr>

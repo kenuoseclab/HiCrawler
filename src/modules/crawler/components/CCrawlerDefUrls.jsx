@@ -36,7 +36,6 @@ class CCrawlerDefUrls extends React.Component {
     return (
       <div className="content">
         <div className="area">
-          <span className="area-title">请求Url</span>
           <table className="area-table" border="1">
             <tbody>
               <tr>

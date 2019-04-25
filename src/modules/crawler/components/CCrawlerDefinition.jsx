@@ -10,12 +10,12 @@ const { Step } = Steps;
 
 const steps = [
   {
-    title: '任务基本属性',
+    title: '基本属性',
     content: <CCrawlerDefBasic />,
     current: 0,
   },
   {
-    title: '请求URL集合',
+    title: '请求URL',
     content: <CCrawlerDefUrls />,
     current: 1,
   },

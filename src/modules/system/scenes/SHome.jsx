@@ -63,15 +63,15 @@ class SHome extends React.Component {
         <Col span={4} style={{ borderRight: '1px solid #e8e8e8', height: '100%' }}>
           <div className="home-side">
             <Row>
-              <Col span={16} style={{ textAlign: 'left' }}>
+              <Col span={18} style={{ textAlign: 'left' }}>
                 <span>分类</span>
               </Col>
-              <Col span={4}>
-                <Icon type="folder-add" />
+              <Col span={6}>
+                <Icon type="folder-add" style={{ fontSize: '20px' }} />
               </Col>
-              <Col span={4}>
-                <Icon type="sort-ascending" />
-              </Col>
+              {/*<Col span={4}>*/}
+              {/*<Icon type="sort-ascending" />*/}
+              {/*</Col>*/}
             </Row>
             <span className="line" />
           </div>
@@ -101,10 +101,10 @@ class SHome extends React.Component {
                   </span>
                 }
               >
-                <Menu.Item key="1">Option 1</Menu.Item>
-                <Menu.Item key="2">Option 2</Menu.Item>
-                <Menu.Item key="3">Option 3</Menu.Item>
-                <Menu.Item key="4">Option 4</Menu.Item>
+                <Menu.Item key="5">趣图</Menu.Item>
+                <Menu.Item key="6">豆瓣</Menu.Item>
+                <Menu.Item key="7">网库</Menu.Item>
+                <Menu.Item key="8">dribbble</Menu.Item>
               </SubMenu>
               {/*<Menu.Divider />*/}
               <SubMenu
@@ -116,14 +116,14 @@ class SHome extends React.Component {
                   </span>
                 }
               >
-                <Menu.Item key="9">Option 9</Menu.Item>
-                <Menu.Item key="10">Option 10</Menu.Item>
-                <Menu.Item key="11">Option 11</Menu.Item>
-                <Menu.Item key="12">Option 12</Menu.Item>
+                <Menu.Item key="9">网易云</Menu.Item>
+                <Menu.Item key="10">百度</Menu.Item>
+                <Menu.Item key="11">腾讯</Menu.Item>
+                <Menu.Item key="12">虾米</Menu.Item>
               </SubMenu>
               {/*<Menu.Divider />*/}
               <SubMenu
-                key="sub4"
+                key="sub5"
                 title={
                   <span>
                     <Icon type="folder" />
@@ -132,9 +132,9 @@ class SHome extends React.Component {
                 }
               >
                 <Menu.Item key="9">简书</Menu.Item>
-                <Menu.Item key="10">Option 10</Menu.Item>
-                <Menu.Item key="11">Option 11</Menu.Item>
-                <Menu.Item key="12">Option 12</Menu.Item>
+                <Menu.Item key="10">当当网</Menu.Item>
+                <Menu.Item key="11">京东</Menu.Item>
+                <Menu.Item key="12">亚马逊</Menu.Item>
               </SubMenu>
             </Menu>
           </div>

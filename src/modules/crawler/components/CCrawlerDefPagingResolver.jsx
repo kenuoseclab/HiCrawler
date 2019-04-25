@@ -4,9 +4,7 @@ class CCrawlerDefPagingResolver extends React.Component {
   render() {
     return (
       <div className="content">
-        <div className="area">
-          <span className="area-title">分页解析器</span>
-        </div>
+        <div className="area">{/*<span className="area-title">分页解析器</span>*/}</div>
       </div>
     );
   }

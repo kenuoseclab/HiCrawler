@@ -52,8 +52,30 @@
   border-color: #08979c;
 }
 
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+  color: #fff;
+  background-color: #08979c;
+  border-color: #08979c;
+}
+
 .ant-pagination-item-active,
 .ant-radio-checked .ant-radio-inner {
+  border-color: #08979c;
+}
+
+.ant-tabs-nav .ant-tabs-tab:hover {
+  color: #08979c;
+}
+
+.ant-layout {
+  background: none;
+}
+
+.ant-btn:hover,
+.ant-btn:focus {
+  color: #08979c;
+  background-color: #fff;
   border-color: #08979c;
 }
 

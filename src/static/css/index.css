@@ -267,7 +267,6 @@ h6 {
 }
 .steps-content {
   margin-top: 16px;
-  border: 1px dashed #e9e9e9;
   border-radius: 6px;
   background-color: #fafafa;
   min-height: 200px;
@@ -352,4 +351,23 @@ h6 {
 
 .home-content .ant-tabs-bar {
   background: none;
+}
+
+.basic-info {
+  margin: 40px 160px;
+}
+
+.collectors-def .area {
+  width: 620px;
+}
+
+.collectors-items {
+  height: 100%;
+}
+
+.collectors-items .collectors-items-add {
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 16px;
 }

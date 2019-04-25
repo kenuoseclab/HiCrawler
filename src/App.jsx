@@ -1,6 +1,5 @@
 import 'babel-polyfill';
 import 'antd/dist/antd.css';
-import 'react-sortable-tree/style.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import zh from 'react-intl/locale-data/zh';
@@ -18,9 +17,9 @@ import SNotFound from './modules/system/scenes/SNotFound';
 import SCrawlerAdd from './modules/crawler/scenes/SCrawlerAdd';
 
 import './static/css/resetant.css';
-import './static/css/index.css';
 import './static/css/layout.css';
 import './static/css/login.css';
+import './static/css/index.css';
 
 import localZH from './locales/zh';
 import localEN from './locales/en';
