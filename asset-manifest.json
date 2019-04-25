@@ -1,10 +1,11 @@
 {
-  "main.css": "http://hicrawler.hidream.tech/static/css/main.6c86b82e.chunk.css",
-  "main.js": "http://hicrawler.hidream.tech/static/js/main.7efd6078.chunk.js",
-  "static/css/1.ed271437.chunk.css": "http://hicrawler.hidream.tech/static/css/1.ed271437.chunk.css",
-  "static/js/1.e1e6b5d8.chunk.js": "http://hicrawler.hidream.tech/static/js/1.e1e6b5d8.chunk.js",
-  "runtime~main.js": "http://hicrawler.hidream.tech/static/js/runtime~main.2d859ac0.js",
-  "index.html": "http://hicrawler.hidream.tech/index.html",
-  "precache-manifest.958e8de0ffebbf07af9a092a537c928d.js": "http://hicrawler.hidream.tech/precache-manifest.958e8de0ffebbf07af9a092a537c928d.js",
-  "service-worker.js": "http://hicrawler.hidream.tech/service-worker.js"
+  "main.css": "/static/css/main.b5a0f80e.chunk.css",
+  "main.js": "/static/js/main.0f149a54.chunk.js",
+  "static/css/1.870e9ef5.chunk.css": "/static/css/1.870e9ef5.chunk.css",
+  "static/js/1.f43f4a5d.chunk.js": "/static/js/1.f43f4a5d.chunk.js",
+  "runtime~main.js": "/static/js/runtime~main.229c360f.js",
+  "static/media/logo.png": "/static/media/logo.e5c39b44.png",
+  "index.html": "/index.html",
+  "precache-manifest.6c57ff7a71f8475d820556eb150ea25b.js": "/precache-manifest.6c57ff7a71f8475d820556eb150ea25b.js",
+  "service-worker.js": "/service-worker.js"
 }
