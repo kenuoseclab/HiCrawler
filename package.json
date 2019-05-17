@@ -27,7 +27,7 @@
   },
   "homepage": "http://www.hicrawler.hidream.tech/",
   "dependencies": {
-    "antd": "3.11.6",
+    "antd": "3.18.1",
     "axios": "0.18.0",
     "babel-polyfill": "6.26.0",
     "history": "4.7.2",

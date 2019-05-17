@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Icon, Menu, Tabs } from 'antd';
+import { Row, Col, Icon, Menu, Tabs, Button, Dropdown, Modal } from 'antd';
 import CCrawlerDefinition from '../../crawler/components/CCrawlerDefinition';
 import CCrawlerSetting from '../../crawler/components/CCrawlerSetting';
 import CCrawlerRun from '../../crawler/components/CCrawlerRun';
@@ -20,6 +20,8 @@ class SHome extends React.Component {
     this.state = {
       activeKey: panes[0].key,
       panes,
+      visible: false,
+      jsObj: {},
     };
   }
 
@@ -57,7 +59,127 @@ class SHome extends React.Component {
     this.setState({ panes, activeKey });
   };
 
+  showModal = () => {
+    this.setState({
+      visible: true,
+      jsObj: {
+        name: 'test',
+        charset: 'UTF-8',
+        stopAt404: true,
+        useJdkHttpClient: false,
+        enableRender: false,
+        userAgent:
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.86 Safari/537.36',
+        autoRedirect: true,
+        readTimeout: 60,
+        requestInterval: 0,
+        collectorsMatchMode: 'ALL',
+        headers: {},
+        urls: {
+          type: 'PlainUrlSet',
+          urls: ['http://localhost/pageTest/1'],
+        },
+        pagingResolver: {
+          type: 'NextPageNumberPagingResolver',
+          leftPadLength: 1,
+          cssSelector: '#page a',
+          urlAttributeName: 'href',
+        },
+        collectors: [
+          {
+            name: '标题',
+            key: 'title',
+            type: 'HtmlDomCollector',
+            pageCollectMode: 'FIRST_PAGE',
+            pageCollectResultDelimiter: ' ',
+            cssSelector: 'h1',
+            attributeName: 'innerText',
+            joinMulti: true,
+            delimiter: ',',
+          },
+          {
+            name: '内容',
+            key: 'content',
+            type: 'HtmlDomCollector',
+            pageCollectMode: 'EVERY_PAGE',
+            pageCollectResultDelimiter: '',
+            cssSelector: '#content',
+            attributeName: 'innerText',
+            joinMulti: true,
+            delimiter: ',',
+          },
+          {
+            name: '作者',
+            key: 'author',
+            type: 'HtmlDomCollector',
+            pageCollectMode: 'LAST_PAGE',
+            pageCollectResultDelimiter: ' ',
+            cssSelector: '#author',
+            attributeName: 'innerText',
+            joinMulti: true,
+            delimiter: ',',
+          },
+          {
+            name: '时间',
+            key: 'date',
+            type: 'HtmlDomCollector',
+            pageCollectMode: 'LAST_PAGE',
+            pageCollectResultDelimiter: ' ',
+            cssSelector: '#date',
+            attributeName: 'innerText',
+            joinMulti: true,
+            delimiter: ',',
+          },
+          {
+            name: '基本信息',
+            key: 'basics',
+            type: 'CollectorsCombinationCollector',
+            pageCollectMode: 'FIRST_PAGE',
+            pageCollectResultDelimiter: ' ',
+            format: '{标题}-{作者}-{时间}',
+          },
+        ],
+        consumers: [
+          {
+            type: 'ConvertToCsvConsumer',
+            filePath: 'C:\\Users\\86186\\AppData\\Local\\Temp\\pageContent13903917103332306060.csv',
+          },
+        ],
+      },
+    });
+  };
+
+  handleOk = e => {
+    this.setState({
+      visible: false,
+    });
+  };
+
+  handleCancel = e => {
+    this.setState({
+      visible: false,
+    });
+  };
+
+  copyJSON = e => {
+    const pre = document.getElementById('jsObj');
+    const input = document.createElement('input');
+    document.body.appendChild(input);
+    input.setAttribute('value', pre.innerHTML);
+    input.select();
+    document.execCommand('Copy');
+    document.body.removeChild(input);
+  };
+
   render() {
+    const menu = (
+      <Menu>
+        <Menu.Item key="1">设定</Menu.Item>
+        <Menu.Item key="2">执行</Menu.Item>
+        <Menu.Item key="3">履历</Menu.Item>
+      </Menu>
+    );
+
     return (
       <Row style={{ height: '100%' }}>
         <Col span={4} style={{ borderRight: '1px solid #e8e8e8', height: '100%' }}>
@@ -149,24 +271,52 @@ class SHome extends React.Component {
           >
             {this.state.panes.map(pane => (
               <TabPane tab={pane.title} key={pane.key} closable={pane.closable}>
-                <Tabs defaultActiveKey="1" animated={false} size="small">
-                  <TabPane tab="定义" key="1">
-                    <CCrawlerDefinition />
-                  </TabPane>
-                  <TabPane tab="设置" key="2">
-                    <CCrawlerSetting />
-                  </TabPane>
-                  <TabPane tab="执行" key="3">
-                    <CCrawlerRun />
-                  </TabPane>
-                  <TabPane tab="履历" key="4">
-                    <CCrawlerHistory />
-                  </TabPane>
-                </Tabs>
+                {/*<Tabs defaultActiveKey="1" animated={false} size="small">*/}
+                {/*<TabPane tab="定义" key="1">*/}
+                {/*<CCrawlerDefinition />*/}
+                {/*</TabPane>*/}
+                {/*<TabPane tab="设置" key="2">*/}
+                {/*<CCrawlerSetting />*/}
+                {/*</TabPane>*/}
+                {/*<TabPane tab="执行" key="3">*/}
+                {/*<CCrawlerRun />*/}
+                {/*</TabPane>*/}
+                {/*<TabPane tab="履历" key="4">*/}
+                {/*<CCrawlerHistory />*/}
+                {/*</TabPane>*/}
+                {/*</Tabs>*/}
+                <div className="def-header">
+                  <Dropdown overlay={menu}>
+                    <Button>
+                      ... <Icon type="down" />
+                    </Button>
+                  </Dropdown>
+                  <Button type="primary" onClick={this.showModal}>
+                    DB确认(测试)
+                  </Button>
+                  <Button type="primary">保存</Button>
+                </div>
+                <div className="def-content">
+                  <CCrawlerDefinition />
+                </div>
               </TabPane>
             ))}
           </Tabs>
         </Col>
+        <Modal
+          title="JSON详细"
+          width={800}
+          visible={this.state.visible}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <div>
+            <Button type="primary" onClick={this.copyJSON}>
+              拷贝
+            </Button>
+            <pre id="jsObj">{JSON.stringify(this.state.jsObj, null, 4)}</pre>
+          </div>
+        </Modal>
       </Row>
     );
   }

@@ -26,6 +26,7 @@
   width: 100%;
   z-index: 1000;
   background: white;
+  margin: 0 0 10px 0;
 }
 
 .ant-steps-item-icon {
@@ -82,4 +83,31 @@
 ::selection {
   background: #08979c;
   color: #fff;
+}
+
+.ant-menu-item:hover,
+.ant-menu-item-active,
+.ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
+.ant-menu-submenu-active,
+.ant-menu-submenu-title:hover {
+  color: #08979c;
+}
+
+.ant-menu-vertical .ant-menu-item::after,
+.ant-menu-vertical-left .ant-menu-item::after,
+.ant-menu-vertical-right .ant-menu-item::after,
+.ant-menu-inline .ant-menu-item::after {
+  border-right: 3px solid #08979c;
+}
+
+.ant-steps-item-custom.ant-steps-item-process .ant-steps-item-icon > .ant-steps-icon {
+  color: #08979c;
+}
+
+.ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon {
+  color: #08979c;
+}
+
+.ant-steps-item-finish > .ant-steps-item-content > .ant-steps-item-title::after {
+  background-color: #08979c;
 }

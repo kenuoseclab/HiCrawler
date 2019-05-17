@@ -1,5 +1,7 @@
 import React from 'react';
 import { Form, Input, Radio, Select } from 'antd';
+import CCrawlerDefCollectorsProcessors from './CCrawlerDefCollectorsProcessors';
+import CCrawlerDefCollectorsFilters from './CCrawlerDefCollectorsFilters';
 
 const { Option } = Select;
 
@@ -13,7 +15,7 @@ class CCrawlerDefCollectorsItem extends React.Component {
     return (
       <div className="content collectors">
         <div className="area">
-          <span className="area-title">采集器</span>
+          {/*<span className="area-title">采集器</span>*/}
           <table className="area-table" border="1">
             <tbody>
               <tr>
@@ -79,6 +81,18 @@ class CCrawlerDefCollectorsItem extends React.Component {
                       <Input />
                     </Form.Item>
                   </Form>
+                </td>
+              </tr>
+              <tr>
+                <th>过滤器</th>
+                <td>
+                  <CCrawlerDefCollectorsProcessors />
+                </td>
+              </tr>
+              <tr>
+                <th>后处理器</th>
+                <td>
+                  <CCrawlerDefCollectorsFilters />
                 </td>
               </tr>
             </tbody>

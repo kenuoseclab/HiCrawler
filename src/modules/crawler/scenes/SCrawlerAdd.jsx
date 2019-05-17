@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, Tabs, Breadcrumb } from 'antd';
+import { Layout, Tabs, Breadcrumb, Button } from 'antd';
 
 import CCrawlerDefinition from '../components/CCrawlerDefinition';
 import CCrawlerSetting from '../components/CCrawlerSetting';
@@ -13,6 +13,7 @@ const { TabPane } = Tabs;
 
 class SCrawlerAdd extends React.Component {
   render() {
+    const operations = <Button>保存</Button>;
     return (
       <Layout style={{ padding: '0 12px', height: '100%' }}>
         <Breadcrumb className="nav-bar">
@@ -22,7 +23,7 @@ class SCrawlerAdd extends React.Component {
           <Breadcrumb.Item>新规</Breadcrumb.Item>
         </Breadcrumb>
         <Content style={{ background: '#fff', margin: '50px 0 0 0', minHeight: 280 }}>
-          <Tabs defaultActiveKey="1">
+          <Tabs defaultActiveKey="1" tabBarExtraContent={operations}>
             <TabPane tab="定义" key="1">
               <CCrawlerDefinition />
             </TabPane>

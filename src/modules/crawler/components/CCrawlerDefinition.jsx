@@ -1,5 +1,5 @@
 import React from 'react';
-import { Steps, Button, message } from 'antd';
+import { Steps, Button, message, Icon } from 'antd';
 
 import CCrawlerDefBasic from './CCrawlerDefBasic';
 import CCrawlerDefUrls from './CCrawlerDefUrls';
@@ -47,15 +47,22 @@ class CCrawlerDefinition extends React.Component {
     const { current } = this.state;
     return (
       <div className="steps-def">
-        <Steps progressDot current={current} size="small">
-          {steps.map(i => <Step key={i.title} title={i.title} onClick={() => this.next(i.current)} />)}
+        <Steps current={current} size="small" style={{ width: '80%' }}>
+          {steps.map(i => (
+            <Step
+              key={i.title}
+              title={i.title}
+              icon={<Icon type="right-circle" />}
+              onClick={() => this.next(i.current)}
+            />
+          ))}
         </Steps>
         <div className="steps-content">{steps[current].content}</div>
-        <div className="steps-action">
-          <Button type="primary" onClick={() => message.success('完成!')}>
-            完成
-          </Button>
-        </div>
+        {/*<div className="steps-action">*/}
+        {/*<Button type="primary" onClick={() => message.success('完成!')}>*/}
+        {/*完成*/}
+        {/*</Button>*/}
+        {/*</div>*/}
       </div>
     );
   }

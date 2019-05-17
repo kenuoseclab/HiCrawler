@@ -25,8 +25,6 @@ class CCrawlerDefCollectors extends React.Component {
         <Content style={{ background: '#fff' }}>
           <div>
             <CCrawlerDefCollectorsItem />
-            <CCrawlerDefCollectorsProcessors />
-            <CCrawlerDefCollectorsFilters />
           </div>
         </Content>
       </Layout>
