@@ -13,6 +13,10 @@ class CTree extends React.Component {
     this.handleAddOnClick = this.handleAddOnClick.bind(this);
     this.handleOnSelect = this.handleOnSelect.bind(this);
     this.handleRemoveOnClick = this.handleRemoveOnClick.bind(this);
+
+    this.handleOnDragStart = this.handleOnDragStart.bind(this);
+    this.handleOnDragEnter = this.handleOnDragEnter.bind(this);
+    this.handleOnDrag = this.handleOnDrag.bind(this);
   }
 
   handleOnSelect(key) {
@@ -23,8 +27,21 @@ class CTree extends React.Component {
     this.props.addOnClick();
   }
 
-  async handleRemoveOnClick(key) {
+  handleRemoveOnClick(key) {
     this.props.removeOnClick(key);
+  }
+
+  handleOnDragStart(info) {
+    console.log('start', info);
+  }
+
+  handleOnDragEnter(info) {
+    console.log('enter', info);
+  }
+
+  handleOnDrag(info) {
+    console.log('drop', info);
+    this.props.onDrag(info);
   }
 
   renderTreeNodes(data) {
@@ -48,7 +65,15 @@ class CTree extends React.Component {
           <Icon type="plus-square" style={{ fontSize: '20px' }} onClick={this.handleAddOnClick} />
         </div>
         <span className="line" />
-        <DirectoryTree defaultExpandAll>{this.renderTreeNodes(items)}</DirectoryTree>
+        <DirectoryTree
+          defaultExpandAll
+          draggable
+          onDragStart={this.handleOnDragStart}
+          onDragEnter={this.handleOnDragEnter}
+          onDrop={this.handleOnDrag}
+        >
+          {this.renderTreeNodes(items)}
+        </DirectoryTree>
       </div>
     );
   }
@@ -59,6 +84,7 @@ CTree.propTypes = {
   addOnClick: PropTypes.func.isRequired,
   removeOnClick: PropTypes.func.isRequired,
   onSelect: PropTypes.func.isRequired,
+  onDrag: PropTypes.func.isRequired,
 };
 
 CTree.defaultProps = {
