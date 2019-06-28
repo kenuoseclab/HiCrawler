@@ -54,6 +54,7 @@ class Model {
     try {
       return await this.m.update(condition, obj, options).exec();
     } catch (err) {
+      console.log(err);
       throw new createError.InternalServerError(__("common.db.update.error"));
     }
   }

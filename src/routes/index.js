@@ -1,10 +1,12 @@
 const createError = require("http-errors");
-const system      = require("./r_system");
 const auth        = require("../middleware/auth");
 const config      = require("../../config/app");
 const response    = require("../core/response");
 const log         = require("../core/logger");
 const ctrlUser    = require("../modules/system/controllers/ctrl_user");
+
+const system      = require("./r_system");
+const task      = require("./r_task");
 
 const appName  = config.name;
 module.exports = function(app) {
@@ -19,7 +21,7 @@ module.exports = function(app) {
   });
 
   app.use(`/${appName}`, auth.authenticate, system);
-  app.use(`/${appName}/crawler`, auth.authenticate, system);
+  app.use(`/${appName}/task`, auth.authenticate, task);
 
   // catch 404 and forward to error handler
   app.all("*", (req, res) => {
