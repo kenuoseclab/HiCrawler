@@ -1,5 +1,5 @@
 import fetch from 'axios';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory as createHistory } from 'history';
 
 import { ROUTE_ERROR } from './constants';
 import Storage from './storage';

@@ -1,39 +1,41 @@
 import React from 'react';
-import createHistory from 'history/createBrowserHistory';
+import PropTypes from 'prop-types';
 import { Menu, Dropdown, Icon, Input, Avatar } from 'antd';
 import { intlShape, injectIntl } from 'react-intl';
 
 import Storage from '../../../util/storage';
-import { ROUTE_LOGIN } from '../../../util/constants';
-
-const history = createHistory({ forceRefresh: true });
+import { ROUTE_LOGIN, ROUTE_DASHBOARD, ROUTE_TASK_LIST, ROUTE_SETTING } from '../../../util/constants';
 
 class CNav extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      current: 'mail',
-    };
-
     this.handleClick = this.handleClick.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
 
   handleLogout() {
+    const { history } = this.props;
     Storage.clearLocalStorage();
     history.push(ROUTE_LOGIN);
   }
 
   handleClick(e) {
-    this.setState({
-      current: e.key,
-    });
+    const { history } = this.props;
+    if (e.key === 'dashboard') {
+      history.push(ROUTE_DASHBOARD);
+    }
+
+    if (e.key === 'task') {
+      history.push(ROUTE_TASK_LIST);
+    }
+
+    if (e.key === 'setting') {
+      history.push(ROUTE_SETTING);
+    }
   }
 
   render() {
     const { formatMessage } = this.props.intl;
-
     const menu = (
       <Menu onClick={this.handleLogout}>
         <Menu.Item>{formatMessage({ id: 'logout.button.name' })}</Menu.Item>
@@ -52,9 +54,11 @@ class CNav extends React.Component {
               <Input placeholder="检索" prefix={<Icon type="search" style={{ color: 'rgba(0,0,0,.25)' }} />} />
             </div>
             <div className="menu">
-              <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
-                <Menu.Item key="mail">规则定义</Menu.Item>
-                <Menu.Item key="app">统计</Menu.Item>
+              <Menu onClick={this.handleClick} selectedKeys={[this.props.tabKey]} mode="horizontal">
+                <Menu.Item key="dashboard">仪表板</Menu.Item>
+                <Menu.Item key="task">任务</Menu.Item>
+                <Menu.Item key="setting">设定</Menu.Item>
+                <Menu.Item key="template">模板市场</Menu.Item>
               </Menu>
             </div>
           </div>
@@ -74,6 +78,15 @@ class CNav extends React.Component {
 
 CNav.propTypes = {
   intl: intlShape.isRequired,
+  tabKey: PropTypes.string,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+    replace: PropTypes.func.isRequired,
+  }).isRequired,
+};
+
+CNav.defaultProps = {
+  tabKey: 'dashboard',
 };
 
 export default injectIntl(CNav);

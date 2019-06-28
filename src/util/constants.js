@@ -1,23 +1,318 @@
 // client router
 export const ROUTE_LOGIN = '/login';
-export const ROUTE_HOME = '/home';
+export const ROUTE_DASHBOARD = '/dashboard';
+export const ROUTE_TASK_LIST = '/task/list';
+export const ROUTE_TASK_DETAIL = '/task/detail';
+export const ROUTE_SETTING = '/setting';
 export const ROUTE_ERROR = '/error';
-export const ROUTE_CRAWLER_ADD = '/crawler/add';
 
 // api list
 export const API_LOGIN = '/login';
-export const API_CATEGORY = '/categories';
+export const API_TASK_LIST = '/task';
+export const API_TASK_HISTORY = '/task/history';
+export const API_TASK_NEW = '/task';
+export const API_TASK_DETAIL = '/task/detail';
 
-export const processors = [
+export const COLLECTOR_TYPE = [
+  {
+    name: '从请求URL中采集数据的采集器',
+    key: 'UrlParamCollector',
+    items: [
+      {
+        title: '从URL中要提取的指定部分',
+        key: 'partType',
+        required: true,
+        type: 'select',
+        data: [
+          { name: 'URL整体', value: 'all' },
+          { name: '协议', value: 'protocol' },
+          { name: '主机名或IP地址', value: 'host' },
+          { name: '端口号', value: 'port' },
+          { name: '相对路径', value: 'path' },
+          { name: '相对路径分部', value: 'pathPart' },
+          { name: '请求参数（同名参数有多个时，用半角逗号连接）', value: 'queryParam' },
+          { name: '所有参数（即问号之后井号之前的部分）', value: 'queryParams' },
+          { name: '问号之前的部分', value: 'beforeQMark' },
+          { name: '问号之后的部分', value: 'afterQMark' },
+          { name: '井号之前的部分', value: 'beforeHash' },
+          { name: '井号之后的部分', value: 'afterHash' },
+        ],
+      },
+      {
+        title: '通过斜杠分隔URL后，要提取的部分的下标',
+        key: 'pathPartIndex',
+        required: false,
+        type: 'number',
+        data: [],
+      },
+    ],
+  },
+  {
+    name: '根据指定的css规则，从HTML文档中采集URL的采集器',
+    key: 'SimpleUrlCollector',
+    items: [
+      {
+        title: 'CSS选择器',
+        key: 'cssSelector',
+        required: true,
+        type: 'input',
+        data: [],
+      },
+    ],
+  },
+  {
+    name: '根据指定的CSS选择器查找DOM节点，从DOM节点中提取指定的属性值的采集器',
+    key: 'HtmlDomCollector',
+    items: [
+      {
+        title: 'CSS选择器',
+        key: 'cssSelector',
+        required: false,
+        type: 'input',
+        data: [],
+      },
+      {
+        title: '属性名',
+        key: 'attributeName',
+        required: false,
+        type: 'input',
+        data: [],
+      },
+      {
+        title: 'CSS选择器匹配多个DOM节点时，是否将取得的多个值拼接起来',
+        key: 'joinMulti',
+        required: false,
+        type: 'switch',
+        data: [],
+      },
+      {
+        title: '多个属性值拼接时，使用的连接符',
+        key: 'delimiter',
+        required: false,
+        type: 'input',
+        data: [],
+      },
+    ],
+  },
+  {
+    name: '从HTTP头信息中提取数据的采集器',
+    key: 'HttpHeaderCollector',
+    items: [
+      {
+        title: 'HTTP头名称',
+        key: 'headerName',
+        required: true,
+        type: 'input',
+        data: [],
+      },
+    ],
+  },
+  {
+    name: '从HTTP响应文本中提取指定两个字符串之间的文本的采集器',
+    key: 'TextSubstringBetweenCollector',
+    items: [
+      {
+        title: '开始字符串',
+        key: 'open',
+        required: true,
+        type: 'input',
+        data: [],
+      },
+      {
+        title: '结束字符串',
+        key: 'close',
+        required: true,
+        type: 'input',
+        data: [],
+      },
+    ],
+  },
+  {
+    name: '根据指定的路径从Json中提取属性值的采集器',
+    key: 'JsonCollector',
+    items: [
+      {
+        title: 'json路径',
+        key: 'jsonPath',
+        required: true,
+        type: 'textarea',
+        data: [],
+      },
+      {
+        title: '匹配多个值',
+        key: 'joinMulti',
+        required: false,
+        type: 'switch',
+        data: [],
+      },
+      {
+        title: '多个属性值拼接时，使用的连接符',
+        key: 'delimiter',
+        required: false,
+        type: 'input',
+        data: [],
+      },
+    ],
+  },
+  {
+    name: '使用指定的javascript来从HTTP响应文本中提取数据的采集器',
+    key: 'JavascriptCollector',
+    items: [
+      {
+        title: 'javascript代码',
+        key: 'javascript',
+        required: true,
+        type: 'textarea',
+        data: [],
+      },
+    ],
+  },
+  {
+    name: '返回指定函数的结果的采集器',
+    key: 'FunctionReturnValueCollector',
+    items: [
+      {
+        title: '函数',
+        key: 'function',
+        required: true,
+        type: 'select',
+        data: [
+          {
+            name: '取得常量值的函数',
+            value: 'ConstantValueFunction',
+            items: [
+              {
+                title: '常量值',
+                key: 'value',
+                required: true,
+                type: 'input',
+                data: [],
+              },
+            ],
+          },
+          {
+            name: '取得随机项目的函数',
+            value: 'RandomItemFunction',
+            items: [
+              {
+                title: '备选项目',
+                key: 'items',
+                required: true,
+                type: 'textarea',
+                data: [],
+              },
+            ],
+          },
+          {
+            name: '取得随机数字的函数',
+            value: 'RandomNumberFunction',
+            items: [
+              {
+                title: '最小值',
+                key: 'min',
+                required: true,
+                type: 'number',
+                data: [],
+              },
+              {
+                title: '最大值',
+                key: 'max',
+                required: true,
+                type: 'number',
+                data: [],
+              },
+            ],
+          },
+          {
+            name: '取得随机字符串的函数',
+            value: 'RandomStringFunction',
+            items: [
+              {
+                title: '可选字符',
+                key: 'chars',
+                required: false,
+                type: 'input',
+                data: [],
+              },
+              {
+                title: '输出字符串的长度',
+                key: 'length',
+                required: false,
+                type: 'number',
+                data: [],
+              },
+            ],
+          },
+          {
+            name: '取得UUID的函数',
+            value: 'UUIDFunction',
+          },
+          {
+            name: '取得当前时间毫秒值的函数',
+            value: 'CurrentTimeMillisFunction',
+          },
+          {
+            name: '取得当前日期（时间）的函数',
+            value: 'CurrentDateFunction',
+            items: [
+              {
+                title: '日期格式',
+                key: 'format',
+                required: false,
+                type: 'input',
+                data: [],
+              },
+              {
+                title: '时区，[-12, 12]区间内的整数',
+                key: 'timeZone',
+                required: false,
+                type: 'number',
+                data: [],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: '采集结果拼接采集器',
+    key: 'CollectorsCombinationCollector',
+    items: [
+      {
+        title: '格式字符串',
+        key: 'format',
+        required: true,
+        type: 'input',
+        data: [],
+      },
+    ],
+  },
+];
+
+export const PROCESSORS_TYPE = [
   {
     name: '为内容添加前缀的处理器',
     key: 'AddPrefixProcessor',
-    items: [{ title: '前缀', key: 'prefix', type: 'input' }],
+    items: [
+      {
+        title: '前缀',
+        key: 'prefix',
+        type: 'input',
+        data: [],
+      },
+    ],
   },
   {
     name: '为内容添加后缀的处理器',
     key: 'AddSuffixProcessor',
-    items: [{ title: '后缀', key: 'suffix', type: 'input' }],
+    items: [
+      {
+        title: '后缀',
+        key: 'suffix',
+        type: 'input',
+      },
+    ],
   },
   {
     name: '提取html中的文本内容的处理器',
@@ -32,36 +327,41 @@ export const processors = [
         title: '输出模式',
         key: 'outputMode',
         type: 'radio',
-        values: [{ key: 'append', value: '标注模式' }, { key: 'convert', value: '转化模式' }],
+        data: [{ value: 'append', name: '标注模式' }, { value: 'convert', name: '转化模式' }],
       },
       {
         title: '音调类型',
         key: 'toneType',
         type: 'radio',
-        values: [
-          { key: 'mark', value: '符号音调' },
-          { key: 'number', value: '数字音调' },
-          { key: 'none', value: '无音调' },
+        data: [
+          { value: 'mark', name: '符号音调' },
+          { value: 'number', name: '数字音调' },
+          { value: 'none', name: '无音调' },
         ],
       },
-      { title: '拼音的首字母是否转化为大写', key: 'firstCharToUpperCase', type: 'radio' },
+      {
+        title: '拼音的首字母是否转化为大写',
+        key: 'firstCharToUpperCase',
+        type: 'switch',
+        data: [],
+      },
       { title: '拼音间的分隔符', key: 'separator', type: 'input' },
     ],
   },
   {
     name: '将内容转换为简体中文的处理器',
     key: 'ConvertToSimplifiedChineseProcessor',
-    items: [{ title: '', type: 'checkbox' }],
+    items: [],
   },
   {
     name: '将内容转化为繁体字的处理器',
     key: 'ConvertToTraditionalChineseProcessor',
-    items: [{ title: '', type: 'checkbox' }],
+    items: [],
   },
   {
     name: '默认值处理器。输入值为空时，输出指定的默认值',
     key: 'DefaultValueProcessor',
-    items: [{ title: '默认值', type: 'input' }],
+    items: [{ title: '默认值', key: 'defaultValue', type: 'input' }],
   },
   {
     name: '将日期（时间）由一种格式转化为另一种格式的处理器',
@@ -80,7 +380,7 @@ export const processors = [
     name: '从输入内容中提取关键词的处理器',
     key: 'KeywordsProcessor',
     items: [
-      { title: '关键词个数', key: 'count', type: 'input' },
+      { title: '关键词个数', key: 'count', type: 'number' },
       { title: '关键词分隔符', key: 'separator', type: 'input' },
     ],
   },
@@ -110,7 +410,7 @@ export const processors = [
     key: 'SubstringAfterProcessor',
     items: [
       { title: '分隔符', key: 'separator', type: 'input' },
-      { title: '重复时是否取最后出现的位置', key: 'afterLast', type: 'checkbox' },
+      { title: '重复时是否取最后出现的位置', key: 'afterLast', type: 'switch' },
     ],
   },
   {
@@ -118,7 +418,7 @@ export const processors = [
     key: 'SubstringBeforeProcessor',
     items: [
       { title: '分隔符', key: 'separator', type: 'input' },
-      { title: '重复时是否取最后出现的位置', key: 'beforeLast', type: 'checkbox' },
+      { title: '重复时是否取最后出现的位置', key: 'beforeLast', type: 'switch' },
     ],
   },
   {
@@ -130,14 +430,14 @@ export const processors = [
     name: '截取字符串子串的处理器',
     key: 'SubstringProcessor',
     items: [
-      { title: '开始位置，包含', key: 'start', type: 'input' },
-      { title: '结束位置，不包含', key: 'end', type: 'input' },
+      { title: '开始位置，包含', key: 'start', type: 'number' },
+      { title: '结束位置，不包含', key: 'end', type: 'number' },
     ],
   },
   {
     name: '从中文数据中提取摘要的处理器',
     key: 'SummaryChineseProcessor',
-    items: [{ title: '摘要长度', key: 'length', type: 'input' }],
+    items: [{ title: '摘要长度', key: 'length', type: 'number' }],
   },
   {
     name: '去除字符串的前导和后缀控制字符的处理器',
@@ -146,7 +446,7 @@ export const processors = [
   },
 ];
 
-export const filters = [
+export const FILTERS_TYPE = [
   {
     name: '判定字符串是否为空的布尔值函数',
     key: 'BlankStringPredicate',
@@ -160,12 +460,12 @@ export const filters = [
         title: '匹配模式',
         key: 'matchMode',
         type: 'radio',
-        values: [{ key: 'any', value: '任意' }, { key: 'all', value: '全部' }],
+        data: [{ value: 'any', name: '任意' }, { value: 'all', name: '全部' }],
       },
       {
         title: '字符串列表',
         key: 'strings',
-        type: 'inputs',
+        type: 'textarea',
       },
     ],
   },
@@ -176,7 +476,7 @@ export const filters = [
       {
         title: '字符串列表',
         key: 'strings',
-        type: 'inputs',
+        type: 'textarea',
       },
     ],
   },
@@ -187,7 +487,7 @@ export const filters = [
       {
         title: '字符串列表',
         key: 'strings',
-        type: 'inputs',
+        type: 'textarea',
       },
     ],
   },
@@ -203,7 +503,7 @@ export const filters = [
       {
         title: '字符串列表',
         key: 'strings',
-        type: 'inputs',
+        type: 'textarea',
       },
     ],
   },
@@ -214,7 +514,7 @@ export const filters = [
       {
         title: '字符串列表',
         key: 'strings',
-        type: 'inputs',
+        type: 'textarea',
       },
     ],
   },
@@ -225,7 +525,7 @@ export const filters = [
       {
         title: '字符串列表',
         key: 'strings',
-        type: 'inputs',
+        type: 'textarea',
       },
     ],
   },
@@ -248,19 +548,19 @@ export const filters = [
         title: '判定符',
         key: 'operator',
         type: 'select',
-        values: [
-          { key: 'EQUALS', value: '等于' },
-          { key: 'NOT_EQUALS', value: '不等于' },
-          { key: 'GREAT_THAN', value: '大于' },
-          { key: 'GREAT_EQUALS_THAN', value: '大于等于' },
-          { key: 'LESS_THAN', value: '小于' },
-          { key: 'LESS_EQUALS_THAN', value: '小于等于' },
+        data: [
+          { value: 'EQUALS', name: '等于' },
+          { value: 'NOT_EQUALS', name: '不等于' },
+          { value: 'GREAT_THAN', name: '大于' },
+          { value: 'GREAT_EQUALS_THAN', name: '大于等于' },
+          { value: 'LESS_THAN', name: '小于' },
+          { value: 'LESS_EQUALS_THAN', name: '小于等于' },
         ],
       },
       {
         title: '判定符右侧的数值',
         key: 'number',
-        type: 'input',
+        type: 'number',
       },
     ],
   },
@@ -272,13 +572,13 @@ export const filters = [
         title: '判定符',
         key: 'operator',
         type: 'select',
-        values: [
-          { key: 'EQUALS', value: '等于' },
-          { key: 'NOT_EQUALS', value: '不等于' },
-          { key: 'GREAT_THAN', value: '大于' },
-          { key: 'GREAT_EQUALS_THAN', value: '大于等于' },
-          { key: 'LESS_THAN', value: '小于' },
-          { key: 'LESS_EQUALS_THAN', value: '小于等于' },
+        data: [
+          { value: 'EQUALS', name: '等于' },
+          { value: 'NOT_EQUALS', name: '不等于' },
+          { value: 'GREAT_THAN', name: '大于' },
+          { value: 'GREAT_EQUALS_THAN', name: '大于等于' },
+          { value: 'LESS_THAN', name: '小于' },
+          { value: 'LESS_EQUALS_THAN', name: '小于等于' },
         ],
       },
       {
@@ -293,4 +593,15 @@ export const filters = [
       },
     ],
   },
+];
+
+export const DEF_CHARSET = [{ id: '1', value: 'UTF-8', name: 'UTF-8' }];
+
+export const DEF_USER_AGENT = [
+  { id: '1', value: 'Mozilla/5.0 Chrome/70.0.3538.77 Safari/537.36', name: 'Chrome Mac' },
+  { id: '1', value: 'Mozilla/5.0 Chrome/70.0.3538.77', name: 'Chrome Windows' },
+  { id: '1', value: 'Mozilla/5.0 Gecko/20100101 Firefox/62.0', name: 'Firefox Mac' },
+  { id: '1', value: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64;) Gecko/20100101 Firefox/62.0', name: 'Firefox Windows' },
+  { id: '1', value: 'Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0;) like Gecko', name: 'Internet Explorer' },
+  { id: '1', value: 'Mozilla/5.0 Chrome/64.0.3282.140 Safari/537.36 Edge/17.17134', name: 'Edge' },
 ];

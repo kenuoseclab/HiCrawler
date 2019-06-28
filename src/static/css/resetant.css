@@ -14,14 +14,6 @@
   padding: 8px;
 }
 
-.ant-form-item {
-  margin-bottom: 4px;
-}
-
-.ant-form-item-label {
-  text-align: left;
-}
-
 .ant-tabs-bar {
   width: 100%;
   z-index: 1000;
@@ -80,6 +72,10 @@
   border-color: #08979c;
 }
 
+.ant-tree-treenode-selected {
+  background: #fff;
+}
+
 ::selection {
   background: #08979c;
   color: #fff;
@@ -110,4 +106,55 @@
 
 .ant-steps-item-finish > .ant-steps-item-content > .ant-steps-item-title::after {
   background-color: #08979c;
+}
+
+.ant-menu-item-selected {
+  color: #08979c;
+}
+
+.ant-form-item {
+  margin-bottom: 2px;
+}
+
+.ant-tree.ant-tree-directory > li.ant-tree-treenode-selected > span.ant-tree-node-content-wrapper::before,
+.ant-tree.ant-tree-directory
+  .ant-tree-child-tree
+  > li.ant-tree-treenode-selected
+  > span.ant-tree-node-content-wrapper::before {
+  background: #fafafa;
+  color: #000;
+}
+
+.ant-tree.ant-tree-directory > li span.ant-tree-node-content-wrapper.ant-tree-node-selected,
+.ant-tree.ant-tree-directory .ant-tree-child-tree > li span.ant-tree-node-content-wrapper.ant-tree-node-selected {
+  background: #fafafa;
+  color: #000;
+}
+
+.ant-tree.ant-tree-directory > li span.ant-tree-node-content-wrapper:hover::before,
+.ant-tree.ant-tree-directory .ant-tree-child-tree > li span.ant-tree-node-content-wrapper:hover::before {
+  background: #fafafa;
+}
+
+.ant-tree li .ant-tree-node-content-wrapper.ant-tree-node-selected {
+  background: #fafafa;
+}
+
+.ant-tree li .ant-tree-node-content-wrapper {
+  height: 32px;
+}
+
+.ant-tree li span.ant-tree-switcher,
+.ant-tree li span.ant-tree-iconEle {
+  width: 2px;
+  padding-right: 20px;
+}
+
+.ant-form-text {
+  display: block;
+  padding-right: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 30px;
+  white-space: nowrap;
 }

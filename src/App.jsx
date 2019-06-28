@@ -11,21 +11,32 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 
 import CDefaultLayout from './modules/system/components/CDefaultLayout';
 import SLogin from './modules/system/scenes/SLogin';
-import SHome from './modules/system/scenes/SHome';
 import SInternalServerError from './modules/system/scenes/SInternalServerError';
 import SNotFound from './modules/system/scenes/SNotFound';
-import SCrawlerAdd from './modules/crawler/scenes/SCrawlerAdd';
+import SDashboard from './modules/dashboard/scenes/SDashboard';
+import STaskList from './modules/task/scenes/STaskList';
+import STaskDetail from './modules/task/scenes/STaskDetail';
+import SSetting from './modules/setting/scenes/SSetting';
 
 import './static/css/resetant.css';
 import './static/css/layout.css';
 import './static/css/login.css';
 import './static/css/index.css';
+import './static/css/task.css';
 
 import localZH from './locales/zh';
 import localEN from './locales/en';
 import localJA from './locales/ja';
 import Storage from './util/storage';
-import { ROUTE_HOME, ROUTE_LOGIN, ROUTE_CRAWLER_ADD, ROUTE_ERROR } from './util/constants';
+
+import {
+  ROUTE_LOGIN,
+  ROUTE_TASK_LIST,
+  ROUTE_TASK_DETAIL,
+  ROUTE_DASHBOARD,
+  ROUTE_SETTING,
+  ROUTE_ERROR,
+} from './util/constants';
 
 addLocaleData([...zh, ...en, ...ja]);
 
@@ -35,7 +46,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       {...rest}
       render={props =>
         Storage.isAuthenticatedUser() ? (
-          <CDefaultLayout side={rest.side}>
+          <CDefaultLayout tabKey={rest.tabKey} {...props}>
             <Component {...props} />
           </CDefaultLayout>
         ) : (
@@ -54,7 +65,7 @@ const PublicRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props => (!Storage.isAuthenticatedUser() ? <Component {...props} /> : <Redirect to={ROUTE_HOME} />)}
+      render={props => (!Storage.isAuthenticatedUser() ? <Component {...props} /> : <Redirect to={ROUTE_DASHBOARD} />)}
     />
   );
 };
@@ -90,8 +101,10 @@ class App extends React.Component {
           <Switch>
             <PublicRoute path="/" exact component={SLogin} />
             <PublicRoute path={ROUTE_LOGIN} component={SLogin} />
-            <PrivateRoute path={ROUTE_HOME} component={SHome} />
-            <PrivateRoute path={ROUTE_CRAWLER_ADD} component={SCrawlerAdd} side={false} />
+            <PrivateRoute path={ROUTE_DASHBOARD} component={SDashboard} tabKey="dashboard" />
+            <PrivateRoute path={ROUTE_TASK_LIST} component={STaskList} tabKey="task" />
+            <PrivateRoute path={`${ROUTE_TASK_DETAIL}/:id`} component={STaskDetail} tabKey="task" />
+            <PrivateRoute path={ROUTE_SETTING} component={SSetting} tabKey="setting" />
             <Route path={ROUTE_ERROR} exact component={SInternalServerError} />
             <Route path="*" component={SNotFound} />
           </Switch>

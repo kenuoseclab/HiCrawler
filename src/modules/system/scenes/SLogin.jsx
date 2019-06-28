@@ -4,7 +4,7 @@ import { intlShape, injectIntl, FormattedMessage } from 'react-intl';
 import { Form, Input, Button, Row, message, Icon } from 'antd';
 
 import logo from '../../../static/img/logo.png';
-import { ROUTE_HOME, API_LOGIN } from '../../../util/constants';
+import { ROUTE_DASHBOARD, API_LOGIN } from '../../../util/constants';
 import Storage from '../../../util/storage';
 import { post } from '../../../util/fetch';
 
@@ -32,7 +32,7 @@ class SLogin extends React.Component {
           const result = await post(API_LOGIN, values);
           Storage.setToken(result.token);
           Storage.setUser(result.user);
-          this.props.history.replace(ROUTE_HOME);
+          this.props.history.push(ROUTE_DASHBOARD);
         } catch (error) {
           message.error(error.message);
         }

@@ -1,0 +1,213 @@
+.task-list {
+}
+
+.task-tag {
+  padding-top: 6px;
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+}
+
+.task-tag .ant-tag {
+  font-size: 18px;
+  font-weight: bold;
+  height: 30px;
+  line-height: 30px;
+}
+
+.task-card {
+  width: calc(100% / 5 - 20px);
+  height: 133px;
+  margin: 10px;
+  display: inline-table;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+}
+
+.task-card:hover {
+  cursor: pointer;
+}
+
+.task-card img {
+  width: 100%;
+  height: 133px;
+}
+
+.task-card .name {
+  font-size: 24px;
+  color: #000c17;
+  font-weight: bold;
+  height: 110px;
+  line-height: 110px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.task-card .date {
+  font-size: 9px;
+  bottom: 0;
+  position: absolute;
+  padding: 2px;
+  width: 100%;
+  height: 23px;
+}
+
+.task-card .ant-card-body {
+  text-align: center;
+  height: 100%;
+  padding: 0;
+  display: grid;
+}
+
+.task-detail {
+  height: 100%;
+}
+
+.task-detail .ant-breadcrumb {
+  margin: 16px 0;
+}
+
+.task-detail .ant-breadcrumb a {
+  color: #08979c;
+  text-decoration: #08979c underline solid;
+}
+
+.task-detail .layout {
+  background: #fff;
+  height: 100%;
+}
+
+.task-detail .ant-menu {
+  height: 100%;
+}
+
+.task-detail .ant-menu-item {
+  margin-top: 0;
+}
+
+.task-detail .content {
+  padding: 4px 24px;
+  height: 100%;
+}
+
+.task-detail .ant-layout-footer {
+  text-align: center;
+  z-index: 10;
+  background: #fafafa;
+}
+
+.task-edit {
+  width: 85%;
+  padding-top: 24px;
+}
+
+.proxy-form .server {
+}
+
+.proxy-form .server .address {
+  width: 60%;
+  margin-right: 6px;
+}
+
+.proxy-form .server .port {
+  margin-left: 6px;
+  width: 80px;
+}
+
+.proxy-form .user-password {
+  float: right;
+}
+
+.proxy-form .user-password .ant-form-item {
+  display: flex;
+}
+
+.select .ant-form-item-control {
+  position: absolute;
+  width: 100%;
+}
+
+.task-modal {
+  height: 800px;
+}
+
+.task-modal .ant-modal-body {
+  padding-bottom: 0;
+}
+
+.task-collector {
+  display: flex;
+  height: 100%;
+}
+
+.task-collector .items {
+  width: 240px;
+  height: 100%;
+}
+
+.task-collector .items .title {
+  height: 40px;
+  padding: 12px;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.task-collector .items .title i {
+  float: right;
+}
+
+.task-collector .content {
+  padding: 0;
+  margin: 12px 6px 12px 0;
+  width: 100%;
+  height: 500px;
+  overflow: auto;
+  border-left: 1px solid #e3e3e3;
+}
+
+.task-collector .task-edit-collector {
+  width: 96%;
+}
+
+.task-collector .form {
+  display: flex;
+  width: 100%;
+}
+
+.task-collector .form .anticon-down-circle {
+  position: relative;
+  font-size: 20px;
+  color: #c3bfbf;
+  cursor: pointer;
+}
+
+.task-collector .form .anticon-close-circle {
+  position: relative;
+  font-size: 20px;
+  color: red;
+  cursor: pointer;
+  top: -14px;
+  left: 8px;
+}
+
+.task-collector .form .icon {
+  position: relative;
+}
+
+.task-collector .form .icon span {
+  display: inline-block;
+  vertical-align: middle;
+  zoom: 1;
+  position: relative;
+  height: 100%;
+  padding: 0;
+}
+
+.task-collector .form .icon span img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+}
