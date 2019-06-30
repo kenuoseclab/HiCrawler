@@ -290,6 +290,74 @@ export const COLLECTOR_TYPE = [
   },
 ];
 
+export const PAGIN_GRESOLVER_TYPE = [
+  {
+    name: '根据下一页按钮来取得下一页URL的分页解析器',
+    key: 'NextPageButtonPagingResolver',
+    items: [
+      {
+        title: '“下一页”按钮的名字',
+        key: 'buttonLabel',
+        required: false,
+        type: 'input',
+        data: [],
+      },
+      {
+        title: '“下一页”按钮上记录URL的属性的名字',
+        key: 'urlAttributeName',
+        required: false,
+        type: 'input',
+        data: [],
+      },
+    ],
+  },
+  {
+    name: '根据下一页的页码来取得下一页URL的分页解析器',
+    key: 'NextPageNumberPagingResolver',
+    items: [
+      {
+        title: '页码左端补齐长度',
+        key: 'leftPadLength',
+        required: false,
+        type: 'number',
+        data: [],
+      },
+      {
+        title: '查找页码按钮的css选择器',
+        key: 'cssSelector',
+        required: false,
+        type: 'input',
+        data: [],
+      },
+      {
+        title: '“下一页”按钮上记录URL的属性的名字',
+        key: 'urlAttributeName',
+        required: false,
+        type: 'input',
+        data: [],
+      },
+    ],
+  },
+  {
+    name: '根据指定的采集器来取得下一页URL的分页解析器',
+    key: 'CollectorPagingResolver',
+    items: [
+      {
+        title: '采集器',
+        key: 'collector',
+        required: true,
+        type: 'select',
+        data: [
+          { value: 'SimpleUrlCollector', name: '根据指定的css规则，从HTML文档中采集URL的采集器' },
+          { value: 'HtmlDomCollector', name: '根据指定的CSS选择器查找DOM节点，从DOM节点中提取指定的属性值的采集器' },
+          { value: 'TextSubstringBetweenCollector', name: '从HTTP响应文本中提取指定两个字符串之间的文本的采集器' },
+          { value: 'JsonCollector', name: '根据指定的路径从Json中提取属性值的采集器' },
+          { value: 'JavascriptCollector', name: '使用指定的javascript来处理输入内容的处理器' },
+        ],
+      },
+    ],
+  },
+];
 export const PROCESSORS_TYPE = [
   {
     name: '为内容添加前缀的处理器',

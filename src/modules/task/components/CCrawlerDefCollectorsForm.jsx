@@ -167,6 +167,23 @@ class CCrawlerDefCollectorsForm extends React.Component {
   handleProcessOnDragEnd(result) {
     const { data } = this.props;
 
+    const processObj = data.processors || [];
+    if (!result.destination) {
+      return;
+    }
+
+    if (result.destination.index === result.source.index) {
+      return;
+    }
+
+    const items = reorder(processObj, result.source.index, result.destination.index);
+
+    this.props.onChange(data.key, 'processors', items);
+  }
+
+  handleFilterOnDragEnd(result) {
+    const { data } = this.props;
+
     const filterObj = data.filter || {};
     filterObj.predicates = filterObj.predicates || [];
 
@@ -183,23 +200,6 @@ class CCrawlerDefCollectorsForm extends React.Component {
     filterObj.predicates = items;
 
     this.props.onChange(data.key, 'filter', filterObj);
-  }
-
-  handleFilterOnDragEnd(result) {
-    const { data } = this.props;
-
-    const processObj = data.processors || [];
-    if (!result.destination) {
-      return;
-    }
-
-    if (result.destination.index === result.source.index) {
-      return;
-    }
-
-    const items = reorder(processObj, result.source.index, result.destination.index);
-
-    this.props.onChange(data.key, 'processors', items);
   }
 
   render() {
@@ -305,7 +305,7 @@ class CCrawlerDefCollectorsForm extends React.Component {
                             >
                               <div className="icon">
                                 <span>
-                                  <img src={drag} alt="survey" />
+                                  <img src={drag} alt="drag" />
                                 </span>
                               </div>
                               <div className="c-sub-form">
@@ -340,7 +340,7 @@ class CCrawlerDefCollectorsForm extends React.Component {
             <Radio value="ANY">任意匹配</Radio>
             <Radio value="ALL">全部匹配</Radio>
           </RadioGroup>
-          <DragDropContext onDragEnd={this.handleProcessOnDragEnd}>
+          <DragDropContext onDragEnd={this.handleFilterOnDragEnd}>
             <Droppable droppableId="droppable">
               {(provided, snapshot) => (
                 <div {...provided.droppableProps} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>

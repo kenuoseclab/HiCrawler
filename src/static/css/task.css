@@ -170,11 +170,13 @@
   width: 96%;
 }
 
+.task-edit .form,
 .task-collector .form {
   display: flex;
   width: 100%;
 }
 
+.task-edit .form .anticon-down-circle,
 .task-collector .form .anticon-down-circle {
   position: relative;
   font-size: 20px;
@@ -182,6 +184,7 @@
   cursor: pointer;
 }
 
+.task-edit .form .anticon-close-circle,
 .task-collector .form .anticon-close-circle {
   position: relative;
   font-size: 20px;
@@ -191,10 +194,12 @@
   left: 8px;
 }
 
+.task-edit .form .icon,
 .task-collector .form .icon {
   position: relative;
 }
 
+.task-edit .form .icon span,
 .task-collector .form .icon span {
   display: inline-block;
   vertical-align: middle;
@@ -204,6 +209,7 @@
   padding: 0;
 }
 
+.task-edit .form .icon span img,
 .task-collector .form .icon span img {
   position: absolute;
   top: 50%;
