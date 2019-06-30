@@ -45,9 +45,8 @@ const Task = new BaseSchema({
   },
   pagingResolver: {
     type:                         { type: String, description: "" },
-    leftPadLength:                { type: Number, description: "" },
-    cssSelector:                  { type: String, description: "" },
-    urlAttributeName:             { type: String, description: "" },
+    typeInfo:                     { type: Mixed,  description: "" },
+    processors:                   [{ type: Mixed,  description: "" }],
   },
   collectors:                     [ Collector ],
 });
