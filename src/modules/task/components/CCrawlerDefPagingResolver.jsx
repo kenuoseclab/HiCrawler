@@ -6,7 +6,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Form, Select, Icon } from 'antd';
 
 import CFormItemFactory from '../../system/components/CFormItemFactory';
-import { PROCESSORS_TYPE, PAGIN_GRESOLVER_TYPE, COLLECTOR_TYPE } from '../../../util/constants';
+import { URL_TEMPLATE_TYPE, PROCESSORS_TYPE, PAGING_RESOLVER_TYPE, COLLECTOR_TYPE } from '../../../util/constants';
 import { generateUUID } from '../../../util/helper';
 import drag from '../../../static/img/drag.png';
 
@@ -167,7 +167,7 @@ class CCrawlerDefPagingResolver extends React.Component {
     const { pagingResolver } = this.state;
     const processors = pagingResolver.processors || [];
 
-    const typeData = _.find(PAGIN_GRESOLVER_TYPE, { key: pagingResolver.type });
+    const typeData = _.find(PAGING_RESOLVER_TYPE, { key: pagingResolver.type });
     const isExistForm = typeData && typeData.items && typeData.items.length > 0;
     let typeForm;
     if (isExistForm) {
@@ -192,7 +192,7 @@ class CCrawlerDefPagingResolver extends React.Component {
       <Form {...formItemLayout} className="task-edit">
         <Form.Item label="分页解析器的类型">
           <Select value={pagingResolver.type} onChange={v => this.handlePagingTypeChange('type', v)}>
-            {PAGIN_GRESOLVER_TYPE.map(p => (
+            {PAGING_RESOLVER_TYPE.map(p => (
               <Option key={p.key} value={p.key}>
                 {p.name}
               </Option>

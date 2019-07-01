@@ -362,7 +362,7 @@ class CCrawlerDefCollectorsForm extends React.Component {
                             >
                               <div className="icon">
                                 <span>
-                                  <img src={drag} alt="survey" />
+                                  <img src={drag} alt="drag" />
                                 </span>
                               </div>
                               <div className="c-sub-form">

@@ -13,6 +13,111 @@ export const API_TASK_HISTORY = '/task/history';
 export const API_TASK_NEW = '/task';
 export const API_TASK_DETAIL = '/task/detail';
 
+export const URL_TEMPLATE_TYPE = [
+  {
+    name: '序列型URL变量',
+    key: 'SequenceUrlParam',
+    items: [
+      {
+        title: '参数名，英文字母开头，可包含数字和下划线',
+        key: 'name',
+        required: true,
+        type: 'input',
+        data: [],
+      },
+      {
+        title: '初始值（包含）',
+        key: 'start',
+        required: false,
+        type: 'number',
+        data: [],
+      },
+      {
+        title: '最大值（包含）',
+        key: 'end',
+        required: true,
+        type: 'number',
+        data: [],
+      },
+      {
+        title: '步增',
+        key: 'step',
+        required: true,
+        type: 'number',
+        data: [],
+      },
+      {
+        title: '补齐后长度（左端补0）',
+        key: 'leftPadLength',
+        required: false,
+        type: 'number',
+        data: [],
+      },
+    ],
+  },
+  {
+    name: '枚举型URL参数',
+    key: 'EnumUrlParam',
+    items: [
+      {
+        title: '参数名，英文字母开头，可包含数字和下划线',
+        key: 'name',
+        required: true,
+        type: 'input',
+        data: [],
+      },
+      {
+        title: '枚举值集合。数组，元素为字符串',
+        key: 'values',
+        required: false,
+        type: 'textarea',
+        data: [],
+      },
+    ],
+  },
+  {
+    name: '简单的日期型URL参数',
+    key: 'DateUrlParam',
+    items: [
+      {
+        title: '参数名，英文字母开头，可包含数字和下划线',
+        key: 'name',
+        required: true,
+        type: 'input',
+        data: [],
+      },
+      {
+        title: '开始日期，格式为yyyy-MM-dd',
+        key: 'startDate',
+        required: true,
+        type: 'input',
+        data: [],
+      },
+      {
+        title: '开始日期相对于当前日期的偏移天数。',
+        key: 'startDateOffset',
+        required: true,
+        type: 'number',
+        data: [],
+      },
+      {
+        title: '结束日期，格式为yyyy-MM-dd',
+        key: 'endDate',
+        required: false,
+        type: 'input',
+        data: [],
+      },
+      {
+        title: '输出格式',
+        key: 'format',
+        required: true,
+        type: 'input',
+        data: [],
+      },
+    ],
+  },
+];
+
 export const COLLECTOR_TYPE = [
   {
     name: '从请求URL中采集数据的采集器',
@@ -290,7 +395,7 @@ export const COLLECTOR_TYPE = [
   },
 ];
 
-export const PAGIN_GRESOLVER_TYPE = [
+export const PAGING_RESOLVER_TYPE = [
   {
     name: '根据下一页按钮来取得下一页URL的分页解析器',
     key: 'NextPageButtonPagingResolver',
