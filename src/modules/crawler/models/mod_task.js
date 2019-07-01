@@ -42,6 +42,11 @@ const Task = new BaseSchema({
     type:                         { type: String, description: "URL集合类型", default: "PlainUrlSet" },
     url:                          { type: String, description: "URL" },
     urlItems:                     { type: Array,  description: "url" },
+    templatedUrls:                [{
+      key:                        { type: String, description: "URL" },
+      template:                   { type: String, description: "URL" },
+      params:                     [{ type: Mixed,  description: "" }]
+    }]
   },
   pagingResolver: {
     type:                         { type: String, description: "" },
