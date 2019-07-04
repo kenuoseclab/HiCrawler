@@ -31,16 +31,16 @@ class CTree extends React.Component {
     this.props.removeOnClick(key);
   }
 
-  handleOnDragStart(info) {
-    console.log('start', info);
+  handleOnDragStart() {
+    // console.log('start', info);
   }
 
-  handleOnDragEnter(info) {
-    console.log('enter', info);
+  handleOnDragEnter() {
+    // console.log('enter', info);
   }
 
   handleOnDrag(info) {
-    console.log('drop', info);
+    // console.log('drop', info);
     this.props.onDrag(info);
   }
 

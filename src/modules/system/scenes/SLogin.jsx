@@ -37,7 +37,7 @@ class SLogin extends React.Component {
           message.error(error.message);
         }
       } else {
-        console.log(err);
+        // console.log(err);
       }
     });
   }

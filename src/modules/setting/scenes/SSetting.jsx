@@ -19,32 +19,7 @@ class SSetting extends React.Component {
 
   componentDidMount() {}
 
-  handleMenuOnClick(e) {
-    // const { key } = e;
-    // switch (key) {
-    //   case '1':
-    //     this.setState({defaultContent: <STaskHistory />});
-    //     break;
-    //   case '2':
-    //     this.setState({defaultContent: <STaskRun />});
-    //     break;
-    //   case '3':
-    //     this.setState({defaultContent: <STaskSetting />});
-    //     break;
-    //   case '4':
-    //     this.setState({defaultContent: <STaskDefHistory />});
-    //     break;
-    //   case '5':
-    //     this.setState({visible: true});
-    //     break;
-    //   case '6':
-    //     this.setState({defaultContent: <STaskDefImportExport />});
-    //     break;
-    //   default:
-    //     this.setState({defaultContent: <STaskHistory />});
-    //     break;
-    // }
-  }
+  handleMenuOnClick() {}
 
   render() {
     const { defaultContent } = this.state;

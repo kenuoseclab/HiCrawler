@@ -1,9 +1,8 @@
 import React from 'react';
 
 class SNotFound extends React.Component {
-
   render() {
-    return <h1>SNotFound</h1>
+    return <h1>SNotFound</h1>;
   }
 }
 

@@ -86,7 +86,7 @@ class STaskDetail extends React.Component {
   }
 
   handleItemOnChange(detail) {
-    console.log(123, detail);
+    // console.log(123, detail);
     this.setState(detail);
   }
 

@@ -6,7 +6,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Form, Select, Icon } from 'antd';
 
 import CFormItemFactory from '../../system/components/CFormItemFactory';
-import { URL_TEMPLATE_TYPE, PROCESSORS_TYPE, PAGING_RESOLVER_TYPE, COLLECTOR_TYPE } from '../../../util/constants';
+import { PROCESSORS_TYPE, PAGING_RESOLVER_TYPE, COLLECTOR_TYPE } from '../../../util/constants';
 import { generateUUID } from '../../../util/helper';
 import drag from '../../../static/img/drag.png';
 
@@ -221,6 +221,7 @@ class CCrawlerDefPagingResolver extends React.Component {
                     processors.map((p, index) => {
                       const processItems = _.find(PROCESSORS_TYPE, { key: p.type });
                       const isExistProcessForm = processItems && processItems.items && processItems.items.length > 0;
+                      // eslint-disable-next-line max-len
                       const processForm =
                         isExistProcessForm && CFormItemFactory(processItems.items, p, this.handleProcessChange);
                       return (

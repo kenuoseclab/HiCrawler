@@ -94,7 +94,6 @@ class STaskList extends React.Component {
           <Tag color="purple">purple</Tag>
         </div>
         {cardItems.map(c => {
-          console.log(c);
           return (
             <Card className="task-card" key={c._id} onClick={() => this.handleTaskDetailClick(c._id)}>
               <div className="name">{c.basicInfo.name}</div>

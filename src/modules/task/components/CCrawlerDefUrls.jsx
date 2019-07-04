@@ -103,7 +103,6 @@ class CCrawlerDefUrls extends React.Component {
     const { urls } = this.state;
     const temp = _.find(urls.templatedUrls, { key: templateKey }) || {};
     const paramsObj = temp.params || [];
-    console.log(0, urls, templateKey);
     if (!result.destination) {
       return;
     }
