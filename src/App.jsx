@@ -1,7 +1,6 @@
-import 'babel-polyfill';
 import 'antd/dist/antd.css';
 import React from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import zh from 'react-intl/locale-data/zh';
 import en from 'react-intl/locale-data/en';
 import ja from 'react-intl/locale-data/ja';
@@ -18,11 +17,11 @@ import STaskList from './modules/task/scenes/STaskList';
 import STaskDetail from './modules/task/scenes/STaskDetail';
 import SSetting from './modules/setting/scenes/SSetting';
 
-import './static/css/resetant.css';
-import './static/css/layout.css';
-import './static/css/login.css';
-import './static/css/index.css';
-import './static/css/task.css';
+import './static/css/resetant.scss';
+import './static/css/layout.scss';
+import './static/css/login.scss';
+import './static/css/index.scss';
+import './static/css/task.scss';
 
 import localZH from './locales/zh';
 import localEN from './locales/en';

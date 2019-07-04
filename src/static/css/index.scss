@@ -51,28 +51,6 @@ h6 {
   background: #fafafa;
 }
 
-.home-side {
-  height: 56px;
-  font-size: 14px;
-  padding: 12px 8px;
-  text-align: center;
-  line-height: 30px;
-}
-
-.home-side .anticon {
-  font-size: 16px;
-  color: #827e7e;
-}
-
-.home-side .line {
-  display: block;
-  height: 1px;
-  background: #e8e8e8;
-  margin-top: 10px;
-  margin-left: 0;
-  margin-bottom: 10px;
-}
-
 .nav {
   position: relative;
   z-index: 1001;
@@ -148,115 +126,8 @@ h6 {
   color: #000;
 }
 
-.side-menu {
-  height: 100%;
-  border-right: 1px solid #e3e3e3;
-}
-
-.side-menu .side-button {
-  padding: 6px 10px;
-  border-bottom: 1px solid #e3e3e3;
-}
-
-.side-menu .side-button button {
-  width: 100%;
-}
-
-.side-menu .side-tree {
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.list-operation {
-  text-align: right;
-  padding-bottom: 6px;
-  border-bottom: 1px solid #e3e3e3;
-}
-
-.list-table {
-}
-
-.nav-bar {
-  position: fixed;
-  z-index: 1000;
-  width: 100%;
-  background: #f0f2f5;
-  height: 50px;
-  line-height: 50px;
-  padding-left: 12px;
-}
-
 .content {
   padding: 12px 0;
-}
-
-.area {
-  padding-left: 24px;
-  padding-bottom: 24px;
-  width: 700px;
-}
-
-.area-title {
-  font-size: 20px;
-  color: #000;
-  margin-bottom: 12px;
-  padding-left: 16px;
-}
-
-.area-title::before {
-  border: 2px solid #f95217;
-  content: '';
-  height: 30px;
-  position: absolute;
-  margin-left: -20px;
-}
-
-.area-table {
-  margin: 10px 0 0;
-  width: 100%;
-  border: 1px solid #d2d1d2;
-}
-
-.area-table tr {
-  height: 40px;
-}
-
-.area-table tr th {
-  width: 200px;
-  padding-left: 13px;
-  background: #f2f2f2;
-  color: #000;
-  font-weight: 100;
-  font-size: 14px;
-}
-
-.area-table tr .required::before {
-  display: inline-block;
-  margin-right: 4px;
-  content: '*';
-  font-family: SimSun, sans-serif;
-  line-height: 1;
-  font-size: 14px;
-  color: #f5222d;
-}
-
-.area-table tr td {
-  padding: 2px 10px;
-}
-
-.area-operation {
-  width: 100%;
-  position: fixed;
-  bottom: 6px;
-  height: 50px;
-  background: white;
-  border-top: 1px solid #e3e3e3;
-  line-height: 50px;
-}
-
-.area-operation button {
-  margin-left: 24px;
-  width: 120px;
 }
 
 .content-history {

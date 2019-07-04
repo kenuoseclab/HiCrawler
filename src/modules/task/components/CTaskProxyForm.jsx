@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import { Checkbox, Form, Input } from 'antd';
 
 class CTaskProxyForm extends React.Component {
@@ -39,7 +39,7 @@ class CTaskProxyForm extends React.Component {
         <div className="server">
           <Input
             className="address"
-            placeholder="服务器地址"
+            placeholder="服务器"
             value={proxy.host}
             onChange={e => this.handleInputOnChange('host', e.target.value)}
           />

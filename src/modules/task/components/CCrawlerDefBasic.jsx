@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import { Form, Input, Radio, Switch, InputNumber, Tooltip, Icon } from 'antd';
 
 import CSelect from '../../system/components/CSelect';
@@ -54,7 +54,7 @@ class CCrawlerDefBasic extends React.Component {
         <Form.Item
           label={
             <span>
-              是否中断&nbsp;
+              遇404停止采集&nbsp;
               <Tooltip title="访问URL返回404时，是否停止采集">
                 <Icon type="question-circle-o" />
               </Tooltip>
@@ -71,7 +71,7 @@ class CCrawlerDefBasic extends React.Component {
         <Form.Item
           label={
             <span>
-              是否渲染&nbsp;
+              渲染页面&nbsp;
               <Tooltip title="对于返回的画面，是否执行渲染并执行js">
                 <Icon type="question-circle-o" />
               </Tooltip>
@@ -85,23 +85,23 @@ class CCrawlerDefBasic extends React.Component {
             onChange={e => this.handleBasicInfoChange('enableRender', e)}
           />
         </Form.Item>
-        <Form.Item label="字符集" className="select">
+        <Form.Item label="页面字符集" className="select">
           <CSelect
             options={DEF_CHARSET}
             defaultValue={basicInfo.charset}
             onChange={e => this.handleBasicInfoChange('charset', e)}
           />
         </Form.Item>
-        <Form.Item label="超时时间" extra="请求读取的超时时间，单位：秒">
+        <Form.Item label="读取超时时间" extra="请求读取的超时时间，单位：秒">
           <InputNumber value={basicInfo.readTimeout} onChange={e => this.handleBasicInfoChange('readTimeout', e)} />
         </Form.Item>
-        <Form.Item label="间隔时间" extra="请求间隔时间，单位：毫秒">
+        <Form.Item label="请求间隔时间" extra="请求间隔时间，单位：毫秒">
           <InputNumber
             value={basicInfo.requestInterval}
             onChange={e => this.handleBasicInfoChange('requestInterval', e)}
           />
         </Form.Item>
-        <Form.Item label="User-Agent" className="select">
+        <Form.Item label="UserAgent" className="select">
           <CSelect
             options={DEF_USER_AGENT}
             defaultValue={basicInfo.userAgent}
@@ -117,7 +117,7 @@ class CCrawlerDefBasic extends React.Component {
             <Radio value="ALL">全部匹配</Radio>
           </RadioGroup>
         </Form.Item>
-        <Form.Item label="请求头设定">
+        <Form.Item label="请求头">
           <TextArea
             value={basicInfo.httpHeaders}
             onChange={e => this.handleBasicInfoChange('httpHeaders', e.target.value)}

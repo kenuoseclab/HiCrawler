@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import { Menu, Dropdown, Icon, Input, Avatar } from 'antd';
 import { intlShape, injectIntl } from 'react-intl';
 
@@ -63,7 +63,8 @@ class CNav extends React.Component {
             </div>
           </div>
           <div className="right">
-            <Avatar icon="user" />&nbsp;&nbsp;
+            <Avatar icon="user" />
+            &nbsp;&nbsp;
             <Dropdown overlay={menu}>
               <a className="ant-dropdown-link">
                 <i className="icon-user" /> {name} <Icon type="down" />

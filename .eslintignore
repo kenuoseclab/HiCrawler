@@ -1,7 +1,7 @@
 scripts
 node_modules
-test/coverage
-test/setup
+__tests__/coverage
+__tests__/setup
 config
 docs
 dist

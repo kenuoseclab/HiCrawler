@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import { Form, Input, Radio, Button, Row, Col, Icon } from 'antd';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import _ from 'lodash';
@@ -40,16 +40,16 @@ class CCrawlerDefUrls extends React.Component {
 
     this.handleUrlsChange = this.handleUrlsChange.bind(this);
 
-    this.handleAddUrlTemplateOnClick = this.handleAddUrlTemplateOnClick.bind(this);
-    this.handleTemplateOnChange = this.handleTemplateOnChange.bind(this);
+    this.handleAddUrlTemplateClick = this.handleAddUrlTemplateClick.bind(this);
+    this.handleTemplateChange = this.handleTemplateChange.bind(this);
 
-    this.handleRemoveUrlTemplateOnClick = this.handleRemoveUrlTemplateOnClick.bind(this);
-    this.handleTemplateParamOnDragEnd = this.handleTemplateParamOnDragEnd.bind(this);
+    this.handleRemoveUrlTemplateClick = this.handleRemoveUrlTemplateClick.bind(this);
+    this.handleTemplateParamDragEnd = this.handleTemplateParamDragEnd.bind(this);
     this.handleParamOnChange = this.handleParamOnChange.bind(this);
-    this.handleAddParamOnClick = this.handleAddParamOnClick.bind(this);
-    this.handleRemoveParamOnClick = this.handleRemoveParamOnClick.bind(this);
+    this.handleAddParamClick = this.handleAddParamClick.bind(this);
+    this.handleRemoveParamClick = this.handleRemoveParamClick.bind(this);
 
-    this.handleParamTypeOnChange = this.handleParamTypeOnChange.bind(this);
+    this.handleParamTypeChange = this.handleParamTypeChange.bind(this);
   }
 
   commonUrlsChange(urls) {
@@ -71,7 +71,7 @@ class CCrawlerDefUrls extends React.Component {
     this.commonUrlsChange(urls);
   }
 
-  handleAddUrlTemplateOnClick() {
+  handleAddUrlTemplateClick() {
     const { urls } = this.state;
     urls.templatedUrls = urls.templatedUrls || [];
     urls.templatedUrls.push({
@@ -83,7 +83,7 @@ class CCrawlerDefUrls extends React.Component {
     this.commonUrlsChange(urls);
   }
 
-  handleTemplateOnChange(templateKey, v) {
+  handleTemplateChange(templateKey, v) {
     const { urls } = this.state;
     const temp = _.find(urls.templatedUrls, { key: templateKey });
     if (temp) {
@@ -93,13 +93,13 @@ class CCrawlerDefUrls extends React.Component {
     this.commonUrlsChange(urls);
   }
 
-  handleRemoveUrlTemplateOnClick(key) {
+  handleRemoveUrlTemplateClick(key) {
     const { urls } = this.state;
     urls.templatedUrls = _.filter(urls.templatedUrls, p => p.key !== key);
     this.commonUrlsChange(urls);
   }
 
-  handleTemplateParamOnDragEnd(result, templateKey) {
+  handleTemplateParamDragEnd(result, templateKey) {
     const { urls } = this.state;
     const temp = _.find(urls.templatedUrls, { key: templateKey }) || {};
     const paramsObj = temp.params || [];
@@ -112,10 +112,7 @@ class CCrawlerDefUrls extends React.Component {
       return;
     }
 
-    console.log(11111, paramsObj);
     temp.params = reorder(paramsObj, result.source.index, result.destination.index);
-
-    console.log(22222, temp.params);
 
     this.commonUrlsChange(urls);
   }
@@ -136,7 +133,7 @@ class CCrawlerDefUrls extends React.Component {
     this.commonUrlsChange(urls);
   }
 
-  handleAddParamOnClick(tKey) {
+  handleAddParamClick(tKey) {
     const { urls } = this.state;
     urls.templatedUrls = urls.templatedUrls || [];
     const temp = _.find(urls.templatedUrls, { key: tKey });
@@ -151,7 +148,7 @@ class CCrawlerDefUrls extends React.Component {
     this.commonUrlsChange(urls);
   }
 
-  handleRemoveParamOnClick(templateKey, paramKey) {
+  handleRemoveParamClick(templateKey, paramKey) {
     const { urls } = this.state;
     urls.templatedUrls = urls.templatedUrls || [];
     const temp = _.find(urls.templatedUrls, { key: templateKey });
@@ -162,7 +159,7 @@ class CCrawlerDefUrls extends React.Component {
     this.commonUrlsChange(urls);
   }
 
-  handleParamTypeOnChange(tKey, pKey, e) {
+  handleParamTypeChange(tKey, pKey, e) {
     const { urls } = this.state;
     urls.templatedUrls = urls.templatedUrls || [];
     const temp = _.find(urls.templatedUrls, { key: tKey });
@@ -194,12 +191,12 @@ class CCrawlerDefUrls extends React.Component {
       <Form {...formItemLayout} className="task-edit">
         <Form.Item label="类型">
           <RadioGroup value={urls.type} onChange={e => this.handleUrlsChange('type', e.target.value)}>
-            <Radio value="PlainUrlSet">简单的URL集合</Radio>
-            <Radio value="TemperatedUrlSet">基于模板的URL集合</Radio>
+            <Radio value="PlainUrlSet">简单网址</Radio>
+            <Radio value="TemperatedUrlSet">动态网址</Radio>
           </RadioGroup>
         </Form.Item>
         {urls.type === 'PlainUrlSet' && (
-          <Form.Item label="URL" extra="复数个时用换行区分">
+          <Form.Item label="网址" extra="复数个时用换行区分">
             <TextArea
               autosize={{ minRows: 6 }}
               value={urls.url}
@@ -209,8 +206,8 @@ class CCrawlerDefUrls extends React.Component {
         )}
         {urls.type === 'TemperatedUrlSet' && (
           <div>
-            <Form.Item label="追加URL">
-              <Button onClick={this.handleAddUrlTemplateOnClick}>追加</Button>
+            <Form.Item label="模板">
+              <Button onClick={this.handleAddUrlTemplateClick}>追加</Button>
               {urls.templatedUrls &&
                 urls.templatedUrls.map(t => {
                   const params = t.params || [];
@@ -221,16 +218,16 @@ class CCrawlerDefUrls extends React.Component {
                           <Col span={19}>
                             <Input
                               value={t.template}
-                              onChange={e => this.handleTemplateOnChange(t.key, e.target.value)}
+                              onChange={e => this.handleTemplateChange(t.key, e.target.value)}
                             />
                           </Col>
                           <Col span={5}>
-                            <Button onClick={() => this.handleAddParamOnClick(t.key)}>+</Button>
-                            <Button onClick={() => this.handleRemoveUrlTemplateOnClick(t.key)}>-</Button>
+                            <Button onClick={() => this.handleAddParamClick(t.key)}>+</Button>
+                            <Button onClick={() => this.handleRemoveUrlTemplateClick(t.key)}>-</Button>
                           </Col>
                         </Row>
                       </div>
-                      <DragDropContext onDragEnd={r => this.handleTemplateParamOnDragEnd(r, t.key)}>
+                      <DragDropContext onDragEnd={r => this.handleTemplateParamDragEnd(r, t.key)}>
                         <Droppable droppableId="droppable">
                           {(provided, snapshot) => (
                             <div
@@ -261,21 +258,21 @@ class CCrawlerDefUrls extends React.Component {
                                           </span>
                                         </div>
                                         <div className="c-sub-form">
-                                          <Form.Item label="URL参数类型">
+                                          <Form.Item label="类型">
                                             <RadioGroup
                                               value={p.type}
-                                              onChange={e => this.handleParamTypeOnChange(t.key, p.key, e)}
+                                              onChange={e => this.handleParamTypeChange(t.key, p.key, e)}
                                             >
-                                              <Radio value="SequenceUrlParam">序列型</Radio>
-                                              <Radio value="EnumUrlParam">枚举型</Radio>
-                                              <Radio value="DateUrlParam">简单的日期型</Radio>
+                                              <Radio value="SequenceUrlParam">序列</Radio>
+                                              <Radio value="EnumUrlParam">枚举</Radio>
+                                              <Radio value="DateUrlParam">日期</Radio>
                                             </RadioGroup>
                                           </Form.Item>
                                           {isExistUrlForm && urlTemplateForm}
                                         </div>
                                         <Icon
                                           type="close-circle"
-                                          onClick={() => this.handleRemoveParamOnClick(t.key, p.key)}
+                                          onClick={() => this.handleRemoveParamClick(t.key, p.key)}
                                         />
                                       </div>
                                     )}

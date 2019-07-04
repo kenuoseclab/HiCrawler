@@ -1,6 +1,6 @@
 import React from 'react';
 import { message, Table } from 'antd';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 
 import { API_TASK_HISTORY, ROUTE_TASK_LIST } from '../../../util/constants';
 import { get } from '../../../util/fetch';

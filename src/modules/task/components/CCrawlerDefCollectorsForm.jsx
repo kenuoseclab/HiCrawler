@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import _ from 'lodash';
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
@@ -241,7 +241,7 @@ class CCrawlerDefCollectorsForm extends React.Component {
 
     return (
       <Form {...formItemLayout} className="task-edit-collector">
-        <Form.Item label="采集器名" required>
+        <Form.Item label="名称" required>
           <Input value={data.name || ''} onChange={e => this.handleCollectorInfoChange('name', e.target.value)} />
         </Form.Item>
         <Form.Item label="分页采集模式">
@@ -254,13 +254,13 @@ class CCrawlerDefCollectorsForm extends React.Component {
             <Radio value="EVERY_PAGE">每一页</Radio>
           </RadioGroup>
         </Form.Item>
-        <Form.Item label="分页采集结果连接符">
+        <Form.Item label="连接符">
           <Input
             value={data.pageCollectResultDelimiter || ''}
             onChange={e => this.handleCollectorInfoChange('pageCollectResultDelimiter', e.target.value)}
           />
         </Form.Item>
-        <Form.Item label="采集器的类型" required>
+        <Form.Item label="类型" required>
           <Select value={data.type} onChange={v => this.handleCollectorTypeChange('type', v)}>
             {COLLECTOR_TYPE.map(c => (
               <Option key={c.key} value={c.key}>
@@ -275,7 +275,7 @@ class CCrawlerDefCollectorsForm extends React.Component {
             </div>
           )}
         </Form.Item>
-        <Form.Item label="后处理器类型">
+        <Form.Item label="处理器">
           <Select onChange={this.handleAddProcess}>
             {PROCESSORS_TYPE.map(p => (
               <Option key={p.key} value={p.key}>
@@ -325,7 +325,7 @@ class CCrawlerDefCollectorsForm extends React.Component {
             </Droppable>
           </DragDropContext>
         </Form.Item>
-        <Form.Item label="过滤器类型">
+        <Form.Item label="过滤器">
           <Select onChange={this.handleAddFilter}>
             {FILTERS_TYPE.map(f => (
               <Option key={f.key} value={f.key}>

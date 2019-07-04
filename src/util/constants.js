@@ -15,25 +15,25 @@ export const API_TASK_DETAIL = '/task/detail';
 
 export const URL_TEMPLATE_TYPE = [
   {
-    name: '序列型URL变量',
+    name: '序列',
     key: 'SequenceUrlParam',
     items: [
       {
-        title: '参数名，英文字母开头，可包含数字和下划线',
+        title: '参数名',
         key: 'name',
         required: true,
         type: 'input',
         data: [],
       },
       {
-        title: '初始值（包含）',
+        title: '初始值',
         key: 'start',
         required: false,
         type: 'number',
         data: [],
       },
       {
-        title: '最大值（包含）',
+        title: '最大值',
         key: 'end',
         required: true,
         type: 'number',
@@ -47,7 +47,7 @@ export const URL_TEMPLATE_TYPE = [
         data: [],
       },
       {
-        title: '补齐后长度（左端补0）',
+        title: '长度',
         key: 'leftPadLength',
         required: false,
         type: 'number',
@@ -56,18 +56,18 @@ export const URL_TEMPLATE_TYPE = [
     ],
   },
   {
-    name: '枚举型URL参数',
+    name: '枚举',
     key: 'EnumUrlParam',
     items: [
       {
-        title: '参数名，英文字母开头，可包含数字和下划线',
+        title: '参数名',
         key: 'name',
         required: true,
         type: 'input',
         data: [],
       },
       {
-        title: '枚举值集合。数组，元素为字符串',
+        title: '枚举值',
         key: 'values',
         required: false,
         type: 'textarea',
@@ -76,39 +76,46 @@ export const URL_TEMPLATE_TYPE = [
     ],
   },
   {
-    name: '简单的日期型URL参数',
+    name: '日期',
     key: 'DateUrlParam',
     items: [
       {
-        title: '参数名，英文字母开头，可包含数字和下划线',
+        title: '参数名',
         key: 'name',
         required: true,
         type: 'input',
         data: [],
       },
       {
-        title: '开始日期，格式为yyyy-MM-dd',
+        title: '开始日期',
         key: 'startDate',
         required: true,
         type: 'input',
         data: [],
       },
       {
-        title: '开始日期相对于当前日期的偏移天数。',
+        title: '开始日期相对于当前日期的偏移天数',
         key: 'startDateOffset',
         required: true,
         type: 'number',
         data: [],
       },
       {
-        title: '结束日期，格式为yyyy-MM-dd',
+        title: '结束日期',
         key: 'endDate',
         required: false,
         type: 'input',
         data: [],
       },
       {
-        title: '输出格式',
+        title: '结束日期相对于当前日期的偏移天数',
+        key: 'endDateOffset',
+        required: true,
+        type: 'number',
+        data: [],
+      },
+      {
+        title: '格式',
         key: 'format',
         required: true,
         type: 'input',
@@ -120,11 +127,11 @@ export const URL_TEMPLATE_TYPE = [
 
 export const COLLECTOR_TYPE = [
   {
-    name: '从请求URL中采集数据的采集器',
+    name: '请求网址',
     key: 'UrlParamCollector',
     items: [
       {
-        title: '从URL中要提取的指定部分',
+        title: '类型',
         key: 'partType',
         required: true,
         type: 'select',
@@ -144,16 +151,23 @@ export const COLLECTOR_TYPE = [
         ],
       },
       {
-        title: '通过斜杠分隔URL后，要提取的部分的下标',
+        title: '参数名',
         key: 'pathPartIndex',
         required: false,
         type: 'number',
         data: [],
       },
+      {
+        title: '分部位置',
+        key: 'queryParamName',
+        required: false,
+        type: 'input',
+        data: [],
+      },
     ],
   },
   {
-    name: '根据指定的css规则，从HTML文档中采集URL的采集器',
+    name: '响应体-抽取网址',
     key: 'SimpleUrlCollector',
     items: [
       {
@@ -166,7 +180,7 @@ export const COLLECTOR_TYPE = [
     ],
   },
   {
-    name: '根据指定的CSS选择器查找DOM节点，从DOM节点中提取指定的属性值的采集器',
+    name: '响应体-CSS选择器',
     key: 'HtmlDomCollector',
     items: [
       {
@@ -184,14 +198,14 @@ export const COLLECTOR_TYPE = [
         data: [],
       },
       {
-        title: 'CSS选择器匹配多个DOM节点时，是否将取得的多个值拼接起来',
+        title: '多值连接',
         key: 'joinMulti',
         required: false,
         type: 'switch',
         data: [],
       },
       {
-        title: '多个属性值拼接时，使用的连接符',
+        title: '连接符',
         key: 'delimiter',
         required: false,
         type: 'input',
@@ -200,11 +214,11 @@ export const COLLECTOR_TYPE = [
     ],
   },
   {
-    name: '从HTTP头信息中提取数据的采集器',
+    name: '响应头',
     key: 'HttpHeaderCollector',
     items: [
       {
-        title: 'HTTP头名称',
+        title: '名称',
         key: 'headerName',
         required: true,
         type: 'input',
@@ -213,18 +227,18 @@ export const COLLECTOR_TYPE = [
     ],
   },
   {
-    name: '从HTTP响应文本中提取指定两个字符串之间的文本的采集器',
+    name: '响应体-文字截取',
     key: 'TextSubstringBetweenCollector',
     items: [
       {
-        title: '开始字符串',
+        title: '开始文字',
         key: 'open',
         required: true,
         type: 'input',
         data: [],
       },
       {
-        title: '结束字符串',
+        title: '结束文字',
         key: 'close',
         required: true,
         type: 'input',
@@ -233,25 +247,25 @@ export const COLLECTOR_TYPE = [
     ],
   },
   {
-    name: '根据指定的路径从Json中提取属性值的采集器',
+    name: '响应体-JsonPath',
     key: 'JsonCollector',
     items: [
       {
-        title: 'json路径',
+        title: 'jsonPath',
         key: 'jsonPath',
         required: true,
         type: 'textarea',
         data: [],
       },
       {
-        title: '匹配多个值',
+        title: '多值连接',
         key: 'joinMulti',
         required: false,
         type: 'switch',
         data: [],
       },
       {
-        title: '多个属性值拼接时，使用的连接符',
+        title: '连接符',
         key: 'delimiter',
         required: false,
         type: 'input',
@@ -260,11 +274,11 @@ export const COLLECTOR_TYPE = [
     ],
   },
   {
-    name: '使用指定的javascript来从HTTP响应文本中提取数据的采集器',
+    name: '响应体-Javascript',
     key: 'JavascriptCollector',
     items: [
       {
-        title: 'javascript代码',
+        title: 'javascript',
         key: 'javascript',
         required: true,
         type: 'textarea',
@@ -273,7 +287,7 @@ export const COLLECTOR_TYPE = [
     ],
   },
   {
-    name: '返回指定函数的结果的采集器',
+    name: '函数',
     key: 'FunctionReturnValueCollector',
     items: [
       {
@@ -283,7 +297,7 @@ export const COLLECTOR_TYPE = [
         type: 'select',
         data: [
           {
-            name: '取得常量值的函数',
+            name: '常量',
             value: 'ConstantValueFunction',
             items: [
               {
@@ -296,7 +310,7 @@ export const COLLECTOR_TYPE = [
             ],
           },
           {
-            name: '取得随机项目的函数',
+            name: '随机项目',
             value: 'RandomItemFunction',
             items: [
               {
@@ -309,7 +323,7 @@ export const COLLECTOR_TYPE = [
             ],
           },
           {
-            name: '取得随机数字的函数',
+            name: '随机数',
             value: 'RandomNumberFunction',
             items: [
               {
@@ -329,7 +343,7 @@ export const COLLECTOR_TYPE = [
             ],
           },
           {
-            name: '取得随机字符串的函数',
+            name: '随机字符串',
             value: 'RandomStringFunction',
             items: [
               {
@@ -340,7 +354,7 @@ export const COLLECTOR_TYPE = [
                 data: [],
               },
               {
-                title: '输出字符串的长度',
+                title: '输出长度',
                 key: 'length',
                 required: false,
                 type: 'number',
@@ -349,26 +363,26 @@ export const COLLECTOR_TYPE = [
             ],
           },
           {
-            name: '取得UUID的函数',
+            name: 'UUID',
             value: 'UUIDFunction',
           },
           {
-            name: '取得当前时间毫秒值的函数',
+            name: '时间（毫秒）',
             value: 'CurrentTimeMillisFunction',
           },
           {
-            name: '取得当前日期（时间）的函数',
+            name: '日期时间',
             value: 'CurrentDateFunction',
             items: [
               {
-                title: '日期格式',
+                title: '格式',
                 key: 'format',
                 required: false,
                 type: 'input',
                 data: [],
               },
               {
-                title: '时区，[-12, 12]区间内的整数',
+                title: '时区',
                 key: 'timeZone',
                 required: false,
                 type: 'number',
@@ -381,11 +395,11 @@ export const COLLECTOR_TYPE = [
     ],
   },
   {
-    name: '采集结果拼接采集器',
+    name: '项目组合',
     key: 'CollectorsCombinationCollector',
     items: [
       {
-        title: '格式字符串',
+        title: '格式',
         key: 'format',
         required: true,
         type: 'input',
@@ -397,7 +411,7 @@ export const COLLECTOR_TYPE = [
 
 export const PAGING_RESOLVER_TYPE = [
   {
-    name: '根据下一页按钮来取得下一页URL的分页解析器',
+    name: '<下一页>按钮',
     key: 'NextPageButtonPagingResolver',
     items: [
       {
@@ -417,7 +431,7 @@ export const PAGING_RESOLVER_TYPE = [
     ],
   },
   {
-    name: '根据下一页的页码来取得下一页URL的分页解析器',
+    name: '<下一页>页码',
     key: 'NextPageNumberPagingResolver',
     items: [
       {
@@ -444,7 +458,7 @@ export const PAGING_RESOLVER_TYPE = [
     ],
   },
   {
-    name: '根据指定的采集器来取得下一页URL的分页解析器',
+    name: '<下一页>URL采集器',
     key: 'CollectorPagingResolver',
     items: [
       {
@@ -465,7 +479,7 @@ export const PAGING_RESOLVER_TYPE = [
 ];
 export const PROCESSORS_TYPE = [
   {
-    name: '为内容添加前缀的处理器',
+    name: '添加前缀',
     key: 'AddPrefixProcessor',
     items: [
       {
@@ -477,7 +491,7 @@ export const PROCESSORS_TYPE = [
     ],
   },
   {
-    name: '为内容添加后缀的处理器',
+    name: '添加后缀',
     key: 'AddSuffixProcessor',
     items: [
       {
@@ -488,12 +502,12 @@ export const PROCESSORS_TYPE = [
     ],
   },
   {
-    name: '提取html中的文本内容的处理器',
+    name: 'Html标签过滤',
     key: 'ConvertHtmlToPlainTextProcessor',
     items: [],
   },
   {
-    name: '将内容转换为拼音，或为内容标注拼音的处理器',
+    name: '拼音',
     key: 'ConvertToPinyinProcessor',
     items: [
       {
@@ -513,94 +527,94 @@ export const PROCESSORS_TYPE = [
         ],
       },
       {
-        title: '拼音的首字母是否转化为大写',
+        title: '首字母大写',
         key: 'firstCharToUpperCase',
         type: 'switch',
         data: [],
       },
-      { title: '拼音间的分隔符', key: 'separator', type: 'input' },
+      { title: '分隔符', key: 'separator', type: 'input' },
     ],
   },
   {
-    name: '将内容转换为简体中文的处理器',
+    name: '繁体转简体',
     key: 'ConvertToSimplifiedChineseProcessor',
     items: [],
   },
   {
-    name: '将内容转化为繁体字的处理器',
+    name: '简体转繁体',
     key: 'ConvertToTraditionalChineseProcessor',
     items: [],
   },
   {
-    name: '默认值处理器。输入值为空时，输出指定的默认值',
+    name: '默认值',
     key: 'DefaultValueProcessor',
     items: [{ title: '默认值', key: 'defaultValue', type: 'input' }],
   },
   {
-    name: '将日期（时间）由一种格式转化为另一种格式的处理器',
+    name: '日期转换',
     key: 'FormatDateProcessor',
     items: [
-      { title: '源日期格式', key: 'fromFormat', type: 'input' },
-      { title: '目标日期格式', key: 'toFormat', type: 'input' },
+      { title: '源格式', key: 'fromFormat', type: 'input' },
+      { title: '目标格式', key: 'toFormat', type: 'input' },
     ],
   },
   {
-    name: '使用指定的javascript来处理输入内容的处理器',
+    name: 'Javascript处理',
     key: 'JavaScriptProcessor',
-    items: [{ title: '字符串', key: 'javascript', type: 'textarea' }],
+    items: [{ title: 'Javascript', key: 'javascript', type: 'textarea' }],
   },
   {
-    name: '从输入内容中提取关键词的处理器',
+    name: '提取关键词',
     key: 'KeywordsProcessor',
     items: [
       { title: '关键词个数', key: 'count', type: 'number' },
-      { title: '关键词分隔符', key: 'separator', type: 'input' },
+      { title: '分隔符', key: 'separator', type: 'input' },
     ],
   },
   {
-    name: '执行正则替换的处理器',
+    name: '正则替换（标准）',
     key: 'RegexReplaceProcessor',
     items: [
-      { title: '用来匹配输入内容的正则表达式', key: 'regex', type: 'input' },
-      { title: '用来替换每个匹配项的字符串', key: 'replacement', type: 'input' },
+      { title: '匹配表达式', key: 'regex', type: 'input' },
+      { title: '替换表达式', key: 'replacement', type: 'input' },
     ],
   },
   {
-    name: '简单的正则替换处理器',
+    name: '正则替换（简单）',
     key: 'SimpleRegexReplaceProcessor',
     items: [
-      { title: '用来匹配输入内容的正则表达式', key: 'regex', type: 'input' },
-      { title: '用来替换每个匹配项的字符串', key: 'replacement', type: 'input' },
+      { title: '匹配表达式', key: 'regex', type: 'input' },
+      { title: '替换表达式', key: 'replacement', type: 'input' },
     ],
   },
   {
-    name: '根据指定的替换关系执行简单替换的处理器',
+    name: '文本替换',
     key: 'SimpleReplaceProcessor',
     items: [{ title: '替换关系表', key: 'replaceMap', type: 'textarea' }],
   },
   {
-    name: '截取指定的分隔符之后的字符串子串的处理器',
+    name: '文字截取（前端）',
     key: 'SubstringAfterProcessor',
     items: [
       { title: '分隔符', key: 'separator', type: 'input' },
-      { title: '重复时是否取最后出现的位置', key: 'afterLast', type: 'switch' },
+      { title: '贪婪模式', key: 'afterLast', type: 'switch' },
     ],
   },
   {
-    name: '截取指定的分隔符之前的字符串子串的处理器',
+    name: '文字截取（后端）',
     key: 'SubstringBeforeProcessor',
     items: [
       { title: '分隔符', key: 'separator', type: 'input' },
-      { title: '重复时是否取最后出现的位置', key: 'beforeLast', type: 'switch' },
+      { title: '贪婪模式', key: 'beforeLast', type: 'switch' },
     ],
   },
   {
-    name: '提取指定的开始字符串和结束字符串之间的字符串的处理器',
+    name: '字符串截取（中间）',
     key: 'SubstringBetweenProcessor',
     items: [{ title: '开始字符串', key: 'open', type: 'input' }, { title: '结束字符串', key: 'close', type: 'input' }],
   },
   {
-    name: '截取字符串子串的处理器',
+    name: '字符串截取（范围）',
     key: 'SubstringProcessor',
     items: [
       { title: '开始位置，包含', key: 'start', type: 'number' },
@@ -608,12 +622,12 @@ export const PROCESSORS_TYPE = [
     ],
   },
   {
-    name: '从中文数据中提取摘要的处理器',
+    name: '摘要',
     key: 'SummaryChineseProcessor',
     items: [{ title: '摘要长度', key: 'length', type: 'number' }],
   },
   {
-    name: '去除字符串的前导和后缀控制字符的处理器',
+    name: '移除文字两端空白',
     key: 'TrimProcessor',
     items: [],
   },
@@ -621,12 +635,12 @@ export const PROCESSORS_TYPE = [
 
 export const FILTERS_TYPE = [
   {
-    name: '判定字符串是否为空的布尔值函数',
+    name: '空',
     key: 'BlankStringPredicate',
     items: [],
   },
   {
-    name: '判断字符串是否包含指定的字符串的布尔值函数',
+    name: '包含',
     key: 'ContainsStringPredicate',
     items: [
       {
@@ -643,82 +657,82 @@ export const FILTERS_TYPE = [
     ],
   },
   {
-    name: '判定字符串是否为空的布尔值函数',
+    name: '等于',
     key: 'EqualsStringPredicate',
     items: [
       {
-        title: '字符串列表',
+        title: '对象文本',
         key: 'strings',
         type: 'textarea',
       },
     ],
   },
   {
-    name: '判断字符串是否以指定的字符串为后缀的布尔值函数',
+    name: '后缀',
     key: 'EndsWithStringPredicate',
     items: [
       {
-        title: '字符串列表',
+        title: '对象文本',
         key: 'strings',
         type: 'textarea',
       },
     ],
   },
   {
-    name: '判定字符串是否非空的布尔值函数',
+    name: '非空',
     key: 'NotBlankStringPredicate',
     items: [],
   },
   {
-    name: '判定字符串是否不包含指定的字符串布尔值函数',
+    name: '不包含',
     key: 'NotContainsStringPredicate',
     items: [
       {
-        title: '字符串列表',
+        title: '对象文本',
         key: 'strings',
         type: 'textarea',
       },
     ],
   },
   {
-    name: '判定输入的字符串是否不等于给定的字符串的布尔值函数',
+    name: '不等于',
     key: 'NotEqualsStringPredicate',
     items: [
       {
-        title: '字符串列表',
+        title: '对象文本',
         key: 'strings',
         type: 'textarea',
       },
     ],
   },
   {
-    name: '判定字符串是否以给定的字符串为前缀的布尔值函数',
+    name: '前缀',
     key: 'StartsWithStringPredicate',
     items: [
       {
-        title: '字符串列表',
+        title: '对象文本',
         key: 'strings',
         type: 'textarea',
       },
     ],
   },
   {
-    name: '使用javascript开判定字符串是否满足要求的布尔值函数',
+    name: 'Javascript判断',
     key: 'JavaScriptPredicate',
     items: [
       {
-        title: '判断用的javascript代码',
+        title: 'Javascript',
         key: 'javascript',
         type: 'textarea',
       },
     ],
   },
   {
-    name: '简单的数值判定布尔值函数',
+    name: '数值比较',
     key: 'SimpleNumberPredicate',
     items: [
       {
-        title: '判定符',
+        title: '比较符',
         key: 'operator',
         type: 'select',
         data: [
@@ -731,18 +745,18 @@ export const FILTERS_TYPE = [
         ],
       },
       {
-        title: '判定符右侧的数值',
+        title: '对象数值',
         key: 'number',
         type: 'number',
       },
     ],
   },
   {
-    name: '简单的日期判定布尔值函数',
+    name: '日期时间比较',
     key: 'SimpleDatePredicate',
     items: [
       {
-        title: '判定符',
+        title: '比较符',
         key: 'operator',
         type: 'select',
         data: [
@@ -755,12 +769,12 @@ export const FILTERS_TYPE = [
         ],
       },
       {
-        title: '判定符右侧的日期',
+        title: '对象日期',
         key: 'date',
         type: 'input',
       },
       {
-        title: '日期的格式',
+        title: '日期格式',
         key: 'format',
         type: 'input',
       },
@@ -769,7 +783,6 @@ export const FILTERS_TYPE = [
 ];
 
 export const DEF_CHARSET = [{ id: '1', value: 'UTF-8', name: 'UTF-8' }];
-
 export const DEF_USER_AGENT = [
   { id: '1', value: 'Mozilla/5.0 Chrome/70.0.3538.77 Safari/537.36', name: 'Chrome Mac' },
   { id: '1', value: 'Mozilla/5.0 Chrome/70.0.3538.77', name: 'Chrome Windows' },
