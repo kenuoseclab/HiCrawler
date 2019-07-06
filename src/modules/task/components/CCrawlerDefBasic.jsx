@@ -92,14 +92,16 @@ class CCrawlerDefBasic extends React.Component {
             onChange={e => this.handleBasicInfoChange('charset', e)}
           />
         </Form.Item>
-        <Form.Item label="读取超时时间" extra="请求读取的超时时间，单位：秒">
+        <Form.Item label="读取超时时间">
           <InputNumber value={basicInfo.readTimeout} onChange={e => this.handleBasicInfoChange('readTimeout', e)} />
+          &nbsp;秒
         </Form.Item>
-        <Form.Item label="请求间隔时间" extra="请求间隔时间，单位：毫秒">
+        <Form.Item label="请求间隔时间">
           <InputNumber
             value={basicInfo.requestInterval}
             onChange={e => this.handleBasicInfoChange('requestInterval', e)}
           />
+          &nbsp;毫秒
         </Form.Item>
         <Form.Item label="UserAgent" className="select">
           <CSelect
