@@ -1,4 +1,3 @@
-import 'antd/dist/antd.css';
 import React from 'react';
 import * as PropTypes from 'prop-types';
 import zh from 'react-intl/locale-data/zh';
@@ -17,11 +16,11 @@ import STaskList from './modules/task/scenes/STaskList';
 import STaskDetail from './modules/task/scenes/STaskDetail';
 import SSetting from './modules/setting/scenes/SSetting';
 
-import './static/css/resetant.scss';
-import './static/css/layout.scss';
-import './static/css/login.scss';
-import './static/css/index.scss';
-import './static/css/task.scss';
+import './static/css/resetant.less';
+import './static/css/layout.less';
+import './static/css/login.less';
+import './static/css/index.less';
+import './static/css/task.less';
 
 import localZH from './locales/zh';
 import localEN from './locales/en';

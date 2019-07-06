@@ -1,13 +1,12 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
-import _ from 'lodash';
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Form, Select, Icon } from 'antd';
 
 import CFormItemFactory from '../../system/components/CFormItemFactory';
 import { PROCESSORS_TYPE, PAGING_RESOLVER_TYPE, COLLECTOR_TYPE } from '../../../util/constants';
-import { generateUUID } from '../../../util/helper';
+import { generateUUID, forEach, filter, find } from '../../../util/helper';
 import drag from '../../../static/img/drag.png';
 
 const { Option } = Select;
@@ -120,7 +119,7 @@ class CCrawlerDefPagingResolver extends React.Component {
     const { pagingResolver } = this.state;
 
     const processObj = pagingResolver.processors || [];
-    _.each(processObj, p => {
+    forEach(processObj, p => {
       const temp = p;
       if (p.key === process.key) {
         temp[field] = v;
@@ -131,7 +130,7 @@ class CCrawlerDefPagingResolver extends React.Component {
 
   handleRemoveProcessClick(key) {
     const { pagingResolver } = this.state;
-    const processObj = _.filter(pagingResolver.processors || [], p => p.key !== key);
+    const processObj = filter(pagingResolver.processors, p => p.key !== key);
     this.commonProcess(processObj);
   }
 
@@ -167,7 +166,7 @@ class CCrawlerDefPagingResolver extends React.Component {
     const { pagingResolver } = this.state;
     const processors = pagingResolver.processors || [];
 
-    const typeData = _.find(PAGING_RESOLVER_TYPE, { key: pagingResolver.type });
+    const typeData = find(PAGING_RESOLVER_TYPE, { key: pagingResolver.type });
     const isExistForm = typeData && typeData.items && typeData.items.length > 0;
     let typeForm;
     if (isExistForm) {
@@ -178,7 +177,7 @@ class CCrawlerDefPagingResolver extends React.Component {
     if (pagingResolver.type === 'CollectorPagingResolver') {
       const { typeInfo } = pagingResolver;
       const collectorKey = typeInfo && typeInfo.collector;
-      const collectorItems = _.find(COLLECTOR_TYPE, { key: collectorKey });
+      const collectorItems = find(COLLECTOR_TYPE, { key: collectorKey });
       if (collectorItems && collectorItems.items && collectorItems.items.length > 0) {
         collectorForm = CFormItemFactory(
           collectorItems.items,
@@ -219,7 +218,7 @@ class CCrawlerDefPagingResolver extends React.Component {
                 <div {...provided.droppableProps} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
                   {processors &&
                     processors.map((p, index) => {
-                      const processItems = _.find(PROCESSORS_TYPE, { key: p.type });
+                      const processItems = find(PROCESSORS_TYPE, { key: p.type });
                       const isExistProcessForm = processItems && processItems.items && processItems.items.length > 0;
                       // eslint-disable-next-line max-len
                       const processForm =

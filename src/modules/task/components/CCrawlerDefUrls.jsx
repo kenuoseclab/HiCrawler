@@ -2,9 +2,8 @@ import React from 'react';
 import * as PropTypes from 'prop-types';
 import { Form, Input, Radio, Button, Row, Col, Icon } from 'antd';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import _ from 'lodash';
 
-import { generateUUID } from '../../../util/helper';
+import { generateUUID, forEach, filter, find } from '../../../util/helper';
 import drag from '../../../static/img/drag.png';
 import { URL_TEMPLATE_TYPE } from '../../../util/constants';
 import CFormItemFactory from '../../system/components/CFormItemFactory';
@@ -62,7 +61,7 @@ class CCrawlerDefUrls extends React.Component {
   handleUrlsChange(field, v) {
     const { urls } = this.state;
     urls[field] = v;
-    if (field === 'PlainUrlSet') {
+    if (urls.type === 'PlainUrlSet') {
       urls.templatedUrls = [];
     } else {
       urls.urlItems = [];
@@ -85,7 +84,7 @@ class CCrawlerDefUrls extends React.Component {
 
   handleTemplateChange(templateKey, v) {
     const { urls } = this.state;
-    const temp = _.find(urls.templatedUrls, { key: templateKey });
+    const temp = find(urls.templatedUrls, { key: templateKey });
     if (temp) {
       temp.template = v;
     }
@@ -95,13 +94,13 @@ class CCrawlerDefUrls extends React.Component {
 
   handleRemoveUrlTemplateClick(key) {
     const { urls } = this.state;
-    urls.templatedUrls = _.filter(urls.templatedUrls, p => p.key !== key);
+    urls.templatedUrls = filter(urls.templatedUrls, p => p.key !== key);
     this.commonUrlsChange(urls);
   }
 
   handleTemplateParamDragEnd(result, templateKey) {
     const { urls } = this.state;
-    const temp = _.find(urls.templatedUrls, { key: templateKey }) || {};
+    const temp = find(urls.templatedUrls, { key: templateKey }) || {};
     const paramsObj = temp.params || [];
     if (!result.destination) {
       return;
@@ -119,9 +118,9 @@ class CCrawlerDefUrls extends React.Component {
   handleParamOnChange(field, v, param) {
     const { urls } = this.state;
     urls.templatedUrls = urls.templatedUrls || [];
-    const temp = _.find(urls.templatedUrls, { key: param.templateKey });
+    const temp = find(urls.templatedUrls, { key: param.templateKey });
     if (temp) {
-      _.each(temp.params, p => {
+      forEach(temp.params, p => {
         if (p.key === param.key) {
           // eslint-disable-next-line no-param-reassign
           p[field] = v;
@@ -135,7 +134,7 @@ class CCrawlerDefUrls extends React.Component {
   handleAddParamClick(tKey) {
     const { urls } = this.state;
     urls.templatedUrls = urls.templatedUrls || [];
-    const temp = _.find(urls.templatedUrls, { key: tKey });
+    const temp = find(urls.templatedUrls, { key: tKey });
     if (temp) {
       temp.params = temp.params || [];
       temp.params.push({
@@ -150,9 +149,9 @@ class CCrawlerDefUrls extends React.Component {
   handleRemoveParamClick(templateKey, paramKey) {
     const { urls } = this.state;
     urls.templatedUrls = urls.templatedUrls || [];
-    const temp = _.find(urls.templatedUrls, { key: templateKey });
+    const temp = find(urls.templatedUrls, { key: templateKey });
     if (temp) {
-      temp.params = _.filter(temp.params, p => p.key !== paramKey);
+      temp.params = filter(temp.params, p => p.key !== paramKey);
     }
 
     this.commonUrlsChange(urls);
@@ -161,9 +160,9 @@ class CCrawlerDefUrls extends React.Component {
   handleParamTypeChange(tKey, pKey, e) {
     const { urls } = this.state;
     urls.templatedUrls = urls.templatedUrls || [];
-    const temp = _.find(urls.templatedUrls, { key: tKey });
+    const temp = find(urls.templatedUrls, { key: tKey });
     if (temp) {
-      const param = _.find(temp.params, { key: pKey });
+      const param = find(temp.params, { key: pKey });
       if (param) {
         param.type = e.target.value;
       }
@@ -195,10 +194,11 @@ class CCrawlerDefUrls extends React.Component {
           </RadioGroup>
         </Form.Item>
         {urls.type === 'PlainUrlSet' && (
-          <Form.Item label="网址" extra="复数个时用换行区分">
+          <Form.Item label="网址" extra="单条或多条网址（一行一个，以http://或https://开头）">
             <TextArea
               autosize={{ minRows: 6 }}
               value={urls.url}
+              placeholder="http://test/page/1&#10;http://test/page/2&#10;..."
               onChange={e => this.handleUrlsChange('url', e.target.value)}
             />
           </Form.Item>
@@ -237,7 +237,7 @@ class CCrawlerDefUrls extends React.Component {
                               {params.map((p, index) => {
                                 // eslint-disable-next-line no-param-reassign
                                 p.templateKey = t.key;
-                                const urlTemplates = _.find(URL_TEMPLATE_TYPE, { key: p.type }) || {};
+                                const urlTemplates = find(URL_TEMPLATE_TYPE, { key: p.type }) || {};
                                 const isExistUrlForm = urlTemplates.items && urlTemplates.items.length > 0;
                                 const urlTemplateForm =
                                   isExistUrlForm && CFormItemFactory(urlTemplates.items, p, this.handleParamOnChange);

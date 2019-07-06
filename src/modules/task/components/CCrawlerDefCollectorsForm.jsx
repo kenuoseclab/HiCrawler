@@ -1,13 +1,12 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
-import _ from 'lodash';
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Form, Input, Radio, Select, Icon } from 'antd';
 
 import CFormItemFactory from '../../system/components/CFormItemFactory';
 import { COLLECTOR_TYPE, PROCESSORS_TYPE, FILTERS_TYPE } from '../../../util/constants';
-import { generateUUID } from '../../../util/helper';
+import { generateUUID, forEach, filter, find } from '../../../util/helper';
 import drag from '../../../static/img/drag.png';
 
 const RadioGroup = Radio.Group;
@@ -112,7 +111,7 @@ class CCrawlerDefCollectorsForm extends React.Component {
     const { data } = this.props;
 
     const filterObj = data.filter || {};
-    _.each(filterObj.predicates, p => {
+    forEach(filterObj.predicates, p => {
       const temp = p;
       if (p.key === predicate.key) {
         temp[field] = v;
@@ -126,7 +125,7 @@ class CCrawlerDefCollectorsForm extends React.Component {
     const { data } = this.props;
     const filterObj = data.filter || {};
     filterObj.predicates = filterObj.predicates || [];
-    filterObj.predicates = _.filter(filterObj.predicates, p => p.key !== key);
+    filterObj.predicates = filter(filterObj.predicates, p => p.key !== key);
     this.props.onChange(data.key, 'filter', filterObj);
   }
 
@@ -147,7 +146,7 @@ class CCrawlerDefCollectorsForm extends React.Component {
     const { data } = this.props;
 
     const processObj = data.processors || [];
-    _.each(processObj, p => {
+    forEach(processObj, p => {
       const temp = p;
       if (p.key === process.key) {
         temp[field] = v;
@@ -160,7 +159,7 @@ class CCrawlerDefCollectorsForm extends React.Component {
   handleRemoveProcessClick(key) {
     const { data } = this.props;
     let processObj = data.processors || [];
-    processObj = _.filter(processObj, p => p.key !== key);
+    processObj = filter(processObj, p => p.key !== key);
     this.props.onChange(data.key, 'processors', processObj);
   }
 
@@ -215,10 +214,10 @@ class CCrawlerDefCollectorsForm extends React.Component {
     };
 
     const { data } = this.props;
-    const filter = data.filter || {};
+    const filterObj = data.filter || {};
     const processors = data.processors || [];
 
-    const typeData = _.find(COLLECTOR_TYPE, { key: data.type });
+    const typeData = find(COLLECTOR_TYPE, { key: data.type });
     const isExistForm = typeData && typeData.items && typeData.items.length > 0;
     let typeForm;
     if (isExistForm) {
@@ -229,7 +228,7 @@ class CCrawlerDefCollectorsForm extends React.Component {
     if (data.type === 'FunctionReturnValueCollector') {
       const { typeInfo } = this.props.data;
       const functionKey = typeInfo && typeInfo.function;
-      const functionItems = _.find(typeData.items[0].data, { value: functionKey });
+      const functionItems = find(typeData.items[0].data, { value: functionKey });
       if (functionItems && functionItems.items && functionItems.items.length > 0) {
         functionForm = CFormItemFactory(
           functionItems.items,
@@ -289,7 +288,7 @@ class CCrawlerDefCollectorsForm extends React.Component {
                 <div {...provided.droppableProps} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
                   {processors &&
                     processors.map((p, index) => {
-                      const processItems = _.find(PROCESSORS_TYPE, { key: p.type });
+                      const processItems = find(PROCESSORS_TYPE, { key: p.type });
                       const isExistProcessForm = processItems && processItems.items && processItems.items.length > 0;
                       const processForm =
                         isExistProcessForm && CFormItemFactory(processItems.items, p, this.handleProcessChange);
@@ -334,7 +333,7 @@ class CCrawlerDefCollectorsForm extends React.Component {
             ))}
           </Select>
           <RadioGroup
-            value={filter.matchMode}
+            value={filterObj.matchMode}
             onChange={e => this.handleFilterMatchModeChange('matchMode', e.target.value)}
           >
             <Radio value="ANY">任意匹配</Radio>
@@ -344,9 +343,9 @@ class CCrawlerDefCollectorsForm extends React.Component {
             <Droppable droppableId="droppable">
               {(provided, snapshot) => (
                 <div {...provided.droppableProps} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
-                  {filter.predicates &&
-                    filter.predicates.map((p, index) => {
-                      const filterItems = _.find(FILTERS_TYPE, { key: p.type });
+                  {filterObj.predicates &&
+                    filterObj.predicates.map((p, index) => {
+                      const filterItems = find(FILTERS_TYPE, { key: p.type });
                       const isExistFilterForm = filterItems && filterItems.items && filterItems.items.length > 0;
                       const filterForm =
                         isExistFilterForm && CFormItemFactory(filterItems.items, p, this.handleFilterChange);

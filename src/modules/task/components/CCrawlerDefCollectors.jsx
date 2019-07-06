@@ -1,8 +1,7 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
-import _ from 'lodash';
 
-import { generateUUID } from '../../../util/helper';
+import { generateUUID, filter, find } from '../../../util/helper';
 
 import CTree from './CTree';
 import CCrawlerDefCollectorsForm from './CCrawlerDefCollectorsForm';
@@ -29,7 +28,7 @@ class CCrawlerDefCollectors extends React.Component {
 
   handleRemoveOnClick(key) {
     let { collectors } = this.state;
-    collectors = _.filter(collectors, c => c.key !== key);
+    collectors = filter(collectors, c => c.key !== key);
     this.setState({ collectors, selectedKey: '' });
     const { data } = this.props;
     data.collectors = collectors;
@@ -38,7 +37,7 @@ class CCrawlerDefCollectors extends React.Component {
 
   handleFormOnChange(key, field, value) {
     const { collectors } = this.state;
-    const c = _.find(collectors, { key });
+    const c = find(collectors, { key });
     c[field] = value;
     if (field === 'type') {
       c.typeInfo = {};
@@ -69,7 +68,7 @@ class CCrawlerDefCollectors extends React.Component {
     const { collectors } = this.state;
 
     this.loop(collectors, dragKey, (item, index) => {
-      const dropEnd = _.clone(collectors[dropPosition]);
+      const dropEnd = Object.assign({}, collectors[dropPosition]);
       collectors[dropPosition] = item;
       collectors[index] = dropEnd;
       this.setState({ collectors, selectedKey: dragKey });
@@ -93,7 +92,7 @@ class CCrawlerDefCollectors extends React.Component {
 
   render() {
     const { collectors, selectedKey } = this.state;
-    const data = _.find(collectors, { key: selectedKey });
+    const data = find(collectors, { key: selectedKey });
     return (
       <div className="task-collector">
         <div className="items">
