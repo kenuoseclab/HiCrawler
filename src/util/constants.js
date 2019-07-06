@@ -782,7 +782,17 @@ export const FILTERS_TYPE = [
   },
 ];
 
-export const DEF_CHARSET = [{ id: '1', value: 'UTF-8', name: 'UTF-8' }];
+export const DEF_CHARSET = [
+  { id: '1', value: 'ISO-8859-1', name: 'ISO-8859-1' },
+  { id: '2', value: 'UTF-8', name: 'UTF-8' },
+  { id: '3', value: 'GBK', name: 'GBK' },
+  { id: '4', value: 'GB2312', name: 'GB2312' },
+  { id: '5', value: 'GB18030', name: 'GB18030' },
+  { id: '6', value: 'BIG5', name: 'BIG5' },
+  { id: '7', value: 'Shift-JIS', name: 'Shift-JIS' },
+  { id: '8', value: 'EUC-JP', name: 'EUC-JP' },
+  { id: '9', value: 'EUC-KR', name: 'EUC-KR' },
+];
 export const DEF_USER_AGENT = [
   { id: '1', value: 'Mozilla/5.0 Chrome/70.0.3538.77 Safari/537.36', name: 'Chrome Mac' },
   { id: '2', value: 'Mozilla/5.0 Chrome/70.0.3538.77', name: 'Chrome Windows' },

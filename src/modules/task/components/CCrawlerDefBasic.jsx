@@ -88,7 +88,7 @@ class CCrawlerDefBasic extends React.Component {
         <Form.Item label="页面字符集" className="select">
           <CSelect
             options={DEF_CHARSET}
-            defaultValue={basicInfo.charset}
+            defaultValue={basicInfo.charset || 'UTF-8'}
             onChange={e => this.handleBasicInfoChange('charset', e)}
           />
         </Form.Item>
