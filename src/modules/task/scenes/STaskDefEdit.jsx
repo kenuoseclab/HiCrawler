@@ -1,6 +1,6 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
-import { Icon, Steps } from 'antd';
+import { Steps } from 'antd';
 
 import CCrawlerDefBasic from '../components/CCrawlerDefBasic';
 import CCrawlerDefUrls from '../components/CCrawlerDefUrls';
@@ -47,14 +47,9 @@ class STaskDefEdit extends React.Component {
     ];
     return (
       <div className="steps-def">
-        <Steps current={current} size="small">
+        <Steps current={current} size="small" progressDot>
           {steps.map(i => (
-            <Step
-              key={i.title}
-              title={i.title}
-              icon={<Icon type="right-circle" />}
-              onClick={() => this.next(i.current)}
-            />
+            <Step key={i.title} title={i.title} onClick={() => this.next(i.current)} />
           ))}
         </Steps>
         <div className="steps-content">{steps[current].content}</div>
