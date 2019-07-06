@@ -120,6 +120,7 @@ class CCrawlerDefBasic extends React.Component {
         <Form.Item label="请求头">
           <TextArea
             value={basicInfo.httpHeaders}
+            placeholder="name1=value1&#10;name2=value2&#10;..."
             onChange={e => this.handleBasicInfoChange('httpHeaders', e.target.value)}
           />
         </Form.Item>

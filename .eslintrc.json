@@ -19,6 +19,9 @@
   "rules": {
     "func-names": ["error", "never"],
     "max-len": ["error", 120],
+    "object-curly-newline": "off",
+    "arrow-parens": "off",
+    "operator-linebreak": "off",
     "no-underscore-dangle": ["off", { "allowAfterSuper": true }],
     "no-useless-constructor": ["off"],
     "no-plusplus": ["off"],
@@ -39,6 +42,7 @@
     "jsx-a11y/anchor-is-valid": "off",
     "jsx-a11y/no-noninteractive-element-interactions":"off",
     "jsx-a11y/no-static-element-interactions": "off",
-    "jsx-a11y/click-events-have-key-events": "off"
+    "jsx-a11y/click-events-have-key-events": "off",
+    "react/jsx-wrap-multilines": "off"
   }
 }
