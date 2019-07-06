@@ -785,9 +785,14 @@ export const FILTERS_TYPE = [
 export const DEF_CHARSET = [{ id: '1', value: 'UTF-8', name: 'UTF-8' }];
 export const DEF_USER_AGENT = [
   { id: '1', value: 'Mozilla/5.0 Chrome/70.0.3538.77 Safari/537.36', name: 'Chrome Mac' },
-  { id: '1', value: 'Mozilla/5.0 Chrome/70.0.3538.77', name: 'Chrome Windows' },
-  { id: '1', value: 'Mozilla/5.0 Gecko/20100101 Firefox/62.0', name: 'Firefox Mac' },
-  { id: '1', value: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64;) Gecko/20100101 Firefox/62.0', name: 'Firefox Windows' },
-  { id: '1', value: 'Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0;) like Gecko', name: 'Internet Explorer' },
-  { id: '1', value: 'Mozilla/5.0 Chrome/64.0.3282.140 Safari/537.36 Edge/17.17134', name: 'Edge' },
+  { id: '2', value: 'Mozilla/5.0 Chrome/70.0.3538.77', name: 'Chrome Windows' },
+  { id: '3', value: 'Mozilla/5.0 Gecko/20100101', name: 'Firefox Mac' },
+  { id: '4', value: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64;)', name: 'Firefox Windows' },
+  // eslint-disable-next-line max-len
+  {
+    id: '5',
+    value: 'Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko',
+    name: 'Internet Explorer 11',
+  },
+  { id: '6', value: 'Mozilla/5.0 Chrome/64.0.3282.140 Safari/537.36 Edge/17.17134', name: 'Edge' },
 ];
