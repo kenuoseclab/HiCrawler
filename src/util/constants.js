@@ -28,7 +28,7 @@ export const URL_TEMPLATE_TYPE = [
       {
         title: '初始值',
         key: 'start',
-        required: false,
+        required: true,
         type: 'number',
         data: [],
       },
@@ -52,6 +52,7 @@ export const URL_TEMPLATE_TYPE = [
         required: false,
         type: 'number',
         data: [],
+        desc: '数值小于此长度时，左端补0',
       },
     ],
   },

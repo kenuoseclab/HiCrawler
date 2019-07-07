@@ -140,6 +140,7 @@ class CCrawlerDefUrls extends React.Component {
       temp.params.push({
         key: generateUUID(),
         type: 'SequenceUrlParam',
+        step: 1,
       });
     }
 

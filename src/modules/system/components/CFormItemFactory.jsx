@@ -1,13 +1,29 @@
 import React from 'react';
-import { Form, Input, InputNumber, Radio, Select, Switch } from 'antd';
+import { Form, Input, InputNumber, Radio, Select, Switch, Tooltip, Icon } from 'antd';
 
 const { TextArea } = Input;
 const RadioGroup = Radio.Group;
 const { Option } = Select;
 
+function commonLabel(obj) {
+  let label = obj.title;
+  if (obj.desc) {
+    label = (
+      <span>
+        {obj.title}&nbsp;
+        <Tooltip title={obj.desc}>
+          <Icon type="question-circle-o" />
+        </Tooltip>
+      </span>
+    );
+  }
+
+  return label;
+}
+
 export function CFormInput(obj, data, event) {
   return (
-    <Form.Item key={obj.key} label={obj.title} required={obj.required}>
+    <Form.Item key={obj.key} label={commonLabel(obj)} required={obj.required}>
       <Input value={data[obj.key] || ''} onChange={e => event(obj.key, e.target.value, data)} />
     </Form.Item>
   );
@@ -15,7 +31,7 @@ export function CFormInput(obj, data, event) {
 
 export function CFormInputNumber(obj, data, event) {
   return (
-    <Form.Item key={obj.key} label={obj.title} required={obj.required}>
+    <Form.Item key={obj.key} label={commonLabel(obj)} required={obj.required}>
       <InputNumber value={data[obj.key] || ''} onChange={v => event(obj.key, v, data)} />
     </Form.Item>
   );
@@ -23,7 +39,7 @@ export function CFormInputNumber(obj, data, event) {
 
 export function CFormSwitch(obj, data, event) {
   return (
-    <Form.Item key={obj.key} label={obj.title} required={obj.required}>
+    <Form.Item key={obj.key} label={commonLabel(obj)} required={obj.required}>
       <Switch
         checkedChildren="开"
         unCheckedChildren="关"
@@ -36,7 +52,7 @@ export function CFormSwitch(obj, data, event) {
 
 export function CFormTextArea(obj, data, event) {
   return (
-    <Form.Item key={obj.key} label={obj.title} required={obj.required}>
+    <Form.Item key={obj.key} label={commonLabel(obj)} required={obj.required}>
       <TextArea value={data[obj.key] || ''} onChange={e => event(obj.key, e.target.value, data)} />
     </Form.Item>
   );
@@ -44,7 +60,7 @@ export function CFormTextArea(obj, data, event) {
 
 export function CFormRadio(obj, data, event) {
   return (
-    <Form.Item key={obj.key} label={obj.title} required={obj.required}>
+    <Form.Item key={obj.key} label={commonLabel(obj)} required={obj.required}>
       <RadioGroup value={data[obj.key]} onChange={e => event(obj.key, e.target.value, data)}>
         {obj.data.map(d => (
           <Radio key={d.value} value={d.value}>
@@ -58,7 +74,7 @@ export function CFormRadio(obj, data, event) {
 
 export function CFormSelect(obj, data, event) {
   return (
-    <Form.Item key={obj.key} label={obj.title} required={obj.required}>
+    <Form.Item key={obj.key} label={commonLabel(obj)} required={obj.required}>
       <Select value={data[obj.key]} onChange={v => event(obj.key, v, data)}>
         {obj.data.map(d => (
           <Option key={d.value} value={d.value}>
