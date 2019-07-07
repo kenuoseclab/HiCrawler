@@ -21,7 +21,7 @@ class SLogin extends React.Component {
   }
 
   componentDidMount() {
-    this.props.form.validateFields();
+    // this.props.form.validateFields();
   }
 
   handleSubmit(e) {

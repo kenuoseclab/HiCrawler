@@ -56,27 +56,29 @@ class CTaskProxyForm extends React.Component {
             代理服务器需要密码
           </Checkbox>
         </div>
-        <div className="user-password">
-          <Form.Item label="用户名">
-            <Input
-              className="user"
-              placeholder="用户名"
-              disabled={disabled}
-              value={proxy.userName}
-              onChange={e => this.handleInputOnChange('userName', e.target.value)}
-            />
-          </Form.Item>
-          <Form.Item label="密码　">
-            <Input
-              className="pass"
-              type="password"
-              placeholder="密码"
-              disabled={disabled}
-              value={proxy.password}
-              onChange={e => this.handleInputOnChange('password', e.target.value)}
-            />
-          </Form.Item>
-        </div>
+        {!disabled && (
+          <div className="user-password">
+            <Form.Item label="用户名">
+              <Input
+                className="user"
+                placeholder="用户名"
+                disabled={disabled}
+                value={proxy.userName}
+                onChange={e => this.handleInputOnChange('userName', e.target.value)}
+              />
+            </Form.Item>
+            <Form.Item label="密码　">
+              <Input
+                className="pass"
+                type="password"
+                placeholder="密码"
+                disabled={disabled}
+                value={proxy.password}
+                onChange={e => this.handleInputOnChange('password', e.target.value)}
+              />
+            </Form.Item>
+          </div>
+        )}
       </div>
     );
   }

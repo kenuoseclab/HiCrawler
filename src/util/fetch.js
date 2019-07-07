@@ -17,7 +17,7 @@ const commonRequest = async options => {
     const response = await fetch(options);
     return response.data.data;
   } catch (err) {
-    if (err.response) {
+    if (err && err.response) {
       if (err.response.data.errorCode === 401 || err.response.data.errorCode === 500) {
         Storage.clearLocalStorage();
         history.push(ROUTE_ERROR, err.response.data);
