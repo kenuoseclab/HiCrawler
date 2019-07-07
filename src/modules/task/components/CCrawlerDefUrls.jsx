@@ -75,7 +75,7 @@ class CCrawlerDefUrls extends React.Component {
     urls.templatedUrls = urls.templatedUrls || [];
     urls.templatedUrls.push({
       key: generateUUID(),
-      template: '',
+      template: 'http://',
       params: [],
     });
 
@@ -221,8 +221,12 @@ class CCrawlerDefUrls extends React.Component {
                             />
                           </Col>
                           <Col span={5}>
-                            <Button onClick={() => this.handleAddParamClick(t.key)}>+</Button>
-                            <Button onClick={() => this.handleRemoveUrlTemplateClick(t.key)}>-</Button>
+                            <Button title="添加参数" onClick={() => this.handleAddParamClick(t.key)}>
+                              +
+                            </Button>
+                            <Button title="删除模板" onClick={() => this.handleRemoveUrlTemplateClick(t.key)}>
+                              x
+                            </Button>
                           </Col>
                         </Row>
                       </div>
