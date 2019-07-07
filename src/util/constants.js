@@ -70,9 +70,10 @@ export const URL_TEMPLATE_TYPE = [
       {
         title: '枚举值',
         key: 'values',
-        required: false,
+        required: true,
         type: 'textarea',
         data: [],
+        extra: '一行一个',
       },
     ],
   },
