@@ -800,7 +800,6 @@ export const DEF_USER_AGENT = [
   { id: '2', value: 'Mozilla/5.0 Chrome/70.0.3538.77', name: 'Chrome Windows' },
   { id: '3', value: 'Mozilla/5.0 Gecko/20100101', name: 'Firefox Mac' },
   { id: '4', value: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64;)', name: 'Firefox Windows' },
-  // eslint-disable-next-line max-len
   {
     id: '5',
     value: 'Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko',

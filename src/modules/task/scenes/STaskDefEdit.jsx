@@ -30,7 +30,7 @@ class STaskDefEdit extends React.Component {
         current: 0,
       },
       {
-        title: '请求URL',
+        title: '网址',
         content: <CCrawlerDefUrls {...this.props} />,
         current: 1,
       },
