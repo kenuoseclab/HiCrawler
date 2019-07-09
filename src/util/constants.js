@@ -13,6 +13,7 @@ export const API_TASK_HISTORY = '/task/history';
 export const API_TASK_NEW = '/task';
 export const API_TASK_DETAIL = '/task/detail';
 
+// url template form
 export const URL_TEMPLATE_TYPE = [
   {
     name: '序列',
@@ -130,6 +131,7 @@ export const URL_TEMPLATE_TYPE = [
   },
 ];
 
+// collector
 export const COLLECTOR_TYPE = [
   {
     name: '请求网址',
@@ -482,6 +484,7 @@ export const PAGING_RESOLVER_TYPE = [
     ],
   },
 ];
+
 export const PROCESSORS_TYPE = [
   {
     name: '添加前缀',
@@ -798,6 +801,7 @@ export const DEF_CHARSET = [
   { id: '8', value: 'EUC-JP', name: 'EUC-JP' },
   { id: '9', value: 'EUC-KR', name: 'EUC-KR' },
 ];
+
 export const DEF_USER_AGENT = [
   { id: '1', value: 'Mozilla/5.0 Chrome/70.0.3538.77 Safari/537.36', name: 'Chrome Mac' },
   { id: '2', value: 'Mozilla/5.0 Chrome/70.0.3538.77', name: 'Chrome Windows' },
