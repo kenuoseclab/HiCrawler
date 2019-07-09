@@ -67,6 +67,7 @@ export const URL_TEMPLATE_TYPE = [
         required: true,
         type: 'input',
         data: [],
+        copy: true,
       },
       {
         title: '枚举值',
@@ -88,6 +89,7 @@ export const URL_TEMPLATE_TYPE = [
         required: true,
         type: 'input',
         data: [],
+        copy: true,
       },
       {
         title: '开始日期',
