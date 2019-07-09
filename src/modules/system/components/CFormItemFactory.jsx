@@ -1,4 +1,6 @@
 import React from 'react';
+import Clipboard from 'react-clipboard.js';
+
 import { Form, Input, InputNumber, Radio, Select, Switch, Tooltip, Icon } from 'antd';
 
 const { TextArea } = Input;
@@ -24,7 +26,18 @@ function commonLabel(obj) {
 export function CFormInput(obj, data, event) {
   return (
     <Form.Item key={obj.key} label={commonLabel(obj)} extra={obj.extra || ''} required={obj.required}>
-      <Input value={data[obj.key] || ''} onChange={e => event(obj.key, e.target.value, data)} />
+      {!obj.copy && <Input value={data[obj.key] || ''} onChange={e => event(obj.key, e.target.value, data)} />}
+      {obj.copy && (
+        <Input
+          addonAfter={
+            <Clipboard className="input-copy" data-clipboard-text={`{${data[obj.key] || ''}}`}>
+              <Icon type="copy" />
+            </Clipboard>
+          }
+          value={data[obj.key] || ''}
+          onChange={e => event(obj.key, e.target.value, data)}
+        />
+      )}
     </Form.Item>
   );
 }

@@ -75,8 +75,17 @@ class CCrawlerDefUrls extends React.Component {
     urls.templatedUrls = urls.templatedUrls || [];
     urls.templatedUrls.push({
       key: generateUUID(),
-      template: 'http://',
-      params: [],
+      template: 'http://test/{参数1}',
+      params: [
+        {
+          key: generateUUID(),
+          name: '参数1',
+          type: 'SequenceUrlParam',
+          start: 1,
+          end: 10,
+          step: 1,
+        },
+      ],
     });
 
     this.commonUrlsChange(urls);
@@ -186,6 +195,8 @@ class CCrawlerDefUrls extends React.Component {
 
     const { urls } = this.state;
 
+    const desc = '请将参数以 {参数名} 的形式插入到网址中';
+
     return (
       <Form {...formItemLayout} className="task-edit">
         <Form.Item label="类型">
@@ -230,6 +241,7 @@ class CCrawlerDefUrls extends React.Component {
                             </Button>
                           </Col>
                         </Row>
+                        <div className="desc">{desc}</div>
                       </div>
                       <DragDropContext onDragEnd={r => this.handleTemplateParamDragEnd(r, t.key)}>
                         <Droppable droppableId="droppable">

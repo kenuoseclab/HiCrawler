@@ -24,6 +24,7 @@ export const URL_TEMPLATE_TYPE = [
         required: true,
         type: 'input',
         data: [],
+        copy: true,
       },
       {
         title: '初始值',
