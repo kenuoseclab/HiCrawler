@@ -131,8 +131,13 @@ class CCrawlerDefUrls extends React.Component {
     if (temp) {
       forEach(temp.params, p => {
         if (p.key === param.key) {
-          // eslint-disable-next-line no-param-reassign
-          p[field] = v;
+          if (field === 'dateForm') {
+            // eslint-disable-next-line no-param-reassign
+            p = param;
+          } else {
+            // eslint-disable-next-line no-param-reassign
+            p[field] = v;
+          }
         }
       });
     }
@@ -175,6 +180,11 @@ class CCrawlerDefUrls extends React.Component {
       const param = find(temp.params, { key: pKey });
       if (param) {
         param.type = e.target.value;
+        param.dateType = 'relative';
+        param.startDateOffsetOperation = 'plus';
+        param.startDateOffset = 1;
+        param.endDateOffsetOperation = 'plus';
+        param.endDateOffset = 1;
       }
     }
 
@@ -286,10 +296,13 @@ class CCrawlerDefUrls extends React.Component {
                                           </Form.Item>
                                           {isExistUrlForm && urlTemplateForm}
                                         </div>
-                                        <Icon
-                                          type="close-circle"
-                                          onClick={() => this.handleRemoveParamClick(t.key, p.key)}
-                                        />
+                                        <div className="icon-delete">
+                                          <Icon
+                                            className="icon-delete"
+                                            type="close-circle"
+                                            onClick={() => this.handleRemoveParamClick(t.key, p.key)}
+                                          />
+                                        </div>
                                       </div>
                                     )}
                                   </Draggable>

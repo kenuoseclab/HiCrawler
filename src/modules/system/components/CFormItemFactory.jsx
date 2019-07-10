@@ -3,6 +3,8 @@ import Clipboard from 'react-clipboard.js';
 
 import { Form, Input, InputNumber, Radio, Select, Switch, Tooltip, Icon } from 'antd';
 
+import CCrawlerDefUrlsTemplateForm from '../../task/components/CCrawlerDefUrlsTemplateForm';
+
 const { TextArea } = Input;
 const RadioGroup = Radio.Group;
 const { Option } = Select;
@@ -30,7 +32,11 @@ export function CFormInput(obj, data, event) {
       {obj.copy && (
         <Input
           addonAfter={
-            <Clipboard className="input-copy" data-clipboard-text={`{${data[obj.key] || ''}}`}>
+            <Clipboard
+              className="input-copy"
+              data-clipboard-text={`{${data[obj.key] || ''}}`}
+              title="拷贝 {参数名} 到粘贴板"
+            >
               <Icon type="copy" />
             </Clipboard>
           }
@@ -120,6 +126,9 @@ export default function CFormItemsFactory(items, data = {}, event) {
         break;
       case 'select':
         result = CFormSelect(i, data, event);
+        break;
+      case 'urlForm':
+        result = <CCrawlerDefUrlsTemplateForm data={data} itemOnChange={event} key={i.key} />;
         break;
       default:
         break;
