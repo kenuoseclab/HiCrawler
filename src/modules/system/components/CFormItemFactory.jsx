@@ -31,6 +31,7 @@ export function CFormInput(obj, data, event) {
       {!obj.copy && <Input value={data[obj.key] || ''} onChange={e => event(obj.key, e.target.value, data)} />}
       {obj.copy && (
         <Input
+          className="input-copy"
           addonAfter={
             <Clipboard
               className="input-copy"
