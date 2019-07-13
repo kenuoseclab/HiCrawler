@@ -31,7 +31,7 @@ const getListStyle = isDraggingOver => ({
   borderColor: isDraggingOver ? 'lightblue' : 'lightgrey',
 });
 
-class CCrawlerDefCollectorsForm extends React.Component {
+class CTaskDefCollectorsForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -375,13 +375,13 @@ class CCrawlerDefCollectorsForm extends React.Component {
   }
 }
 
-CCrawlerDefCollectorsForm.propTypes = {
+CTaskDefCollectorsForm.propTypes = {
   data: PropTypes.object,
   onChange: PropTypes.func.isRequired,
 };
 
-CCrawlerDefCollectorsForm.defaultProps = {
+CTaskDefCollectorsForm.defaultProps = {
   data: {},
 };
 
-export default CCrawlerDefCollectorsForm;
+export default CTaskDefCollectorsForm;

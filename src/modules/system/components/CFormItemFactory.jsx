@@ -3,7 +3,7 @@ import Clipboard from 'react-clipboard.js';
 
 import { Form, Input, InputNumber, Radio, Select, Switch, Tooltip, Icon } from 'antd';
 
-import CCrawlerDefUrlsTemplateForm from '../../task/components/CCrawlerDefUrlsTemplateForm';
+import CTaskDefUrlsTemplateForm from '../../task/components/CTaskDefUrlsTemplateForm';
 
 const { TextArea } = Input;
 const RadioGroup = Radio.Group;
@@ -129,7 +129,7 @@ function CFormItemsFactory(items, data = {}, event) {
         result = CFormSelect(i, data, event);
         break;
       case 'urlForm':
-        result = <CCrawlerDefUrlsTemplateForm data={data} itemOnChange={event} key={i.key} />;
+        result = <CTaskDefUrlsTemplateForm data={data} itemOnChange={event} key={i.key} />;
         break;
       default:
         break;

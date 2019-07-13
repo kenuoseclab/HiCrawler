@@ -30,7 +30,7 @@ const getListStyle = isDraggingOver => ({
   borderColor: isDraggingOver ? 'lightblue' : 'lightgrey',
 });
 
-class CCrawlerDefPagingResolver extends React.Component {
+class CTaskDefPagingResolver extends React.Component {
   constructor(props) {
     super(props);
 
@@ -249,11 +249,11 @@ class CCrawlerDefPagingResolver extends React.Component {
   }
 }
 
-CCrawlerDefPagingResolver.propTypes = {
+CTaskDefPagingResolver.propTypes = {
   data: PropTypes.object.isRequired,
   itemOnChange: PropTypes.func.isRequired,
 };
 
-CCrawlerDefPagingResolver.defaultProps = {};
+CTaskDefPagingResolver.defaultProps = {};
 
-export default CCrawlerDefPagingResolver;
+export default CTaskDefPagingResolver;

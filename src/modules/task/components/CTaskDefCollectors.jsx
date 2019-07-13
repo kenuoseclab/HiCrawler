@@ -4,9 +4,9 @@ import * as PropTypes from 'prop-types';
 import { generateUUID, filter, find } from '../../../util/helper';
 
 import CTree from './CTree';
-import CCrawlerDefCollectorsForm from './CCrawlerDefCollectorsForm';
+import CTaskDefCollectorsForm from './CTaskDefCollectorsForm';
 
-function CCrawlerDefCollectors(props) {
+function CTaskDefCollectors(props) {
   const { data, itemOnChange } = props;
   const [collectors, setCollectors] = useState(data.collectors || []);
   const [selectedKey, setSelectedKey] = useState('');
@@ -85,17 +85,17 @@ function CCrawlerDefCollectors(props) {
       </div>
       <div className="content">
         {!selectedKey && <div>&nbsp;&nbsp;&nbsp;&nbsp;采集详细</div>}
-        {selectedKey && <CCrawlerDefCollectorsForm data={tempCollectors} onChange={handleFormOnChange} />}
+        {selectedKey && <CTaskDefCollectorsForm data={tempCollectors} onChange={handleFormOnChange} />}
       </div>
     </div>
   );
 }
 
-CCrawlerDefCollectors.propTypes = {
+CTaskDefCollectors.propTypes = {
   data: PropTypes.object.isRequired,
   itemOnChange: PropTypes.func.isRequired,
 };
 
-CCrawlerDefCollectors.defaultProps = {};
+CTaskDefCollectors.defaultProps = {};
 
-export default CCrawlerDefCollectors;
+export default CTaskDefCollectors;

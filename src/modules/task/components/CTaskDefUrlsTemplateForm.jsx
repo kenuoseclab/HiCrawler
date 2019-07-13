@@ -16,7 +16,7 @@ const RadioGroup = Radio.Group;
 const { Option } = Select;
 const dateFormat = 'YYYY-MM-DD';
 
-function CCrawlerDefUrlsTemplateForm(props) {
+function CTaskDefUrlsTemplateForm(props) {
   const { data } = props || {};
 
   function handleDateTemplateChange(field, v) {
@@ -121,11 +121,11 @@ function CCrawlerDefUrlsTemplateForm(props) {
   );
 }
 
-CCrawlerDefUrlsTemplateForm.propTypes = {
+CTaskDefUrlsTemplateForm.propTypes = {
   data: PropTypes.object.isRequired,
   itemOnChange: PropTypes.func.isRequired,
 };
 
-CCrawlerDefUrlsTemplateForm.defaultProps = {};
+CTaskDefUrlsTemplateForm.defaultProps = {};
 
-export default CCrawlerDefUrlsTemplateForm;
+export default CTaskDefUrlsTemplateForm;

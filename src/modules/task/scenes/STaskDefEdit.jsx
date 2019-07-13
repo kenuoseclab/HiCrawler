@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import * as PropTypes from 'prop-types';
 import { Steps } from 'antd';
 
-import CCrawlerDefBasic from '../components/CCrawlerDefBasic';
-import CCrawlerDefUrls from '../components/CCrawlerDefUrls';
-import CCrawlerDefPagingResolver from '../components/CCrawlerDefPagingResolver';
-import CCrawlerDefCollectorsForm from '../components/CCrawlerDefCollectors';
+import CTaskDefBasic from '../components/CTaskDefBasic';
+import CTaskDefUrls from '../components/CTaskDefUrls';
+import CTaskDefPagingResolver from '../components/CTaskDefPagingResolver';
+import CCrawlerDefCollectorsForm from '../components/CTaskDefCollectors';
 
 const { Step } = Steps;
 
@@ -14,17 +14,17 @@ function STaskDefEdit(props) {
   const steps = [
     {
       title: '基本属性',
-      content: <CCrawlerDefBasic {...props} />,
+      content: <CTaskDefBasic {...props} />,
       current: 0,
     },
     {
       title: '网址',
-      content: <CCrawlerDefUrls {...props} />,
+      content: <CTaskDefUrls {...props} />,
       current: 1,
     },
     {
       title: '分页解析器',
-      content: <CCrawlerDefPagingResolver {...props} />,
+      content: <CTaskDefPagingResolver {...props} />,
       current: 2,
     },
     {

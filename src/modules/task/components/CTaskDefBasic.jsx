@@ -6,12 +6,12 @@ import CSelect from '../../system/components/CSelect';
 
 import { DEF_CHARSET, DEF_USER_AGENT, FORM_ITEM_LAYOUT } from '../../../util/constants';
 
-import CTaskProxyForm from './CTaskProxyForm';
+import CTaskDefBasicProxyForm from './CTaskDefBasicProxyForm';
 
 const { TextArea } = Input;
 const RadioGroup = Radio.Group;
 
-function CCrawlerDefBasic(props) {
+function CTaskDefBasic(props) {
   const { data, itemOnChange } = props;
   const [basicInfo, setBasicInfo] = useState(data.basicInfo || {});
 
@@ -105,17 +105,17 @@ function CCrawlerDefBasic(props) {
         />
       </Form.Item>
       <Form.Item label="代理设定">
-        <CTaskProxyForm data={basicInfo.proxy} onChange={v => handleBasicInfoChange('proxy', v)} />
+        <CTaskDefBasicProxyForm data={basicInfo.proxy} onChange={v => handleBasicInfoChange('proxy', v)} />
       </Form.Item>
     </Form>
   );
 }
 
-CCrawlerDefBasic.propTypes = {
+CTaskDefBasic.propTypes = {
   data: PropTypes.object.isRequired,
   itemOnChange: PropTypes.func.isRequired,
 };
 
-CCrawlerDefBasic.defaultProps = {};
+CTaskDefBasic.defaultProps = {};
 
-export default CCrawlerDefBasic;
+export default CTaskDefBasic;

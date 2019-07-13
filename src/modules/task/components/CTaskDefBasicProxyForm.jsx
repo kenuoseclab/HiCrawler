@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as PropTypes from 'prop-types';
 import { Checkbox, Form, Input } from 'antd';
 
-function CTaskProxyForm(props) {
+function CTaskDefBasicProxyForm(props) {
   const [proxy, setProxy] = useState(props.data || {});
   const [disabled, setDisabled] = useState(!(proxy.userName && proxy.password));
 
@@ -75,13 +75,13 @@ function CTaskProxyForm(props) {
   );
 }
 
-CTaskProxyForm.propTypes = {
+CTaskDefBasicProxyForm.propTypes = {
   data: PropTypes.object,
   onChange: PropTypes.func.isRequired,
 };
 
-CTaskProxyForm.defaultProps = {
+CTaskDefBasicProxyForm.defaultProps = {
   data: {},
 };
 
-export default CTaskProxyForm;
+export default CTaskDefBasicProxyForm;

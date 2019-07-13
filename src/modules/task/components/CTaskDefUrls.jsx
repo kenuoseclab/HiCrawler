@@ -30,7 +30,7 @@ const getListStyle = isDraggingOver => ({
   borderColor: isDraggingOver ? 'lightblue' : 'lightgrey',
 });
 
-class CCrawlerDefUrls extends React.Component {
+class CTaskDefUrls extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -312,11 +312,11 @@ class CCrawlerDefUrls extends React.Component {
   }
 }
 
-CCrawlerDefUrls.propTypes = {
+CTaskDefUrls.propTypes = {
   data: PropTypes.object.isRequired,
   itemOnChange: PropTypes.func.isRequired,
 };
 
-CCrawlerDefUrls.defaultProps = {};
+CTaskDefUrls.defaultProps = {};
 
-export default CCrawlerDefUrls;
+export default CTaskDefUrls;
