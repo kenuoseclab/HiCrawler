@@ -786,3 +786,15 @@ export const DEF_USER_AGENT = [
   },
   { id: '6', value: 'Mozilla/5.0 Chrome/64.0.3282.140 Safari/537.36 Edge/17.17134', name: 'Edge' },
 ];
+
+// form layout
+export const FORM_ITEM_LAYOUT = {
+  labelCol: {
+    xs: { span: 24 },
+    sm: { span: 8 },
+  },
+  wrapperCol: {
+    xs: { span: 24 },
+    sm: { span: 16 },
+  },
+};

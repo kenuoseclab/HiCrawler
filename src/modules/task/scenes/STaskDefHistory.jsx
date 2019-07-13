@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { message, Table } from 'antd';
 import * as PropTypes from 'prop-types';
 
@@ -9,71 +9,61 @@ import { formatDate } from '../../../util/helper';
 const firstPage = 1;
 const limit = 20;
 
-class STaskDefHistory extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [],
-      total: 0,
-      currentPage: firstPage,
-    };
+function STaskDefHistory(props) {
+  const [data, setData] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [currentPage, setCurrentPage] = useState(firstPage);
 
-    this.onPagination = this.onPagination.bind(this);
-  }
+  const columns = [
+    {
+      title: '更新日',
+      dataIndex: 'createdAt',
+      key: 'createdAt',
+      render: text => {
+        return formatDate(text);
+      },
+    },
+  ];
 
-  componentDidMount() {
-    this.fetch(firstPage);
-  }
-
-  onPagination(page) {
-    this.setState({ currentPage: page });
-    this.fetch(page);
-  }
-
-  async fetch(page) {
-    const { id } = this.props.match.params;
+  async function fetch(page = firstPage) {
+    const { id } = props.match.params;
     if (id) {
       try {
         const skip = (page - firstPage) * limit;
         const result = await get(`${API_TASK_HISTORY}/${id}?skip=${skip}&limit=${limit}`);
-        this.setState({ total: result.total, data: result.items });
+        setData(result.items);
+        setTotal(result.total);
       } catch (e) {
         message.error('任务定义履历取得失败，请重新获取');
       }
     } else {
-      this.props.history.push(ROUTE_TASK_LIST);
+      props.history.push(ROUTE_TASK_LIST);
     }
   }
 
-  render() {
-    const { data, total, currentPage } = this.state;
+  useEffect(() => {
+    fetch();
+  }, [fetch]);
 
-    const columns = [
-      {
-        title: '更新日',
-        dataIndex: 'createdAt',
-        key: 'createdAt',
-        render: text => {
-          return formatDate(text);
-        },
-      },
-    ];
-
-    return (
-      <Table
-        dataSource={data}
-        columns={columns}
-        rowKey={record => record._id}
-        pagination={{
-          total,
-          current: currentPage,
-          pageSize: limit,
-          size: 'small',
-          onChange: this.onPagination,
-        }}
-      />
-    );
+  function onPagination(page) {
+    setCurrentPage(page);
+    fetch(page);
   }
+
+  return (
+    <Table
+      dataSource={data}
+      columns={columns}
+      rowKey={record => record._id}
+      pagination={{
+        total,
+        current: currentPage,
+        pageSize: limit,
+        size: 'small',
+        onChange: onPagination,
+      }}
+    />
+  );
 }
 
 STaskDefHistory.propTypes = {

@@ -5,7 +5,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Form, Select, Icon } from 'antd';
 
 import CFormItemFactory from '../../system/components/CFormItemFactory';
-import { PROCESSORS_TYPE, PAGING_RESOLVER_TYPE, COLLECTOR_TYPE } from '../../../util/constants';
+import { PROCESSORS_TYPE, PAGING_RESOLVER_TYPE, COLLECTOR_TYPE, FORM_ITEM_LAYOUT } from '../../../util/constants';
 import { generateUUID, forEach, filter, find } from '../../../util/helper';
 import drag from '../../../static/img/drag.png';
 
@@ -56,7 +56,7 @@ class CCrawlerDefPagingResolver extends React.Component {
 
     const { data } = this.props;
     data.pagingResolver = pagingResolver;
-    this.props.itemOnChange({ detail: data });
+    this.props.itemOnChange(data);
   }
 
   handlePagingTypeChange(field, v) {
@@ -67,7 +67,7 @@ class CCrawlerDefPagingResolver extends React.Component {
 
     const { data } = this.props;
     data.pagingResolver = pagingResolver;
-    this.props.itemOnChange({ detail: data });
+    this.props.itemOnChange(data);
   }
 
   handlePagingTypeDetailChange(field, v) {
@@ -84,7 +84,7 @@ class CCrawlerDefPagingResolver extends React.Component {
 
     const { data } = this.props;
     data.pagingResolver = pagingResolver;
-    this.props.itemOnChange({ detail: data });
+    this.props.itemOnChange(data);
   }
 
   handlePagingTypeCollectorDetailChange(field, v) {
@@ -99,7 +99,7 @@ class CCrawlerDefPagingResolver extends React.Component {
 
     const { data } = this.props;
     data.pagingResolver = pagingResolver;
-    this.props.itemOnChange({ detail: data });
+    this.props.itemOnChange(data);
   }
 
   handleAddProcess(v, option) {
@@ -152,17 +152,6 @@ class CCrawlerDefPagingResolver extends React.Component {
   }
 
   render() {
-    const formItemLayout = {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 8 },
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 16 },
-      },
-    };
-
     const { pagingResolver } = this.state;
     const processors = pagingResolver.processors || [];
 
@@ -188,7 +177,7 @@ class CCrawlerDefPagingResolver extends React.Component {
     }
 
     return (
-      <Form {...formItemLayout} className="task-edit">
+      <Form {...FORM_ITEM_LAYOUT} className="task-edit">
         <Form.Item label="分页解析器的类型">
           <Select value={pagingResolver.type} onChange={v => this.handlePagingTypeChange('type', v)}>
             {PAGING_RESOLVER_TYPE.map(p => (

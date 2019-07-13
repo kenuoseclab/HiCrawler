@@ -2,44 +2,35 @@ import React from 'react';
 import * as PropTypes from 'prop-types';
 import { Icon, Menu, Dropdown } from 'antd';
 
-class CTreeNodeTitle extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleTitleRightOnClick = this.handleTitleRightOnClick.bind(this);
-    this.handleTitleOnSelect = this.handleTitleOnSelect.bind(this);
-  }
+function CTreeNodeTitle(props) {
+  const { name, key } = props.node;
 
-  handleTitleRightOnClick(e) {
-    const { node } = this.props;
+  function handleTitleRightOnClick(e) {
     if (e.key === 'remove') {
-      this.props.onRemove(node.key);
+      props.onRemove(key);
     }
   }
 
-  handleTitleOnSelect(key) {
-    this.props.onSelect(key);
+  function handleTitleOnSelect(titleKey) {
+    props.onSelect(titleKey);
   }
 
-  render() {
-    const { name, key } = this.props.node;
+  const menu = (
+    <Menu onClick={handleTitleRightOnClick}>
+      <Menu.Item key="remove">删除</Menu.Item>
+    </Menu>
+  );
 
-    const menu = (
-      <Menu onClick={this.handleTitleRightOnClick}>
-        <Menu.Item key="remove">删除</Menu.Item>
-      </Menu>
-    );
-
-    return (
-      <span className="c-tree-node">
-        <span onClick={() => this.handleTitleOnSelect(key)}>{name}</span>
-        <Dropdown overlay={menu}>
-          <a className="ant-dropdown-link" href="#">
-            <Icon type="more" />
-          </a>
-        </Dropdown>
-      </span>
-    );
-  }
+  return (
+    <span className="c-tree-node">
+      <span onClick={() => handleTitleOnSelect(key)}>{name}</span>
+      <Dropdown overlay={menu}>
+        <a className="ant-dropdown-link" href="#">
+          <Icon type="more" />
+        </a>
+      </Dropdown>
+    </span>
+  );
 }
 
 CTreeNodeTitle.defaultProps = {};

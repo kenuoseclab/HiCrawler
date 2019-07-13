@@ -5,7 +5,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Form, Input, Radio, Select, Icon } from 'antd';
 
 import CFormItemFactory from '../../system/components/CFormItemFactory';
-import { COLLECTOR_TYPE, PROCESSORS_TYPE, FILTERS_TYPE } from '../../../util/constants';
+import { COLLECTOR_TYPE, PROCESSORS_TYPE, FILTERS_TYPE, FORM_ITEM_LAYOUT } from '../../../util/constants';
 import { generateUUID, forEach, filter, find } from '../../../util/helper';
 import drag from '../../../static/img/drag.png';
 
@@ -202,17 +202,6 @@ class CCrawlerDefCollectorsForm extends React.Component {
   }
 
   render() {
-    const formItemLayout = {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 8 },
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 16 },
-      },
-    };
-
     const { data } = this.props;
     const filterObj = data.filter || {};
     const processors = data.processors || [];
@@ -239,7 +228,7 @@ class CCrawlerDefCollectorsForm extends React.Component {
     }
 
     return (
-      <Form {...formItemLayout} className="task-edit-collector">
+      <Form {...FORM_ITEM_LAYOUT} className="task-edit-collector">
         <Form.Item label="名称" required>
           <Input value={data.name || ''} onChange={e => this.handleCollectorInfoChange('name', e.target.value)} />
         </Form.Item>

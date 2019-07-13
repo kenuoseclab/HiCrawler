@@ -6,49 +6,29 @@ import CTreeNodeTitle from './CTreeNodeTitle';
 
 const { TreeNode, DirectoryTree } = Tree;
 
-class CTree extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleAddOnClick = this.handleAddOnClick.bind(this);
-    this.handleOnSelect = this.handleOnSelect.bind(this);
-    this.handleRemoveOnClick = this.handleRemoveOnClick.bind(this);
-
-    this.handleOnDragStart = this.handleOnDragStart.bind(this);
-    this.handleOnDragEnter = this.handleOnDragEnter.bind(this);
-    this.handleOnDrag = this.handleOnDrag.bind(this);
+function CTree(props) {
+  const { items, onSelect, addOnClick, removeOnClick, onDrag } = props;
+  function handleOnSelect(key) {
+    onSelect(key);
   }
 
-  handleOnSelect(key) {
-    this.props.onSelect(key);
+  function handleAddOnClick() {
+    addOnClick();
   }
 
-  handleAddOnClick() {
-    this.props.addOnClick();
+  function handleRemoveOnClick(key) {
+    removeOnClick(key);
   }
 
-  handleRemoveOnClick(key) {
-    this.props.removeOnClick(key);
+  function handleOnDrag(info) {
+    onDrag(info);
   }
 
-  handleOnDragStart() {
-    // console.log('start', info);
-  }
-
-  handleOnDragEnter() {
-    // console.log('enter', info);
-  }
-
-  handleOnDrag(info) {
-    // console.log('drop', info);
-    this.props.onDrag(info);
-  }
-
-  renderTreeNodes(data) {
+  function renderTreeNodes(data) {
     return data.map(item => {
       return (
         <TreeNode
-          title={<CTreeNodeTitle node={item} onSelect={this.handleOnSelect} onRemove={this.handleRemoveOnClick} />}
+          title={<CTreeNodeTitle node={item} onSelect={handleOnSelect} onRemove={handleRemoveOnClick} />}
           key={item.key}
           icon={<Icon type="profile" />}
         />
@@ -56,27 +36,18 @@ class CTree extends React.Component {
     });
   }
 
-  render() {
-    const { items } = this.props;
-    return (
-      <div className="c-tree">
-        <div className="title">
-          <span>采集项目</span>
-          <Icon type="plus-square" style={{ fontSize: '20px' }} onClick={this.handleAddOnClick} />
-        </div>
-        <span className="line" />
-        <DirectoryTree
-          defaultExpandAll
-          draggable
-          onDragStart={this.handleOnDragStart}
-          onDragEnter={this.handleOnDragEnter}
-          onDrop={this.handleOnDrag}
-        >
-          {this.renderTreeNodes(items)}
-        </DirectoryTree>
+  return (
+    <div className="c-tree">
+      <div className="title">
+        <span>采集项目</span>
+        <Icon type="plus-square" style={{ fontSize: '20px' }} onClick={handleAddOnClick} />
       </div>
-    );
-  }
+      <span className="line" />
+      <DirectoryTree defaultExpandAll draggable onDrop={handleOnDrag}>
+        {renderTreeNodes(items)}
+      </DirectoryTree>
+    </div>
+  );
 }
 
 CTree.propTypes = {

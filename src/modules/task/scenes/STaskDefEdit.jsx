@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as PropTypes from 'prop-types';
 import { Steps } from 'antd';
 
@@ -9,53 +9,41 @@ import CCrawlerDefCollectorsForm from '../components/CCrawlerDefCollectors';
 
 const { Step } = Steps;
 
-class STaskDefEdit extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+function STaskDefEdit(props) {
+  const [current, setCurrent] = useState(0);
+  const steps = [
+    {
+      title: '基本属性',
+      content: <CCrawlerDefBasic {...props} />,
       current: 0,
-    };
-  }
+    },
+    {
+      title: '网址',
+      content: <CCrawlerDefUrls {...props} />,
+      current: 1,
+    },
+    {
+      title: '分页解析器',
+      content: <CCrawlerDefPagingResolver {...props} />,
+      current: 2,
+    },
+    {
+      title: '采集器集合',
+      content: <CCrawlerDefCollectorsForm {...props} />,
+      current: 3,
+    },
+  ];
 
-  next(current) {
-    this.setState({ current });
-  }
-
-  render() {
-    const { current } = this.state;
-    const steps = [
-      {
-        title: '基本属性',
-        content: <CCrawlerDefBasic {...this.props} />,
-        current: 0,
-      },
-      {
-        title: '网址',
-        content: <CCrawlerDefUrls {...this.props} />,
-        current: 1,
-      },
-      {
-        title: '分页解析器',
-        content: <CCrawlerDefPagingResolver {...this.props} />,
-        current: 2,
-      },
-      {
-        title: '采集器集合',
-        content: <CCrawlerDefCollectorsForm {...this.props} />,
-        current: 3,
-      },
-    ];
-    return (
-      <div className="steps-def">
-        <Steps current={current} size="small" progressDot>
-          {steps.map(i => (
-            <Step key={i.title} title={i.title} onClick={() => this.next(i.current)} />
-          ))}
-        </Steps>
-        <div className="steps-content">{steps[current].content}</div>
-      </div>
-    );
-  }
+  return (
+    <div className="steps-def">
+      <Steps current={current} size="small" progressDot>
+        {steps.map(i => (
+          <Step key={i.title} title={i.title} onClick={() => setCurrent(i.current)} />
+        ))}
+      </Steps>
+      <div className="steps-content">{steps[current].content}</div>
+    </div>
+  );
 }
 
 STaskDefEdit.propTypes = {

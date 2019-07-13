@@ -5,7 +5,7 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
 import { generateUUID, forEach, filter, find } from '../../../util/helper';
 import drag from '../../../static/img/drag.png';
-import { URL_TEMPLATE_TYPE } from '../../../util/constants';
+import { URL_TEMPLATE_TYPE, FORM_ITEM_LAYOUT } from '../../../util/constants';
 import CFormItemFactory from '../../system/components/CFormItemFactory';
 
 const { TextArea } = Input;
@@ -55,7 +55,7 @@ class CCrawlerDefUrls extends React.Component {
     this.setState({ urls });
     const { data } = this.props;
     data.urls = urls;
-    this.props.itemOnChange({ detail: data });
+    this.props.itemOnChange(data);
   }
 
   handleUrlsChange(field, v) {
@@ -192,23 +192,12 @@ class CCrawlerDefUrls extends React.Component {
   }
 
   render() {
-    const formItemLayout = {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 8 },
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 16 },
-      },
-    };
-
     const { urls } = this.state;
 
     const desc = '请将参数以 {参数名} 的形式插入到网址中';
 
     return (
-      <Form {...formItemLayout} className="task-edit">
+      <Form {...FORM_ITEM_LAYOUT} className="task-edit">
         <Form.Item label="类型">
           <RadioGroup value={urls.type} onChange={e => this.handleUrlsChange('type', e.target.value)}>
             <Radio value="PlainUrlSet">简单网址</Radio>
