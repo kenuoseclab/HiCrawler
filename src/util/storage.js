@@ -47,7 +47,7 @@ class Storage {
       localStorage.removeItem('user');
       localStorage.removeItem('token');
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   }
 }

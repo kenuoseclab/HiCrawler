@@ -1,44 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as PropTypes from 'prop-types';
 import { Input, Select } from 'antd';
 
 const { Option } = Select;
 
-class CSelect extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      defaultValue: this.props.defaultValue,
-    };
+function CSelect(props) {
+  const { options } = props;
+  const [defaultValue, setDefaultValue] = useState(props.defaultValue);
 
-    this.handleOnChange = this.handleOnChange.bind(this);
-  }
-
-  handleOnChange(v) {
-    this.setState({ defaultValue: v });
-    if (this.props.onChange) {
-      this.props.onChange(v);
+  function handleOnChange(v) {
+    setDefaultValue(v);
+    if (props.onChange) {
+      props.onChange(v);
     }
   }
 
-  render() {
-    const { options } = this.props;
-    const { defaultValue } = this.state;
-    return (
-      <div className="c-select">
-        <Select onChange={this.handleOnChange}>
-          {options.map(o => {
-            return (
-              <Option key={o.id} value={o.value}>
-                {o.name}
-              </Option>
-            );
-          })}
-        </Select>
-        <Input value={defaultValue} onChange={e => this.handleOnChange(e.target.value)} />
-      </div>
-    );
-  }
+  return (
+    <div className="c-select">
+      <Select onChange={handleOnChange}>
+        {options.map(o => {
+          return (
+            <Option key={o.id} value={o.value}>
+              {o.name}
+            </Option>
+          );
+        })}
+      </Select>
+      <Input value={defaultValue} onChange={e => handleOnChange(e.target.value)} />
+    </div>
+  );
 }
 
 CSelect.defaultProps = {

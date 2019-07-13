@@ -106,7 +106,7 @@ export function CFormSelect(obj, data, event) {
   );
 }
 
-export default function CFormItemsFactory(items, data = {}, event) {
+function CFormItemsFactory(items, data = {}, event) {
   return items.map(i => {
     let result;
     switch (i.type) {
@@ -138,3 +138,5 @@ export default function CFormItemsFactory(items, data = {}, event) {
     return result;
   });
 }
+
+export default CFormItemsFactory;

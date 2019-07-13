@@ -11,29 +11,28 @@ const error = PropTypes.shape({
   message: PropTypes.string.isRequired,
 });
 
-class SInternalServerError extends React.Component {
-  render() {
-    const { state } = this.props.history.location;
-    let message;
-    if (state) {
-      if (state.errorCode === 401) {
-        message = '登录超时，请重新登录。';
-      } else if (state.errorCode === 500) {
-        message = '系统错误发生，请重新登录。';
-      }
+function SInternalServerError(props) {
+  const { state } = props.history.location;
+  let message;
+  if (state) {
+    if (state.errorCode === 401) {
+      message = '登录超时，请重新登录。';
+    } else if (state.errorCode === 500) {
+      message = '系统错误发生，请重新登录。';
     }
-    return (
-      <div className="error-wrapper">
-        <span className="error-code">{state.errorCode || null}</span>
-        <div className="error-message">{message || null}</div>
-        <div className="return-btn">
-          <Link to={ROUTE_LOGIN}>
-            <Button type="primary">登录</Button>
-          </Link>
-        </div>
-      </div>
-    );
   }
+
+  return (
+    <div className="error-wrapper">
+      <span className="error-code">{state.errorCode || null}</span>
+      <div className="error-message">{message || null}</div>
+      <div className="return-btn">
+        <Link to={ROUTE_LOGIN}>
+          <Button type="primary">登录</Button>
+        </Link>
+      </div>
+    </div>
+  );
 }
 
 SInternalServerError.propTypes = {
@@ -46,4 +45,5 @@ SInternalServerError.propTypes = {
     }).isRequired,
   }).isRequired,
 };
+
 export default SInternalServerError;
