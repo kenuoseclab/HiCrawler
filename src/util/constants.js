@@ -390,6 +390,11 @@ export const COLLECTOR_TYPE = [
 
 export const PAGING_RESOLVER_TYPE = [
   {
+    name: '无分页',
+    key: 'NonePagingResolver',
+    items: [],
+  },
+  {
     name: '<下一页>按钮',
     key: 'NextPageButtonPagingResolver',
     items: [
