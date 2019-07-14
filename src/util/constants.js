@@ -397,6 +397,8 @@ export const PAGING_RESOLVER_TYPE = [
   {
     name: '<下一页>按钮',
     key: 'NextPageButtonPagingResolver',
+    desc:
+      '一般带分页的画面上，都有名为<下一页>或之类的按钮。查找指定名称的按钮，并从该按钮的指定属性上提取下一页的网址。',
     items: [
       {
         title: '<下一页>按钮的名字',
@@ -417,6 +419,8 @@ export const PAGING_RESOLVER_TYPE = [
   {
     name: '<下一页>页码',
     key: 'NextPageNumberPagingResolver',
+    desc:
+      '一般带分页的画面上，都有页码按钮。根据CSS选择器查找到画面上所有的页码按钮，并根据下一页的页码找到对应的按钮，并从该按钮的指定属性上提取下一页的网址。',
     items: [
       {
         title: 'CSS选择器',
@@ -447,6 +451,7 @@ export const PAGING_RESOLVER_TYPE = [
   {
     name: '<下一页>网址采集器',
     key: 'CollectorPagingResolver',
+    desc: '使用指定的采集器采集下一页的网址。',
     items: [
       {
         title: '采集器',
