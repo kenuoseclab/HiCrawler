@@ -437,7 +437,7 @@ export const PAGING_RESOLVER_TYPE = [
     ],
   },
   {
-    name: '<下一页>URL采集器',
+    name: '<下一页>网址采集器',
     key: 'CollectorPagingResolver',
     items: [
       {

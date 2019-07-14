@@ -186,6 +186,9 @@ class CTaskDefPagingResolver extends React.Component {
               </Option>
             ))}
           </Select>
+          {pagingResolver.type === 'CollectorPagingResolver' && (
+            <div className="desc">使用指定的采集器采集下一页的网址。</div>
+          )}
           {isExistForm && (
             <div className="c-sub-form">
               {typeForm}
