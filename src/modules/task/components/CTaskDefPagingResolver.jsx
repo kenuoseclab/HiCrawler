@@ -2,7 +2,7 @@ import React from 'react';
 import * as PropTypes from 'prop-types';
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { Form, Select, Icon } from 'antd';
+import { Form, Select, Icon, Tooltip } from 'antd';
 
 import CFormItemFactory from '../../system/components/CFormItemFactory';
 import { PROCESSORS_TYPE, PAGING_RESOLVER_TYPE, COLLECTOR_TYPE, FORM_ITEM_LAYOUT } from '../../../util/constants';
@@ -63,6 +63,13 @@ class CTaskDefPagingResolver extends React.Component {
     const { pagingResolver } = this.state;
     pagingResolver[field] = v;
     pagingResolver.typeInfo = {};
+
+    if (v === 'NextPageButtonPagingResolver') {
+      pagingResolver.typeInfo = {
+        buttonLabel: '下一页',
+        urlAttributeName: 'href',
+      };
+    }
 
     if (v === 'NextPageNumberPagingResolver') {
       pagingResolver.typeInfo = {
@@ -186,7 +193,7 @@ class CTaskDefPagingResolver extends React.Component {
 
     return (
       <Form {...FORM_ITEM_LAYOUT} className="task-edit">
-        <Form.Item label="分页解析器的类型">
+        <Form.Item label="分页解析器">
           <Select value={pagingResolver.type} onChange={v => this.handlePagingTypeChange('type', v)}>
             {PAGING_RESOLVER_TYPE.map(p => (
               <Option key={p.key} value={p.key}>
@@ -194,6 +201,13 @@ class CTaskDefPagingResolver extends React.Component {
               </Option>
             ))}
           </Select>
+          {pagingResolver.type === 'NextPageButtonPagingResolver' && (
+            <div className="desc">
+              {
+                '一般带分页的画面上，都有名为<下一页>或之类的按钮。查找指定名称的按钮，并从该按钮的指定属性上提取下一页的网址。'
+              }
+            </div>
+          )}
           {pagingResolver.type === 'CollectorPagingResolver' && (
             <div className="desc">
               一般带分页的画面上，都有页码按钮。根据CSS选择器查找到画面上所有的页码按钮，并根据下一页的页码找到对应的按钮，并从该按钮的指定属性上提取下一页的网址。
@@ -209,8 +223,17 @@ class CTaskDefPagingResolver extends React.Component {
             </div>
           )}
         </Form.Item>
-        <Form.Item label="后处理器类型">
-          <Select onChange={this.handleAddProcess}>
+        <Form.Item
+          label={
+            <span>
+              后处理器&nbsp;
+              <Tooltip title="对上面提取的网址进行指定的处理。可以指定多个处理器。">
+                <Icon type="question-circle-o" />
+              </Tooltip>
+            </span>
+          }
+        >
+          <Select onChange={this.handleAddProcess} value="">
             {PROCESSORS_TYPE.map(p => (
               <Option key={p.key} value={p.key}>
                 {p.name}

@@ -394,16 +394,16 @@ export const PAGING_RESOLVER_TYPE = [
     key: 'NextPageButtonPagingResolver',
     items: [
       {
-        title: '“下一页”按钮的名字',
+        title: '<下一页>按钮的名字',
         key: 'buttonLabel',
-        required: false,
+        required: true,
         type: 'input',
         data: [],
       },
       {
-        title: '“下一页”按钮上记录URL的属性的名字',
+        title: '网址属性名',
         key: 'urlAttributeName',
-        required: false,
+        required: true,
         type: 'input',
         data: [],
       },
