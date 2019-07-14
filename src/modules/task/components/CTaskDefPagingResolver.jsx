@@ -63,6 +63,14 @@ class CTaskDefPagingResolver extends React.Component {
     const { pagingResolver } = this.state;
     pagingResolver[field] = v;
     pagingResolver.typeInfo = {};
+
+    if (v === 'NextPageNumberPagingResolver') {
+      pagingResolver.typeInfo = {
+        cssSelector: 'a',
+        urlAttributeName: 'href',
+      };
+    }
+
     this.setState({ pagingResolver });
 
     const { data } = this.props;
@@ -187,6 +195,11 @@ class CTaskDefPagingResolver extends React.Component {
             ))}
           </Select>
           {pagingResolver.type === 'CollectorPagingResolver' && (
+            <div className="desc">
+              一般带分页的画面上，都有页码按钮。根据CSS选择器查找到画面上所有的页码按钮，并根据下一页的页码找到对应的按钮，并从该按钮的指定属性上提取下一页的网址。
+            </div>
+          )}
+          {pagingResolver.type === 'NextPageNumberPagingResolver' && (
             <div className="desc">使用指定的采集器采集下一页的网址。</div>
           )}
           {isExistForm && (
