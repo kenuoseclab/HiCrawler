@@ -201,7 +201,9 @@ class CTaskDefPagingResolver extends React.Component {
               </Option>
             ))}
           </Select>
-          <div className="desc">{find(PAGING_RESOLVER_TYPE, { key: pagingResolver.type }).desc}</div>
+          {pagingResolver.type && (
+            <div className="desc">{find(PAGING_RESOLVER_TYPE, { key: pagingResolver.type }).desc}</div>
+          )}
           {isExistForm && (
             <div className="c-sub-form">
               {typeForm}
