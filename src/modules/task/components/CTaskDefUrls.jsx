@@ -285,13 +285,11 @@ class CTaskDefUrls extends React.Component {
                                           </Form.Item>
                                           {isExistUrlForm && urlTemplateForm}
                                         </div>
-                                        <div className="icon-delete">
-                                          <Icon
-                                            className="icon-delete"
-                                            type="close-circle"
-                                            onClick={() => this.handleRemoveParamClick(t.key, p.key)}
-                                          />
-                                        </div>
+                                        <Icon
+                                          className="icon-delete"
+                                          type="close-circle"
+                                          onClick={() => this.handleRemoveParamClick(t.key, p.key)}
+                                        />
                                       </div>
                                     )}
                                   </Draggable>
