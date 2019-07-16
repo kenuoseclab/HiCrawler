@@ -28,7 +28,7 @@ function STaskDefEdit(props) {
       current: 2,
     },
     {
-      title: '采集器集合',
+      title: '采集器',
       content: <CCrawlerDefCollectorsForm {...props} />,
       current: 3,
     },
