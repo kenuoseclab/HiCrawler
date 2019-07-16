@@ -398,7 +398,7 @@ export const PAGING_RESOLVER_TYPE = [
     name: '<下一页>按钮',
     key: 'NextPageButtonPagingResolver',
     desc:
-      '一般带分页的画面上，都有名为<下一页>或之类的按钮。查找指定名称的按钮，并从该按钮的指定属性上提取下一页的网址。',
+      '一般带分页的画面上，都有名为<下一页>或<Next>之类的按钮。查找指定名称的按钮，并从该按钮的指定属性上提取下一页的网址。',
     items: [
       {
         title: '<下一页>按钮的名字',
