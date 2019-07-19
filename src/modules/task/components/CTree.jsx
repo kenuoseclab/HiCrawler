@@ -30,7 +30,7 @@ function CTree(props) {
         <TreeNode
           title={<CTreeNodeTitle node={item} onSelect={handleOnSelect} onRemove={handleRemoveOnClick} />}
           key={item.key}
-          icon={<Icon type="profile" />}
+          icon={<Icon type="profile" onClick={() => handleOnSelect(item.key)} />}
         />
       );
     });

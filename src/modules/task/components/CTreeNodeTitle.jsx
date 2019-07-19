@@ -1,6 +1,6 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
-import { Icon, Menu, Dropdown } from 'antd';
+import { Icon, Menu, Dropdown, Tooltip } from 'antd';
 
 function CTreeNodeTitle(props) {
   const { name, key } = props.node;
@@ -22,14 +22,16 @@ function CTreeNodeTitle(props) {
   );
 
   return (
-    <span className="c-tree-node">
-      <span onClick={() => handleTitleOnSelect(key)}>{name}</span>
-      <Dropdown overlay={menu}>
-        <a className="ant-dropdown-link" href="#">
-          <Icon type="more" />
-        </a>
-      </Dropdown>
-    </span>
+    <Tooltip placement="top" title={name}>
+      <span className="c-tree-node">
+        <span onClick={() => handleTitleOnSelect(key)}>{name}</span>
+        <Dropdown overlay={menu}>
+          <a className="ant-dropdown-link" href="#">
+            <Icon type="more" />
+          </a>
+        </Dropdown>
+      </span>
+    </Tooltip>
   );
 }
 
