@@ -39,7 +39,7 @@ function CTree(props) {
   return (
     <div className="c-tree">
       <div className="title">
-        <span>采集项目</span>
+        <span>采集项目{items.length > 0 ? `(${items.length})` : ''}</span>
         <Icon type="plus-square" style={{ fontSize: '20px' }} onClick={handleAddOnClick} />
       </div>
       <span className="line" />
