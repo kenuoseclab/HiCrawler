@@ -23,11 +23,10 @@ function CTaskDefCollectors(props) {
     d.forEach((item, index, arr) => {
       if (item.key === key) {
         callback(item, index, arr);
-        return;
       }
-      if (item.children) {
-        loop(item.children, key, callback);
-      }
+      // if (item.children) {
+      //   loop(item.children, key, callback);
+      // }
     });
   }
 
@@ -52,7 +51,7 @@ function CTaskDefCollectors(props) {
     const tc = [...collectors];
     tc.push({
       key,
-      name: '新规项目',
+      name: `项目${tc.length + 1}`,
     });
 
     commonUpdateStateAndProps(tc, key);
@@ -64,9 +63,17 @@ function CTaskDefCollectors(props) {
 
     loop(collectors, dragKey, (item, index) => {
       const tc = [...collectors];
-      const dropEnd = Object.assign({}, tc[dropPosition]);
-      tc[dropPosition] = item;
-      tc[index] = dropEnd;
+      if (dropPosition === -1) {
+        tc.splice(index, 1);
+        tc.unshift(item);
+      } else if (dropPosition === tc.length) {
+        tc.splice(index, 1);
+        tc.push(item);
+      } else {
+        const dropEnd = Object.assign({}, tc[dropPosition]);
+        tc[dropPosition] = item;
+        tc[index] = dropEnd;
+      }
       commonUpdateStateAndProps(tc, dragKey);
     });
   }
