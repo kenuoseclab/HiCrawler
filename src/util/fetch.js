@@ -12,7 +12,14 @@ const setHeaderToken = () => {
   return { 'x-token-crawler': `${token}` };
 };
 
-const commonRequest = async options => {
+const commonRequest = async (method, url, arr) => {
+  const options = {
+    headers: setHeaderToken(),
+    method,
+    url,
+    ...arr,
+  };
+
   try {
     const response = await fetch(options);
     return response.data.data;
@@ -30,45 +37,18 @@ const commonRequest = async options => {
   }
 };
 
-export function get(url, obj = {}) {
-  const options = {
-    params: obj,
-    headers: setHeaderToken(),
-    method: 'get',
-    url,
-  };
-
-  return commonRequest(options);
+export function get(url, params = {}) {
+  return commonRequest('get', url, { params });
 }
 
 export function post(url, data = {}) {
-  const options = {
-    headers: setHeaderToken(),
-    method: 'post',
-    url,
-    data,
-  };
-  return commonRequest(options);
+  return commonRequest('post', url, { data });
 }
 
 export function put(url, data = {}) {
-  const options = {
-    headers: setHeaderToken(),
-    method: 'put',
-    url,
-    data,
-  };
-
-  return commonRequest(options);
+  return commonRequest('put', url, { data });
 }
 
 export function del(url, data = {}) {
-  const options = {
-    headers: setHeaderToken(),
-    method: 'delete',
-    url,
-    data,
-  };
-
-  return commonRequest(options);
+  return commonRequest('delete', url, { data });
 }

@@ -22,7 +22,7 @@ function CTaskDefBasic(props) {
 
     if (props.itemOnChange) {
       const td = { ...data };
-      td.basicInfo = basicInfo;
+      td.basicInfo = tempBasicInfo;
       itemOnChange(td);
     }
   }

@@ -15,7 +15,7 @@ function CTaskDefCollectors(props) {
     setCollectors(c);
     setSelectedKey(k);
     const td = { ...data };
-    td.collectors = collectors;
+    td.collectors = c;
     itemOnChange(td);
   }
 
@@ -60,8 +60,8 @@ function CTaskDefCollectors(props) {
   function handleOnDrag(info) {
     const dragKey = info.dragNode.props.eventKey;
     const { dropPosition } = info;
-
     loop(collectors, dragKey, (item, index) => {
+      console.log(`drag:${index}`, `drop:${dropPosition}`, info);
       const tc = [...collectors];
       if (dropPosition === -1) {
         tc.splice(index, 1);
