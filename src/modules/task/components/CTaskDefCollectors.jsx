@@ -54,7 +54,7 @@ function CTaskDefCollectors(props) {
       name: `项目${tc.length + 1}`,
     });
 
-    commonUpdateStateAndProps(tc, key);
+    commonUpdateStateAndProps(tc, selectedKey);
   }
 
   function handleOnDrag(info) {
