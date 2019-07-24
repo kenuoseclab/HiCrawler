@@ -63,6 +63,9 @@
   height: 100%;
   display: inline-block;
 }
+.ant-tree li {
+  padding: 0;
+}
 
 .ant-tree li .ant-tree-node-content-wrapper {
   height: 100%;
@@ -91,4 +94,21 @@
   float: left !important;
   width: 60px;
   text-align: center;
+}
+
+.ant-tree li span.ant-tree-switcher,
+.ant-tree li span.ant-tree-iconEle {
+  height: 0;
+  line-height: unset;
+}
+
+.ant-tree li span[draggable], .ant-tree li span[draggable='true'] {
+  line-height: unset;
+  border-bottom: 0;
+}
+
+.ant-tree.ant-tree-directory > li span.ant-tree-node-content-wrapper,
+.ant-tree.ant-tree-directory .ant-tree-child-tree > li span.ant-tree-node-content-wrapper {
+  height: 32px;
+  line-height: 32px;
 }
