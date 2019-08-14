@@ -24,9 +24,6 @@ function CTaskDefCollectors(props) {
       if (item.key === key) {
         callback(item, index, arr);
       }
-      // if (item.children) {
-      //   loop(item.children, key, callback);
-      // }
     });
   }
 
@@ -52,6 +49,7 @@ function CTaskDefCollectors(props) {
     tc.push({
       key,
       name: `项目${tc.length + 1}`,
+      pageCollectMode: 'FIRST_PAGE',
     });
 
     commonUpdateStateAndProps(tc, selectedKey);
@@ -61,7 +59,6 @@ function CTaskDefCollectors(props) {
     const dragKey = info.dragNode.props.eventKey;
     const { dropPosition } = info;
     loop(collectors, dragKey, (item, index) => {
-      console.log(`drag:${index}`, `drop:${dropPosition}`, info);
       const tc = [...collectors];
       if (dropPosition === -1) {
         tc.splice(index, 1);

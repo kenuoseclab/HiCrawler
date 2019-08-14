@@ -2,7 +2,7 @@ import React from 'react';
 import * as PropTypes from 'prop-types';
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { Form, Input, Radio, Select, Icon } from 'antd';
+import { Form, Input, Radio, Select, Icon, Tooltip } from 'antd';
 
 import CFormItemFactory from '../../system/components/CFormItemFactory';
 import { COLLECTOR_TYPE, PROCESSORS_TYPE, FILTERS_TYPE, FORM_ITEM_LAYOUT } from '../../../util/constants';
@@ -242,12 +242,23 @@ class CTaskDefCollectorsForm extends React.Component {
             <Radio value="EVERY_PAGE">每一页</Radio>
           </RadioGroup>
         </Form.Item>
-        <Form.Item label="连接符">
-          <Input
-            value={data.pageCollectResultDelimiter || ''}
-            onChange={e => this.handleCollectorInfoChange('pageCollectResultDelimiter', e.target.value)}
-          />
-        </Form.Item>
+        {data.pageCollectMode === 'EVERY_PAGE' && (
+          <Form.Item
+            label={
+              <span>
+                连接符&nbsp;
+                <Tooltip title="用指定的连接符连接每一页采集到的结果。">
+                  <Icon type="question-circle-o" />
+                </Tooltip>
+              </span>
+            }
+          >
+            <Input
+              value={data.pageCollectResultDelimiter || ''}
+              onChange={e => this.handleCollectorInfoChange('pageCollectResultDelimiter', e.target.value)}
+            />
+          </Form.Item>
+        )}
         <Form.Item label="类型" required>
           <Select value={data.type} onChange={v => this.handleCollectorTypeChange('type', v)}>
             {COLLECTOR_TYPE.map(c => (
