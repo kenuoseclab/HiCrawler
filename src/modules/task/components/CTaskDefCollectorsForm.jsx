@@ -274,8 +274,17 @@ class CTaskDefCollectorsForm extends React.Component {
             </div>
           )}
         </Form.Item>
-        <Form.Item label="处理器">
-          <Select onChange={this.handleAddProcess}>
+        <Form.Item
+          label={
+            <span>
+              后处理器&nbsp;
+              <Tooltip title="对上面采集到的结果进行指定的处理。可以指定多个。">
+                <Icon type="question-circle-o" />
+              </Tooltip>
+            </span>
+          }
+        >
+          <Select onChange={this.handleAddProcess} value="">
             {PROCESSORS_TYPE.map(p => (
               <Option key={p.key} value={p.key}>
                 {p.name}
