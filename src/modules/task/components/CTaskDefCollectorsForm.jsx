@@ -333,8 +333,17 @@ class CTaskDefCollectorsForm extends React.Component {
             </Droppable>
           </DragDropContext>
         </Form.Item>
-        <Form.Item label="过滤器">
-          <Select onChange={this.handleAddFilter}>
+        <Form.Item
+          label={
+            <span>
+              过滤器&nbsp;
+              <Tooltip title="采集到的结果不满足指定的规则时，将被抛弃。">
+                <Icon type="question-circle-o" />
+              </Tooltip>
+            </span>
+          }
+        >
+          <Select onChange={this.handleAddFilter} value="">
             {FILTERS_TYPE.map(f => (
               <Option key={f.key} value={f.key}>
                 {f.name}

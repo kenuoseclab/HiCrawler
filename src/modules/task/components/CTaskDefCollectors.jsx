@@ -50,6 +50,9 @@ function CTaskDefCollectors(props) {
       key,
       name: `项目${tc.length + 1}`,
       pageCollectMode: 'FIRST_PAGE',
+      filter: {
+        matchMode: 'ALL',
+      },
     });
 
     commonUpdateStateAndProps(tc, selectedKey);
