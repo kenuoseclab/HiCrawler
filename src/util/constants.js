@@ -109,6 +109,7 @@ export const COLLECTOR_TYPE = [
     name: '请求网址',
     key: 'UrlParamCollector',
     group: '从请求网址中抽取',
+    desc: '从请求网址中抽取内容。可以是整个网址，也可以是网址中的某一部分。',
     items: [
       {
         title: '类型',
@@ -150,6 +151,7 @@ export const COLLECTOR_TYPE = [
     name: '响应头',
     key: 'HttpHeaderCollector',
     group: '从响应头中抽取',
+    desc: '从Http响应头中抽取指定的响应头的值。',
     items: [
       {
         title: '名称',
@@ -164,6 +166,7 @@ export const COLLECTOR_TYPE = [
     name: '链接抽取',
     key: 'SimpleUrlCollector',
     group: '从响应体中抽取',
+    desc: '响应体为Html时，从Html中抽取各个链接（标签）。',
     items: [
       {
         title: 'CSS选择器',
@@ -178,6 +181,7 @@ export const COLLECTOR_TYPE = [
     name: '文字截取',
     key: 'TextSubstringBetweenCollector',
     group: '从响应体中抽取',
+    desc: '从响应体中截取文本。',
     items: [
       {
         title: '开始文字',
@@ -199,6 +203,7 @@ export const COLLECTOR_TYPE = [
     name: 'CSS选择器',
     key: 'HtmlDomCollector',
     group: '从响应体中抽取',
+    desc: '响应体为Html时，使用CSS选择器从Html中抽取内容。',
     items: [
       {
         title: 'CSS选择器',
@@ -234,6 +239,7 @@ export const COLLECTOR_TYPE = [
     name: 'JsonPath',
     key: 'JsonCollector',
     group: '从响应体中抽取',
+    desc: '响应体为Json时，使用JsonPath从Json中抽取内容。',
     items: [
       {
         title: 'jsonPath',
@@ -262,6 +268,7 @@ export const COLLECTOR_TYPE = [
     name: 'Javascript',
     key: 'JavascriptCollector',
     group: '从响应体中抽取',
+    desc: '使用自定义的Javascript，从响应文本中抽取内容。',
     items: [
       {
         title: 'javascript',
@@ -276,6 +283,7 @@ export const COLLECTOR_TYPE = [
     name: '函数',
     key: 'FunctionReturnValueCollector',
     group: '其他',
+    desc: '使用指定函数的返回值作为抽取结果。',
     items: [
       {
         title: '函数',
@@ -385,6 +393,7 @@ export const COLLECTOR_TYPE = [
     name: '项目组合',
     key: 'CollectorsCombinationCollector',
     group: '其他',
+    desc: '组合已抽取的各个项目的值作为抽取结果。',
     items: [
       {
         title: '格式',

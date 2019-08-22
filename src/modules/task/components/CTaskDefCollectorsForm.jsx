@@ -228,6 +228,7 @@ class CTaskDefCollectorsForm extends React.Component {
     }
 
     const collectorTypes = groupBy(COLLECTOR_TYPE, c => c.group);
+    const typeDesc = find(COLLECTOR_TYPE, { key: data.type });
 
     return (
       <Form {...FORM_ITEM_LAYOUT} className="task-edit-collector">
@@ -273,6 +274,7 @@ class CTaskDefCollectorsForm extends React.Component {
               </OptGroup>
             ))}
           </Select>
+          {typeDesc && <span className="type-desc">{typeDesc.desc}</span>}
           {isExistForm && (
             <div className="c-sub-form">
               {typeForm}
