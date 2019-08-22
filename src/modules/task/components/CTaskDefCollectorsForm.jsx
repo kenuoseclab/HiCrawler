@@ -6,11 +6,11 @@ import { Form, Input, Radio, Select, Icon, Tooltip } from 'antd';
 
 import CFormItemFactory from '../../system/components/CFormItemFactory';
 import { COLLECTOR_TYPE, PROCESSORS_TYPE, FILTERS_TYPE, FORM_ITEM_LAYOUT } from '../../../util/constants';
-import { generateUUID, forEach, filter, find } from '../../../util/helper';
+import { generateUUID, forEach, filter, find, groupBy } from '../../../util/helper';
 import drag from '../../../static/img/drag.png';
 
 const RadioGroup = Radio.Group;
-const { Option } = Select;
+const { Option, OptGroup } = Select;
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -227,6 +227,8 @@ class CTaskDefCollectorsForm extends React.Component {
       }
     }
 
+    const collectorTypes = groupBy(COLLECTOR_TYPE, c => c.group);
+
     return (
       <Form {...FORM_ITEM_LAYOUT} className="task-edit-collector">
         <Form.Item label="名称" required>
@@ -261,10 +263,14 @@ class CTaskDefCollectorsForm extends React.Component {
         )}
         <Form.Item label="类型" required>
           <Select value={data.type} onChange={v => this.handleCollectorTypeChange('type', v)}>
-            {COLLECTOR_TYPE.map(c => (
-              <Option key={c.key} value={c.key}>
-                {c.name}
-              </Option>
+            {collectorTypes.map(cg => (
+              <OptGroup label={cg[0].group} key={cg[0].key}>
+                {cg.map(c => (
+                  <Option key={c.key} value={c.key}>
+                    {c.name}
+                  </Option>
+                ))}
+              </OptGroup>
             ))}
           </Select>
           {isExistForm && (

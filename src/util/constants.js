@@ -108,6 +108,7 @@ export const COLLECTOR_TYPE = [
   {
     name: '请求网址',
     key: 'UrlParamCollector',
+    group: '从请求网址中抽取',
     items: [
       {
         title: '类型',
@@ -146,8 +147,23 @@ export const COLLECTOR_TYPE = [
     ],
   },
   {
-    name: '响应体-抽取网址',
+    name: '响应头',
+    key: 'HttpHeaderCollector',
+    group: '从响应头中抽取',
+    items: [
+      {
+        title: '名称',
+        key: 'headerName',
+        required: true,
+        type: 'input',
+        data: [],
+      },
+    ],
+  },
+  {
+    name: '链接抽取',
     key: 'SimpleUrlCollector',
+    group: '从响应体中抽取',
     items: [
       {
         title: 'CSS选择器',
@@ -159,8 +175,30 @@ export const COLLECTOR_TYPE = [
     ],
   },
   {
-    name: '响应体-CSS选择器',
+    name: '文字截取',
+    key: 'TextSubstringBetweenCollector',
+    group: '从响应体中抽取',
+    items: [
+      {
+        title: '开始文字',
+        key: 'open',
+        required: true,
+        type: 'input',
+        data: [],
+      },
+      {
+        title: '结束文字',
+        key: 'close',
+        required: true,
+        type: 'input',
+        data: [],
+      },
+    ],
+  },
+  {
+    name: 'CSS选择器',
     key: 'HtmlDomCollector',
+    group: '从响应体中抽取',
     items: [
       {
         title: 'CSS选择器',
@@ -193,41 +231,9 @@ export const COLLECTOR_TYPE = [
     ],
   },
   {
-    name: '响应头',
-    key: 'HttpHeaderCollector',
-    items: [
-      {
-        title: '名称',
-        key: 'headerName',
-        required: true,
-        type: 'input',
-        data: [],
-      },
-    ],
-  },
-  {
-    name: '响应体-文字截取',
-    key: 'TextSubstringBetweenCollector',
-    items: [
-      {
-        title: '开始文字',
-        key: 'open',
-        required: true,
-        type: 'input',
-        data: [],
-      },
-      {
-        title: '结束文字',
-        key: 'close',
-        required: true,
-        type: 'input',
-        data: [],
-      },
-    ],
-  },
-  {
-    name: '响应体-JsonPath',
+    name: 'JsonPath',
     key: 'JsonCollector',
+    group: '从响应体中抽取',
     items: [
       {
         title: 'jsonPath',
@@ -253,8 +259,9 @@ export const COLLECTOR_TYPE = [
     ],
   },
   {
-    name: '响应体-Javascript',
+    name: 'Javascript',
     key: 'JavascriptCollector',
+    group: '从响应体中抽取',
     items: [
       {
         title: 'javascript',
@@ -268,6 +275,7 @@ export const COLLECTOR_TYPE = [
   {
     name: '函数',
     key: 'FunctionReturnValueCollector',
+    group: '其他',
     items: [
       {
         title: '函数',
@@ -376,6 +384,7 @@ export const COLLECTOR_TYPE = [
   {
     name: '项目组合',
     key: 'CollectorsCombinationCollector',
+    group: '其他',
     items: [
       {
         title: '格式',

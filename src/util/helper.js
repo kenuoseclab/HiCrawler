@@ -66,3 +66,15 @@ export function find(arr, obj) {
   if (!arr || arr.length === 0) return [];
   return arr.find(a => objectEquals(a, obj));
 }
+
+export function groupBy(array, f) {
+  const groups = {};
+  array.forEach(o => {
+    const group = JSON.stringify(f(o));
+    groups[group] = groups[group] || [];
+    groups[group].push(o);
+  });
+  return Object.keys(groups).map(group => {
+    return groups[group];
+  });
+}
