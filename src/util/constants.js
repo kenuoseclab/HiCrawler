@@ -181,7 +181,7 @@ export const COLLECTOR_TYPE = [
     name: '文字截取',
     key: 'TextSubstringBetweenCollector',
     group: '从响应体中抽取',
-    desc: '从响应体中截取文本。',
+    desc: '从响应体中截取指定的【开始文本】和【结束文本】之间的内容。',
     items: [
       {
         title: '开始文字',
