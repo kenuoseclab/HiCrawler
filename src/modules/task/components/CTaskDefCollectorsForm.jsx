@@ -217,6 +217,15 @@ class CTaskDefCollectorsForm extends React.Component {
       if (!data.typeInfo || !data.typeInfo.joinMulti) {
         items = filter(items, i => i.key !== 'delimiter');
       }
+
+      if (!data.typeInfo || data.typeInfo.partType !== 'queryParam') {
+        items = filter(items, i => i.key !== 'pathPartIndex');
+      }
+
+      if (!data.typeInfo || data.typeInfo.partType !== 'pathPart') {
+        items = filter(items, i => i.key !== 'queryParamName');
+      }
+
       typeForm = CFormItemFactory(items, data.typeInfo, this.handleCollectorTypeDetailChange);
     }
 
