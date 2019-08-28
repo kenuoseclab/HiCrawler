@@ -5,6 +5,8 @@ import { Form, Input, InputNumber, Radio, Select, Switch, Tooltip, Icon } from '
 
 import CTaskDefUrlsTemplateForm from '../../task/components/CTaskDefUrlsTemplateForm';
 
+import CSelect from './CSelect';
+
 const { TextArea } = Input;
 const RadioGroup = Radio.Group;
 const { Option } = Select;
@@ -115,6 +117,14 @@ export function CFormSelect(obj, data, event) {
   );
 }
 
+export function CFormInputSelect(obj, data, event) {
+  return (
+    <Form.Item key={obj.key} label={commonLabel(obj)} extra={obj.extra || ''} required={obj.required}>
+      <CSelect options={obj.data} value={data[obj.key]} onChange={v => event(obj.key, v, data)} />
+    </Form.Item>
+  );
+}
+
 function CFormItemsFactory(items, data = {}, event) {
   return items.map(i => {
     let result;
@@ -136,6 +146,9 @@ function CFormItemsFactory(items, data = {}, event) {
         break;
       case 'select':
         result = CFormSelect(i, data, event);
+        break;
+      case 'inputSelect':
+        result = CFormInputSelect(i, data, event);
         break;
       case 'urlForm':
         result = <CTaskDefUrlsTemplateForm data={data} itemOnChange={event} key={i.key} />;

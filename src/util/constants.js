@@ -209,14 +209,21 @@ export const COLLECTOR_TYPE = [
         title: 'CSS选择器',
         key: 'cssSelector',
         required: false,
-        type: 'input',
-        data: [],
+        type: 'inputSelect',
+        link: 'https://www.w3school.com.cn/cssref/css_selectors.asp',
+        data: [
+          { name: 'outerHTML', value: 'outerHTML' },
+          { name: 'innerHTML', value: 'innerHTML' },
+          { name: 'innerText', value: 'innerText' },
+          { name: 'href', value: 'href' },
+        ],
       },
       {
         title: '属性名',
         key: 'attributeName',
         required: false,
         type: 'input',
+        desc: '从CSS选择器匹配的DOM节点上，抽取指定属性的值。',
         data: [],
       },
       {
@@ -224,6 +231,7 @@ export const COLLECTOR_TYPE = [
         key: 'joinMulti',
         required: false,
         type: 'switch',
+        desc: 'CSS选择器匹配多个DOM节点时，是否将取得的多个值拼接起来。',
         data: [],
       },
       {
