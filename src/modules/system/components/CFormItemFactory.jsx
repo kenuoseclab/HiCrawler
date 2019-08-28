@@ -22,6 +22,15 @@ function commonLabel(obj) {
     );
   }
 
+  if (obj.link) {
+    label = (
+      // eslint-disable-next-line react/jsx-no-target-blank
+      <a href={obj.link} target="_blank">
+        {obj.title}&nbsp;
+      </a>
+    );
+  }
+
   return label;
 }
 

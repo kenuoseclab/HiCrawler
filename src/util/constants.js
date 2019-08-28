@@ -268,13 +268,15 @@ export const COLLECTOR_TYPE = [
     name: 'Javascript',
     key: 'JavascriptCollector',
     group: '从响应体中抽取',
-    desc: '使用自定义的Javascript，从响应文本中抽取内容。',
+    desc:
+      '使用自定义的Javascript，从响应文本中抽取内容。响应体被记录在名为src的变量中，执行指定的javascript处理后，将其返回值（即最后一个表达式的值）作为采集结果。',
     items: [
       {
         title: 'javascript',
         key: 'javascript',
         required: true,
         type: 'textarea',
+        link: 'https://www.w3school.com.cn/js/index.asp',
         data: [],
       },
     ],
