@@ -166,13 +166,14 @@ export const COLLECTOR_TYPE = [
     name: '链接抽取',
     key: 'SimpleUrlCollector',
     group: '从响应体中抽取',
-    desc: '响应体为Html时，从Html中抽取各个链接（标签）。',
+    desc: '响应体为Html时，使用指定的CSS选择器，从Html中抽取各个链接（<a>标签）。',
     items: [
       {
         title: 'CSS选择器',
         key: 'cssSelector',
         required: true,
         type: 'input',
+        link: 'https://www.w3school.com.cn/cssref/css_selectors.asp',
         data: [],
       },
     ],
