@@ -68,6 +68,9 @@ class CTaskDefCollectorsForm extends React.Component {
     const { data } = this.props;
     const typeObj = data.typeInfo || {};
     typeObj[field] = v;
+    if (field === 'joinMulti' && v) {
+      typeObj.delimiter = ',';
+    }
     if (field === 'function') {
       typeObj.functionInfo = {};
     }
@@ -210,7 +213,11 @@ class CTaskDefCollectorsForm extends React.Component {
     const isExistForm = typeData && typeData.items && typeData.items.length > 0;
     let typeForm;
     if (isExistForm) {
-      typeForm = CFormItemFactory(typeData.items, data.typeInfo, this.handleCollectorTypeDetailChange);
+      let items = [...typeData.items];
+      if (!data.typeInfo || !data.typeInfo.joinMulti) {
+        items = filter(items, i => i.key !== 'delimiter');
+      }
+      typeForm = CFormItemFactory(items, data.typeInfo, this.handleCollectorTypeDetailChange);
     }
 
     let functionForm;

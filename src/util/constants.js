@@ -246,6 +246,7 @@ export const COLLECTOR_TYPE = [
         key: 'jsonPath',
         required: true,
         type: 'textarea',
+        link: 'https://github.com/json-path/JsonPath',
         data: [],
       },
       {
@@ -253,6 +254,7 @@ export const COLLECTOR_TYPE = [
         key: 'joinMulti',
         required: false,
         type: 'switch',
+        desc: 'JsonPath匹配多个值时，是否将取得的多个值拼接起来。',
         data: [],
       },
       {
