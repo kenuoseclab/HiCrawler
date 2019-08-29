@@ -84,7 +84,12 @@ export function CFormSwitch(obj, data, event) {
 export function CFormTextArea(obj, data, event) {
   return (
     <Form.Item key={obj.key} label={commonLabel(obj)} extra={obj.extra || ''} required={obj.required}>
-      <TextArea value={data[obj.key] || ''} onChange={e => event(obj.key, e.target.value, data)} />
+      <TextArea
+        value={data[obj.key] || ''}
+        onChange={e => event(obj.key, e.target.value, data)}
+        placeholder={obj.placeholder}
+        autosize={obj.autosize || false}
+      />
     </Form.Item>
   );
 }

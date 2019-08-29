@@ -327,6 +327,8 @@ export const COLLECTOR_TYPE = [
                 key: 'items',
                 required: true,
                 type: 'textarea',
+                placeholder: '项目A\n项目B\n项目C',
+                autosize: { minRows: 3 },
                 data: [],
               },
             ],
@@ -360,6 +362,7 @@ export const COLLECTOR_TYPE = [
                 key: 'chars',
                 required: false,
                 type: 'textarea',
+                autosize: { minRows: 3 },
                 data: [],
               },
               {
