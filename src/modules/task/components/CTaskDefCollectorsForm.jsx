@@ -78,6 +78,11 @@ class CTaskDefCollectorsForm extends React.Component {
         typeObj.functionInfo.chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         typeObj.functionInfo.length = 8;
       }
+
+      if (v === 'CurrentDateFunction') {
+        typeObj.functionInfo.format = 'yyyy-MM-dd HH:mm:ss';
+        typeObj.functionInfo.timeZone = new Date().getTimezoneOffset() / 60;
+      }
     }
     this.props.onChange(data.key, 'typeInfo', typeObj);
   }

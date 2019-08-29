@@ -1,3 +1,4 @@
+import React from 'react';
 // client router
 export const ROUTE_LOGIN = '/login';
 export const ROUTE_DASHBOARD = '/dashboard';
@@ -391,6 +392,26 @@ export const COLLECTOR_TYPE = [
                 key: 'format',
                 required: false,
                 type: 'input',
+                desc: (
+                  <div>
+                    <span>yyyy：年</span>
+                    <br />
+                    <span>MM：月</span>
+                    <br />
+                    <span>dd：日</span>
+                    <br />
+                    <span>hh：1~12小时制(1-12)</span>
+                    <br />
+                    <span>HH：24小时制(0-23)</span>
+                    <br />
+                    <span>mm：分</span>
+                    <br />
+                    <span>ss：秒</span>
+                    <br />
+                    <span>S：毫秒</span>
+                    <br />
+                  </div>
+                ),
                 data: [],
               },
               {
