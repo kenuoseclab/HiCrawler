@@ -438,6 +438,7 @@ export const COLLECTOR_TYPE = [
         key: 'format',
         required: true,
         type: 'input',
+        desc: '格式串中 {项目名} 的部分，会被替换成指定项目的值。',
         data: [],
       },
     ],
