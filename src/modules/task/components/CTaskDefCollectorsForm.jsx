@@ -67,12 +67,17 @@ class CTaskDefCollectorsForm extends React.Component {
   handleCollectorTypeDetailChange(field, v) {
     const { data } = this.props;
     const typeObj = data.typeInfo || {};
+
     typeObj[field] = v;
     if (field === 'joinMulti' && v) {
       typeObj.delimiter = ',';
     }
     if (field === 'function') {
       typeObj.functionInfo = {};
+      if (v === 'RandomStringFunction') {
+        typeObj.functionInfo.chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        typeObj.functionInfo.length = 8;
+      }
     }
     this.props.onChange(data.key, 'typeInfo', typeObj);
   }

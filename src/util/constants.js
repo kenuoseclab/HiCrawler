@@ -359,7 +359,7 @@ export const COLLECTOR_TYPE = [
                 title: '可选字符',
                 key: 'chars',
                 required: false,
-                type: 'input',
+                type: 'textarea',
                 data: [],
               },
               {
