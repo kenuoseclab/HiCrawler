@@ -81,7 +81,7 @@ class CTaskDefCollectorsForm extends React.Component {
 
       if (v === 'CurrentDateFunction') {
         typeObj.functionInfo.format = 'yyyy-MM-dd HH:mm:ss';
-        typeObj.functionInfo.timeZone = new Date().getTimezoneOffset() / 60;
+        typeObj.functionInfo.timeZone = -(new Date().getTimezoneOffset() / 60);
       }
     }
     this.props.onChange(data.key, 'typeInfo', typeObj);
