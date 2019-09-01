@@ -158,6 +158,12 @@ class CTaskDefCollectorsForm extends React.Component {
       obj.toneType = 'none';
       obj.firstCharToUpperCase = false;
     }
+
+    // 提取关键词
+    if (v === 'KeywordsProcessor') {
+      obj.separator = ',';
+    }
+
     processObj.push(obj);
     this.props.onChange(data.key, 'processors', processObj);
   }

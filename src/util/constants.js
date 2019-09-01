@@ -647,7 +647,7 @@ export const PROCESSORS_TYPE = [
   {
     name: '文本替换',
     key: 'SimpleReplaceProcessor',
-    items: [{ title: '替换关系表', key: 'replaceMap', type: 'textarea' }],
+    items: [{ title: '替换关系表', key: 'replaceMap', type: 'textarea', placeholder: 'AAA -> BBB\nCCC -> DDD' }],
   },
   {
     name: '文字截取（前端）',
