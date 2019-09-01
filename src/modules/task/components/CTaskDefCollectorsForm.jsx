@@ -151,6 +151,13 @@ class CTaskDefCollectorsForm extends React.Component {
       type: v,
       name: option.props.children,
     };
+
+    // 默认值
+    if (v === 'ConvertToPinyinProcessor') {
+      obj.outputMode = 'convert';
+      obj.toneType = 'none';
+      obj.firstCharToUpperCase = false;
+    }
     processObj.push(obj);
     this.props.onChange(data.key, 'processors', processObj);
   }
