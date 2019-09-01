@@ -695,11 +695,17 @@ export const PROCESSORS_TYPE = [
     ],
   },
   {
-    name: '文字截取（后端）',
+    name: '文本截取（后端）',
     key: 'SubstringBeforeProcessor',
+    desc: '截取指定的分隔符之后的文本。',
     items: [
       { title: '分隔符', key: 'separator', type: 'input' },
-      { title: '贪婪模式', key: 'beforeLast', type: 'switch' },
+      {
+        title: '贪婪模式',
+        key: 'beforeLast',
+        type: 'switch',
+        desc: '分隔符重复出现时，是否取最后出现的位置作为分隔点。',
+      },
     ],
   },
   {
