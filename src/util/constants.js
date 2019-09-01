@@ -598,6 +598,7 @@ export const PROCESSORS_TYPE = [
   {
     name: '默认值',
     key: 'DefaultValueProcessor',
+    desc: '采集结果为空时，使用指定的默认值作为采集结果。',
     items: [{ title: '默认值', key: 'defaultValue', type: 'input' }],
   },
   {
