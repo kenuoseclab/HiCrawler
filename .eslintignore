@@ -3,4 +3,5 @@
 /ci/**
 /node_modules/**
 /src/**/*.test.js
+/src/**/constants.js
 config-overrides.js
