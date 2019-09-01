@@ -614,7 +614,11 @@ export const PROCESSORS_TYPE = [
   {
     name: 'Javascript处理',
     key: 'JavaScriptProcessor',
-    items: [{ title: 'Javascript', key: 'javascript', type: 'textarea' }],
+    desc:
+      '使用自定义的javascript来处理采集结果。原采集结果被记录在名为value的变量中，执行指定的javascript处理后，将其返回值（即最后一个表达式的值）作为处理结果。',
+    items: [
+      { title: 'Javascript', key: 'javascript', type: 'textarea', link: 'https://www.w3school.com.cn/js/index.asp' },
+    ],
   },
   {
     name: '提取关键词',
