@@ -709,9 +709,10 @@ export const PROCESSORS_TYPE = [
     ],
   },
   {
-    name: '字符串截取（中间）',
+    name: '文本截取（中间）',
     key: 'SubstringBetweenProcessor',
-    items: [{ title: '开始字符串', key: 'open', type: 'input' }, { title: '结束字符串', key: 'close', type: 'input' }],
+    desc: '截取指定的开始文本和结束文本之间的文本。',
+    items: [{ title: '开始文本', key: 'open', type: 'input' }, { title: '结束文本', key: 'close', type: 'input' }],
   },
   {
     name: '字符串截取（范围）',
