@@ -631,9 +631,17 @@ export const PROCESSORS_TYPE = [
   {
     name: '正则替换（标准）',
     key: 'RegexReplaceProcessor',
+    desc:
+      '使用<a href="https://www.runoob.com/java/java-regular-expressions.html" target="_blank">标准的正则语法</a>来执行文本替换。',
     items: [
-      { title: '匹配表达式', key: 'regex', type: 'input' },
-      { title: '替换表达式', key: 'replacement', type: 'input' },
+      {
+        title: '匹配表达式',
+        key: 'regex',
+        type: 'input',
+        desc: '例：(?<year>\\\\d{4})-(?<month>\\\\d{2})-(?<day>\\\\d{2})',
+      },
+      // eslint-disable-next-line no-template-curly-in-string
+      { title: '替换表达式', key: 'replacement', type: 'input', desc: '例：${day}-${month}-${year}' },
     ],
   },
   {
