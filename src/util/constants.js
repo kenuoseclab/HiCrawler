@@ -647,9 +647,32 @@ export const PROCESSORS_TYPE = [
   {
     name: '正则替换（简单）',
     key: 'SimpleRegexReplaceProcessor',
+    desc: '使用简单的正则语法来执行文本替换。表达式中仅支持 {paramName} 和 {*} 两种标记形式。',
     items: [
-      { title: '匹配表达式', key: 'regex', type: 'input' },
-      { title: '替换表达式', key: 'replacement', type: 'input' },
+      {
+        title: '匹配表达式',
+        key: 'regex',
+        type: 'input',
+        desc: (
+          <div>
+            <span>{'例1：{year}-{month}-{day}'}</span>
+            <br />
+            <span>{"例2：<div class='content'>{*}<h2>{title}</h2>{*}<div id='tools'>【作者：{author}】【{*}】"}</span>
+          </div>
+        ),
+      },
+      {
+        title: '替换表达式',
+        key: 'replacement',
+        type: 'input',
+        desc: (
+          <div>
+            <span>{'例1：{day}-{month}-{year}'}</span>
+            <br />
+            <span>{'例2：标题：{title} ，作者：{author}'}</span>
+          </div>
+        ),
+      },
     ],
   },
   {
