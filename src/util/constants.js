@@ -715,11 +715,12 @@ export const PROCESSORS_TYPE = [
     items: [{ title: '开始文本', key: 'open', type: 'input' }, { title: '结束文本', key: 'close', type: 'input' }],
   },
   {
-    name: '字符串截取（范围）',
+    name: '文本截取（范围）',
     key: 'SubstringProcessor',
+    desc: '截取指定的开始位置和结束位置之间的文本。',
     items: [
-      { title: '开始位置，包含', key: 'start', type: 'number' },
-      { title: '结束位置，不包含', key: 'end', type: 'number' },
+      { title: '开始位置', key: 'start', type: 'number', desc: '从0开始，包含。' },
+      { title: '结束位置', key: 'end', type: 'number', desc: '不包含。' },
     ],
   },
   {
