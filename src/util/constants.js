@@ -681,11 +681,17 @@ export const PROCESSORS_TYPE = [
     items: [{ title: '替换关系表', key: 'replaceMap', type: 'textarea', placeholder: 'AAA -> BBB\nCCC -> DDD' }],
   },
   {
-    name: '文字截取（前端）',
+    name: '文本截取（前端）',
     key: 'SubstringAfterProcessor',
+    desc: '截取指定的分隔符之前的文本。',
     items: [
       { title: '分隔符', key: 'separator', type: 'input' },
-      { title: '贪婪模式', key: 'afterLast', type: 'switch' },
+      {
+        title: '贪婪模式',
+        key: 'afterLast',
+        type: 'switch',
+        desc: '分隔符重复出现时，是否取最后出现的位置作为分隔点。',
+      },
     ],
   },
   {
