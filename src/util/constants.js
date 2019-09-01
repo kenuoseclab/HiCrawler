@@ -14,6 +14,27 @@ export const API_TASK_HISTORY = '/task/history';
 export const API_TASK_NEW = '/task';
 export const API_TASK_DETAIL = '/task/detail';
 
+const DateFormat = (
+  <div>
+    <span>yyyy：年</span>
+    <br />
+    <span>MM：月</span>
+    <br />
+    <span>dd：日</span>
+    <br />
+    <span>hh：1~12小时制(1-12)</span>
+    <br />
+    <span>HH：24小时制(0-23)</span>
+    <br />
+    <span>mm：分</span>
+    <br />
+    <span>ss：秒</span>
+    <br />
+    <span>S：毫秒</span>
+    <br />
+  </div>
+);
+
 // url template form
 export const URL_TEMPLATE_TYPE = [
   {
@@ -392,26 +413,7 @@ export const COLLECTOR_TYPE = [
                 key: 'format',
                 required: false,
                 type: 'input',
-                desc: (
-                  <div>
-                    <span>yyyy：年</span>
-                    <br />
-                    <span>MM：月</span>
-                    <br />
-                    <span>dd：日</span>
-                    <br />
-                    <span>hh：1~12小时制(1-12)</span>
-                    <br />
-                    <span>HH：24小时制(0-23)</span>
-                    <br />
-                    <span>mm：分</span>
-                    <br />
-                    <span>ss：秒</span>
-                    <br />
-                    <span>S：毫秒</span>
-                    <br />
-                  </div>
-                ),
+                desc: DateFormat,
                 data: [],
               },
               {
@@ -605,8 +607,8 @@ export const PROCESSORS_TYPE = [
     name: '日期转换',
     key: 'FormatDateProcessor',
     items: [
-      { title: '源格式', key: 'fromFormat', type: 'input' },
-      { title: '目标格式', key: 'toFormat', type: 'input' },
+      { title: '源格式', key: 'fromFormat', type: 'input', desc: DateFormat },
+      { title: '目标格式', key: 'toFormat', type: 'input', desc: DateFormat },
     ],
   },
   {
