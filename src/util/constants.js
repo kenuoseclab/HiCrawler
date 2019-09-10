@@ -894,6 +894,12 @@ export const FILTERS_TYPE = [
     items: [],
   },
   {
+    name: '非空',
+    key: 'NotBlankStringPredicate',
+    desc: '采集结果不为空。',
+    items: [],
+  },
+  {
     name: '包含',
     key: 'ContainsStringPredicate',
     desc: '采集结果包含下面的某一行或每一行文本。',
@@ -913,9 +919,35 @@ export const FILTERS_TYPE = [
     ],
   },
   {
+    name: '不包含',
+    key: 'NotContainsStringPredicate',
+    desc: '采集结果不包含下面的任意一行文本。',
+    items: [
+      {
+        title: '对象文本',
+        key: 'strings',
+        type: 'textarea',
+        placeholder: '项目1\n项目2\n...',
+      },
+    ],
+  },
+  {
     name: '等于',
     key: 'EqualsStringPredicate',
     desc: '采集结果等于下面的某一行文本。',
+    items: [
+      {
+        title: '备选文本列表',
+        key: 'strings',
+        type: 'textarea',
+        placeholder: '文本1\n文本2\n...',
+      },
+    ],
+  },
+  {
+    name: '不等于',
+    key: 'NotEqualsStringPredicate',
+    desc: '采集结果不等于下面的任意一行文本。',
     items: [
       {
         title: '备选文本列表',
@@ -939,38 +971,6 @@ export const FILTERS_TYPE = [
     ],
   },
   {
-    name: '非空',
-    key: 'NotBlankStringPredicate',
-    desc: '采集结果不为空。',
-    items: [],
-  },
-  {
-    name: '不包含',
-    key: 'NotContainsStringPredicate',
-    desc: '采集结果不包含下面的任意一行文本。',
-    items: [
-      {
-        title: '对象文本',
-        key: 'strings',
-        type: 'textarea',
-        placeholder: '项目1\n项目2\n...',
-      },
-    ],
-  },
-  {
-    name: '不等于',
-    key: 'NotEqualsStringPredicate',
-    desc: '采集结果不等于下面的任意一行文本。',
-    items: [
-      {
-        title: '备选文本列表',
-        key: 'strings',
-        type: 'textarea',
-        placeholder: '文本1\n文本2\n...',
-      },
-    ],
-  },
-  {
     name: '前缀',
     key: 'StartsWithStringPredicate',
     desc: '采集结果以下面的某一行为前缀。',
@@ -980,20 +980,6 @@ export const FILTERS_TYPE = [
         key: 'strings',
         type: 'textarea',
         placeholder: '文本1\n文本2\n...',
-      },
-    ],
-  },
-  {
-    name: 'javascript判断',
-    key: 'JavaScriptPredicate',
-    desc:
-      '使用自定义的javascript来判断采集结果是否满足条件。原采集结果被记录在名为value的变量中，执行指定的javascript处理后，将其返回值（即最后一个表达式的值）作为判断结果（true或false）。',
-    items: [
-      {
-        title: 'javascript',
-        key: 'javascript',
-        type: 'textarea',
-        link: 'https://www.w3school.com.cn/js/index.asp',
       },
     ],
   },
@@ -1050,6 +1036,20 @@ export const FILTERS_TYPE = [
         title: '对象日期',
         key: 'date',
         type: 'date',
+      },
+    ],
+  },
+  {
+    name: 'javascript判断',
+    key: 'JavaScriptPredicate',
+    desc:
+      '使用自定义的javascript来判断采集结果是否满足条件。原采集结果被记录在名为value的变量中，执行指定的javascript处理后，将其返回值（即最后一个表达式的值）作为判断结果（true或false）。',
+    items: [
+      {
+        title: 'javascript',
+        key: 'javascript',
+        type: 'textarea',
+        link: 'https://www.w3school.com.cn/js/index.asp',
       },
     ],
   },
