@@ -890,6 +890,7 @@ export const FILTERS_TYPE = [
   {
     name: '空',
     key: 'BlankStringPredicate',
+    desc: '采集结果为空。',
     items: [],
   },
   {
