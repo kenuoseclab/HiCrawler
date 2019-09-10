@@ -938,6 +938,7 @@ export const FILTERS_TYPE = [
   {
     name: '非空',
     key: 'NotBlankStringPredicate',
+    desc: '采集结果不为空。',
     items: [],
   },
   {
