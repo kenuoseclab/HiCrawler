@@ -14,8 +14,13 @@ export const API_TASK_HISTORY = '/task/history';
 export const API_TASK_NEW = '/task';
 export const API_TASK_DETAIL = '/task/detail';
 
+//
+export const DATE_FORMAT = 'YYYY-MM-DD';
+
 const DateFormat = (
   <div>
+    <span>采集结果的日期格式。可以使用的符号及其含义如下：</span>
+    <br />
     <span>yyyy：年</span>
     <br />
     <span>MM：月</span>
@@ -1001,9 +1006,16 @@ export const FILTERS_TYPE = [
     ],
   },
   {
-    name: '日期时间比较',
+    name: '日期比较',
     key: 'SimpleDatePredicate',
+    desc: '如果采集结果是一个日期，则将该日期与下面的日期作比较。',
     items: [
+      {
+        title: '日期格式',
+        key: 'format',
+        type: 'input',
+        desc: DateFormat,
+      },
       {
         title: '比较符',
         key: 'operator',
@@ -1020,12 +1032,7 @@ export const FILTERS_TYPE = [
       {
         title: '对象日期',
         key: 'date',
-        type: 'input',
-      },
-      {
-        title: '日期格式',
-        key: 'format',
-        type: 'input',
+        type: 'date',
       },
     ],
   },

@@ -1,9 +1,12 @@
 import React from 'react';
+import moment from 'moment';
 import Clipboard from 'react-clipboard.js';
-
-import { Form, Input, InputNumber, Radio, Select, Switch, Tooltip, Icon } from 'antd';
+import { Form, Input, InputNumber, Radio, Select, Switch, Tooltip, Icon, DatePicker } from 'antd';
+import locale from 'antd/es/date-picker/locale/zh_CN';
 
 import CTaskDefUrlsTemplateForm from '../../task/components/CTaskDefUrlsTemplateForm';
+
+import { DATE_FORMAT } from '../../../util/constants';
 
 import CSelect from './CSelect';
 
@@ -130,6 +133,19 @@ export function CFormInputSelect(obj, data, event) {
   );
 }
 
+export function CFormDate(obj, data, event) {
+  return (
+    <Form.Item key={obj.key} label={commonLabel(obj)} extra={obj.extra || ''} required={obj.required}>
+      <DatePicker
+        defaultValue={moment(data[obj.key] || new Date(), DATE_FORMAT)}
+        format={DATE_FORMAT}
+        locale={locale}
+        onChange={(v, s) => event(obj.key, s, data)}
+      />
+    </Form.Item>
+  );
+}
+
 function CFormItemsFactory(items, data = {}, event) {
   return items.map(i => {
     let result;
@@ -154,6 +170,9 @@ function CFormItemsFactory(items, data = {}, event) {
         break;
       case 'inputSelect':
         result = CFormInputSelect(i, data, event);
+        break;
+      case 'date':
+        result = CFormDate(i, data, event);
         break;
       case 'urlForm':
         result = <CTaskDefUrlsTemplateForm data={data} itemOnChange={event} key={i.key} />;
