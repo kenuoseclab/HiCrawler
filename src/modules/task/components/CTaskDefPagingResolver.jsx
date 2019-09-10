@@ -5,7 +5,12 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Form, Select, Icon, Tooltip } from 'antd';
 
 import CFormItemFactory from '../../system/components/CFormItemFactory';
-import { PROCESSORS_TYPE, PAGING_RESOLVER_TYPE, COLLECTOR_TYPE, FORM_ITEM_LAYOUT } from '../../../util/constants';
+import {
+  PAGING_PROCESSORS_TYPE,
+  PAGING_RESOLVER_TYPE,
+  COLLECTOR_TYPE,
+  FORM_ITEM_LAYOUT,
+} from '../../../util/constants';
 import { generateUUID, forEach, filter, find } from '../../../util/helper';
 import drag from '../../../static/img/drag.png';
 
@@ -222,7 +227,7 @@ class CTaskDefPagingResolver extends React.Component {
           }
         >
           <Select onChange={this.handleAddProcess} value="">
-            {PROCESSORS_TYPE.map(p => (
+            {PAGING_PROCESSORS_TYPE.map(p => (
               <Option key={p.key} value={p.key}>
                 {p.name}
               </Option>
@@ -234,7 +239,7 @@ class CTaskDefPagingResolver extends React.Component {
                 <div {...provided.droppableProps} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
                   {processors &&
                     processors.map((p, index) => {
-                      const processItems = find(PROCESSORS_TYPE, { key: p.type });
+                      const processItems = find(PAGING_PROCESSORS_TYPE, { key: p.type });
                       const isExistProcessForm = processItems && processItems.items && processItems.items.length > 0;
                       // eslint-disable-next-line max-len
                       const processForm =
