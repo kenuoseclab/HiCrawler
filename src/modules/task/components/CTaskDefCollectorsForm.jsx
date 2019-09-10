@@ -437,6 +437,11 @@ class CTaskDefCollectorsForm extends React.Component {
                               <div className="c-sub-form">
                                 <Form.Item label="类型名">
                                   <div className="ant-form-text">{p.name}</div>
+                                  {filterItems.desc && (
+                                    <span className="type-desc">
+                                      <div dangerouslySetInnerHTML={{ __html: filterItems.desc }} />
+                                    </span>
+                                  )}
                                 </Form.Item>
                                 {isExistFilterForm && filterForm}
                               </div>
