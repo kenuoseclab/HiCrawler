@@ -536,6 +536,12 @@ export const PAGING_RESOLVER_TYPE = [
 
 export const PAGING_PROCESSORS_TYPE = [
   {
+    name: '默认值',
+    key: 'DefaultValueProcessor',
+    desc: '采集结果为空时，使用指定的默认值作为采集结果。',
+    items: [{ title: '默认值', key: 'defaultValue', type: 'input' }],
+  },
+  {
     name: '添加前缀',
     key: 'AddPrefixProcessor',
     items: [
@@ -564,34 +570,56 @@ export const PAGING_PROCESSORS_TYPE = [
     items: [],
   },
   {
-    name: '默认值',
-    key: 'DefaultValueProcessor',
-    desc: '采集结果为空时，使用指定的默认值作为采集结果。',
-    items: [{ title: '默认值', key: 'defaultValue', type: 'input' }],
+    name: '移除文字两端空白',
+    key: 'TrimProcessor',
+    items: [],
   },
   {
-    name: 'Javascript处理',
-    key: 'JavaScriptProcessor',
-    desc:
-      '使用自定义的javascript来处理采集结果。原采集结果被记录在名为value的变量中，执行指定的javascript处理后，将其返回值（即最后一个表达式的值）作为处理结果。',
+    name: '文本替换',
+    key: 'SimpleReplaceProcessor',
+    items: [{ title: '替换关系表', key: 'replaceMap', type: 'textarea', placeholder: 'AAA -> BBB\nCCC -> DDD' }],
+  },
+  {
+    name: '文本截取（前端）',
+    key: 'SubstringAfterProcessor',
+    desc: '截取指定的分隔符之前的文本。',
     items: [
-      { title: 'Javascript', key: 'javascript', type: 'textarea', link: 'https://www.w3school.com.cn/js/index.asp' },
+      { title: '分隔符', key: 'separator', type: 'input' },
+      {
+        title: '贪婪模式',
+        key: 'afterLast',
+        type: 'switch',
+        desc: '分隔符重复出现时，是否取最后出现的位置作为分隔点。',
+      },
     ],
   },
   {
-    name: '正则替换（标准）',
-    key: 'RegexReplaceProcessor',
-    desc:
-      '使用<a href="https://www.runoob.com/java/java-regular-expressions.html" target="_blank">标准的正则语法</a>来执行文本替换。',
+    name: '文本截取（后端）',
+    key: 'SubstringBeforeProcessor',
+    desc: '截取指定的分隔符之后的文本。',
     items: [
+      { title: '分隔符', key: 'separator', type: 'input' },
       {
-        title: '匹配表达式',
-        key: 'regex',
-        type: 'input',
-        desc: '例：(?<year>\\\\d{4})-(?<month>\\\\d{2})-(?<day>\\\\d{2})',
+        title: '贪婪模式',
+        key: 'beforeLast',
+        type: 'switch',
+        desc: '分隔符重复出现时，是否取最后出现的位置作为分隔点。',
       },
-      // eslint-disable-next-line no-template-curly-in-string
-      { title: '替换表达式', key: 'replacement', type: 'input', desc: '例：${day}-${month}-${year}' },
+    ],
+  },
+  {
+    name: '文本截取（中间）',
+    key: 'SubstringBetweenProcessor',
+    desc: '截取指定的开始文本和结束文本之间的文本。',
+    items: [{ title: '开始文本', key: 'open', type: 'input' }, { title: '结束文本', key: 'close', type: 'input' }],
+  },
+  {
+    name: '文本截取（范围）',
+    key: 'SubstringProcessor',
+    desc: '截取指定的开始位置和结束位置之间的文本。',
+    items: [
+      { title: '开始位置', key: 'start', type: 'number', desc: '从0开始，包含。' },
+      { title: '结束位置', key: 'end', type: 'number', desc: '不包含。' },
     ],
   },
   {
@@ -623,6 +651,81 @@ export const PAGING_PROCESSORS_TYPE = [
           </div>
         ),
       },
+    ],
+  },
+  {
+    name: '正则替换（标准）',
+    key: 'RegexReplaceProcessor',
+    desc:
+      '使用<a href="https://www.runoob.com/java/java-regular-expressions.html" target="_blank">标准的正则语法</a>来执行文本替换。',
+    items: [
+      {
+        title: '匹配表达式',
+        key: 'regex',
+        type: 'input',
+        desc: '例：(?<year>\\\\d{4})-(?<month>\\\\d{2})-(?<day>\\\\d{2})',
+      },
+      // eslint-disable-next-line no-template-curly-in-string
+      { title: '替换表达式', key: 'replacement', type: 'input', desc: '例：${day}-${month}-${year}' },
+    ],
+  },
+  {
+    name: 'Javascript处理',
+    key: 'JavaScriptProcessor',
+    desc:
+      '使用自定义的javascript来处理采集结果。原采集结果被记录在名为value的变量中，执行指定的javascript处理后，将其返回值（即最后一个表达式的值）作为处理结果。',
+    items: [
+      { title: 'Javascript', key: 'javascript', type: 'textarea', link: 'https://www.w3school.com.cn/js/index.asp' },
+    ],
+  },
+];
+
+export const PROCESSORS_TYPE = [
+  {
+    name: '默认值',
+    key: 'DefaultValueProcessor',
+    desc: '采集结果为空时，使用指定的默认值作为采集结果。',
+    items: [{ title: '默认值', key: 'defaultValue', type: 'input' }],
+  },
+  {
+    name: '添加前缀',
+    key: 'AddPrefixProcessor',
+    items: [
+      {
+        title: '前缀',
+        key: 'prefix',
+        type: 'input',
+        data: [],
+      },
+    ],
+  },
+  {
+    name: '添加后缀',
+    key: 'AddSuffixProcessor',
+    items: [
+      {
+        title: '后缀',
+        key: 'suffix',
+        type: 'input',
+      },
+    ],
+  },
+  {
+    name: 'Html标签过滤',
+    key: 'ConvertHtmlToPlainTextProcessor',
+    items: [],
+  },
+  {
+    name: '移除文字两端空白',
+    key: 'TrimProcessor',
+    items: [],
+  },
+  {
+    name: '日期转换',
+    key: 'FormatDateProcessor',
+    items: [
+      { title: '源格式', key: 'fromFormat', type: 'input', desc: DateFormat },
+      { title: '目标格式', key: 'toFormat', type: 'input', desc: DateFormat },
     ],
   },
   {
@@ -674,40 +777,51 @@ export const PAGING_PROCESSORS_TYPE = [
     ],
   },
   {
-    name: '移除文字两端空白',
-    key: 'TrimProcessor',
-    items: [],
-  },
-];
-
-export const PROCESSORS_TYPE = [
-  {
-    name: '添加前缀',
-    key: 'AddPrefixProcessor',
+    name: '正则替换（简单）',
+    key: 'SimpleRegexReplaceProcessor',
+    desc: '使用简单的正则语法来执行文本替换。表达式中仅支持 {paramName} 和 {*} 两种标记形式。',
     items: [
       {
-        title: '前缀',
-        key: 'prefix',
+        title: '匹配表达式',
+        key: 'regex',
         type: 'input',
-        data: [],
+        desc: (
+          <div>
+            <span>{'例1：{year}-{month}-{day}'}</span>
+            <br />
+            <span>{"例2：<div class='content'>{*}<h2>{title}</h2>{*}<div id='tools'>【作者：{author}】【{*}】"}</span>
+          </div>
+        ),
+      },
+      {
+        title: '替换表达式',
+        key: 'replacement',
+        type: 'input',
+        desc: (
+          <div>
+            <span>{'例1：{day}-{month}-{year}'}</span>
+            <br />
+            <span>{'例2：标题：{title} ，作者：{author}'}</span>
+          </div>
+        ),
       },
     ],
   },
   {
-    name: '添加后缀',
-    key: 'AddSuffixProcessor',
+    name: '正则替换（标准）',
+    key: 'RegexReplaceProcessor',
+    desc:
+      '使用<a href="https://www.runoob.com/java/java-regular-expressions.html" target="_blank">标准的正则语法</a>来执行文本替换。',
     items: [
       {
-        title: '后缀',
-        key: 'suffix',
+        title: '匹配表达式',
+        key: 'regex',
         type: 'input',
+        desc: '例：(?<year>\\\\d{4})-(?<month>\\\\d{2})-(?<day>\\\\d{2})',
       },
+      // eslint-disable-next-line no-template-curly-in-string
+      { title: '替换表达式', key: 'replacement', type: 'input', desc: '例：${day}-${month}-${year}' },
     ],
-  },
-  {
-    name: 'Html标签过滤',
-    key: 'ConvertHtmlToPlainTextProcessor',
-    items: [],
   },
   {
     name: '拼音',
@@ -739,37 +853,9 @@ export const PROCESSORS_TYPE = [
     ],
   },
   {
-    name: '繁体转简体',
-    key: 'ConvertToSimplifiedChineseProcessor',
-    items: [],
-  },
-  {
-    name: '简体转繁体',
-    key: 'ConvertToTraditionalChineseProcessor',
-    items: [],
-  },
-  {
-    name: '默认值',
-    key: 'DefaultValueProcessor',
-    desc: '采集结果为空时，使用指定的默认值作为采集结果。',
-    items: [{ title: '默认值', key: 'defaultValue', type: 'input' }],
-  },
-  {
-    name: '日期转换',
-    key: 'FormatDateProcessor',
-    items: [
-      { title: '源格式', key: 'fromFormat', type: 'input', desc: DateFormat },
-      { title: '目标格式', key: 'toFormat', type: 'input', desc: DateFormat },
-    ],
-  },
-  {
-    name: 'Javascript处理',
-    key: 'JavaScriptProcessor',
-    desc:
-      '使用自定义的javascript来处理采集结果。原采集结果被记录在名为value的变量中，执行指定的javascript处理后，将其返回值（即最后一个表达式的值）作为处理结果。',
-    items: [
-      { title: 'Javascript', key: 'javascript', type: 'textarea', link: 'https://www.w3school.com.cn/js/index.asp' },
-    ],
+    name: '摘要',
+    key: 'SummaryChineseProcessor',
+    items: [{ title: '摘要长度', key: 'length', type: 'number' }],
   },
   {
     name: '提取关键词',
@@ -780,109 +866,23 @@ export const PROCESSORS_TYPE = [
     ],
   },
   {
-    name: '正则替换（标准）',
-    key: 'RegexReplaceProcessor',
-    desc:
-      '使用<a href="https://www.runoob.com/java/java-regular-expressions.html" target="_blank">标准的正则语法</a>来执行文本替换。',
-    items: [
-      {
-        title: '匹配表达式',
-        key: 'regex',
-        type: 'input',
-        desc: '例：(?<year>\\\\d{4})-(?<month>\\\\d{2})-(?<day>\\\\d{2})',
-      },
-      // eslint-disable-next-line no-template-curly-in-string
-      { title: '替换表达式', key: 'replacement', type: 'input', desc: '例：${day}-${month}-${year}' },
-    ],
-  },
-  {
-    name: '正则替换（简单）',
-    key: 'SimpleRegexReplaceProcessor',
-    desc: '使用简单的正则语法来执行文本替换。表达式中仅支持 {paramName} 和 {*} 两种标记形式。',
-    items: [
-      {
-        title: '匹配表达式',
-        key: 'regex',
-        type: 'input',
-        desc: (
-          <div>
-            <span>{'例1：{year}-{month}-{day}'}</span>
-            <br />
-            <span>{"例2：<div class='content'>{*}<h2>{title}</h2>{*}<div id='tools'>【作者：{author}】【{*}】"}</span>
-          </div>
-        ),
-      },
-      {
-        title: '替换表达式',
-        key: 'replacement',
-        type: 'input',
-        desc: (
-          <div>
-            <span>{'例1：{day}-{month}-{year}'}</span>
-            <br />
-            <span>{'例2：标题：{title} ，作者：{author}'}</span>
-          </div>
-        ),
-      },
-    ],
-  },
-  {
-    name: '文本替换',
-    key: 'SimpleReplaceProcessor',
-    items: [{ title: '替换关系表', key: 'replaceMap', type: 'textarea', placeholder: 'AAA -> BBB\nCCC -> DDD' }],
-  },
-  {
-    name: '文本截取（前端）',
-    key: 'SubstringAfterProcessor',
-    desc: '截取指定的分隔符之前的文本。',
-    items: [
-      { title: '分隔符', key: 'separator', type: 'input' },
-      {
-        title: '贪婪模式',
-        key: 'afterLast',
-        type: 'switch',
-        desc: '分隔符重复出现时，是否取最后出现的位置作为分隔点。',
-      },
-    ],
-  },
-  {
-    name: '文本截取（后端）',
-    key: 'SubstringBeforeProcessor',
-    desc: '截取指定的分隔符之后的文本。',
-    items: [
-      { title: '分隔符', key: 'separator', type: 'input' },
-      {
-        title: '贪婪模式',
-        key: 'beforeLast',
-        type: 'switch',
-        desc: '分隔符重复出现时，是否取最后出现的位置作为分隔点。',
-      },
-    ],
-  },
-  {
-    name: '文本截取（中间）',
-    key: 'SubstringBetweenProcessor',
-    desc: '截取指定的开始文本和结束文本之间的文本。',
-    items: [{ title: '开始文本', key: 'open', type: 'input' }, { title: '结束文本', key: 'close', type: 'input' }],
-  },
-  {
-    name: '文本截取（范围）',
-    key: 'SubstringProcessor',
-    desc: '截取指定的开始位置和结束位置之间的文本。',
-    items: [
-      { title: '开始位置', key: 'start', type: 'number', desc: '从0开始，包含。' },
-      { title: '结束位置', key: 'end', type: 'number', desc: '不包含。' },
-    ],
-  },
-  {
-    name: '摘要',
-    key: 'SummaryChineseProcessor',
-    items: [{ title: '摘要长度', key: 'length', type: 'number' }],
-  },
-  {
-    name: '移除文字两端空白',
-    key: 'TrimProcessor',
+    name: '繁体转简体',
+    key: 'ConvertToSimplifiedChineseProcessor',
     items: [],
+  },
+  {
+    name: '简体转繁体',
+    key: 'ConvertToTraditionalChineseProcessor',
+    items: [],
+  },
+  {
+    name: 'Javascript处理',
+    key: 'JavaScriptProcessor',
+    desc:
+      '使用自定义的javascript来处理采集结果。原采集结果被记录在名为value的变量中，执行指定的javascript处理后，将其返回值（即最后一个表达式的值）作为处理结果。',
+    items: [
+      { title: 'Javascript', key: 'javascript', type: 'textarea', link: 'https://www.w3school.com.cn/js/index.asp' },
+    ],
   },
 ];
 
@@ -1040,13 +1040,13 @@ export const FILTERS_TYPE = [
     ],
   },
   {
-    name: 'javascript判断',
+    name: 'Javascript判断',
     key: 'JavaScriptPredicate',
     desc:
       '使用自定义的javascript来判断采集结果是否满足条件。原采集结果被记录在名为value的变量中，执行指定的javascript处理后，将其返回值（即最后一个表达式的值）作为判断结果（true或false）。',
     items: [
       {
-        title: 'javascript',
+        title: 'Javascript',
         key: 'javascript',
         type: 'textarea',
         link: 'https://www.w3school.com.cn/js/index.asp',
