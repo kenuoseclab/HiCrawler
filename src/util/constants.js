@@ -896,6 +896,7 @@ export const FILTERS_TYPE = [
   {
     name: '包含',
     key: 'ContainsStringPredicate',
+    desc: '采集结果包含下面的某一行或每一行文本。',
     items: [
       {
         title: '匹配模式',
@@ -904,9 +905,10 @@ export const FILTERS_TYPE = [
         data: [{ value: 'any', name: '任意' }, { value: 'all', name: '全部' }],
       },
       {
-        title: '字符串列表',
+        title: '备选文本列表',
         key: 'strings',
         type: 'textarea',
+        placeholder: '文本1\n文本2\n...',
       },
     ],
   },

@@ -116,6 +116,11 @@ class CTaskDefCollectorsForm extends React.Component {
       type: v,
       name: option.props.children,
     };
+
+    if (v === 'ContainsStringPredicate') {
+      obj.matchMode = 'any';
+    }
+
     filterObj.predicates.push(obj);
     this.props.onChange(data.key, 'filter', filterObj);
   }
