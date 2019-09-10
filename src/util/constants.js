@@ -924,7 +924,7 @@ export const FILTERS_TYPE = [
     desc: '采集结果不包含下面的任意一行文本。',
     items: [
       {
-        title: '对象文本',
+        title: '备选文本列表',
         key: 'strings',
         type: 'textarea',
         placeholder: '项目1\n项目2\n...',

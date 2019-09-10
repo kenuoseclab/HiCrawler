@@ -262,6 +262,11 @@ class CTaskDefPagingResolver extends React.Component {
                               <div className="c-sub-form">
                                 <Form.Item label="类型名">
                                   <div className="ant-form-text">{p.name}</div>
+                                  {processItems.desc && (
+                                    <span className="type-desc">
+                                      <div dangerouslySetInnerHTML={{ __html: processItems.desc }} />
+                                    </span>
+                                  )}
                                 </Form.Item>
                                 {isExistProcessForm && processForm}
                               </div>
