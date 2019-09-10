@@ -963,11 +963,13 @@ export const FILTERS_TYPE = [
   {
     name: '前缀',
     key: 'StartsWithStringPredicate',
+    desc: '采集结果以下面的某一行为前缀。',
     items: [
       {
-        title: '对象文本',
+        title: '备选文本列表',
         key: 'strings',
         type: 'textarea',
+        placeholder: '文本1\n文本2\n...',
       },
     ],
   },
