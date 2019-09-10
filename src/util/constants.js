@@ -970,13 +970,16 @@ export const FILTERS_TYPE = [
     ],
   },
   {
-    name: 'Javascript判断',
+    name: 'javascript判断',
     key: 'JavaScriptPredicate',
+    desc:
+      '使用自定义的javascript来判断采集结果是否满足条件。原采集结果被记录在名为value的变量中，执行指定的javascript处理后，将其返回值（即最后一个表达式的值）作为判断结果（true或false）。',
     items: [
       {
-        title: 'Javascript',
+        title: 'javascript',
         key: 'javascript',
         type: 'textarea',
+        link: 'https://www.w3school.com.cn/js/index.asp',
       },
     ],
   },

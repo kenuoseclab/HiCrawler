@@ -78,3 +78,7 @@ export function groupBy(array, f) {
     return groups[group];
   });
 }
+
+export function isString(s) {
+  return typeof s === 'string';
+}
