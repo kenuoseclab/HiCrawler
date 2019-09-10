@@ -912,11 +912,13 @@ export const FILTERS_TYPE = [
   {
     name: '等于',
     key: 'EqualsStringPredicate',
+    desc: '采集结果等于下面的某一行文本。',
     items: [
       {
-        title: '对象文本',
+        title: '备选文本列表',
         key: 'strings',
         type: 'textarea',
+        placeholder: '文本1\n文本2\n...',
       },
     ],
   },
