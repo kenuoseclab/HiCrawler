@@ -55,9 +55,10 @@ function STaskDetail(props) {
       case '5':
         await fetch();
         setVisible(true);
+        setDefaultContent(<span>任务定义</span>);
         break;
       case '6':
-        setDefaultContent(<STaskDefImportExport />);
+        setDefaultContent(<STaskDefImportExport {...props} />);
         break;
       default:
         setDefaultContent(<STaskHistory />);
