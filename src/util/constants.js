@@ -986,7 +986,7 @@ export const FILTERS_TYPE = [
   {
     name: '数值比较',
     key: 'SimpleNumberPredicate',
-    desc: '如果采集结果是一个数值，则将其以下面的数值进行比较。',
+    desc: '如果采集结果是一个数值，则将其与下面的数值进行比较。',
     items: [
       {
         title: '比较符',
