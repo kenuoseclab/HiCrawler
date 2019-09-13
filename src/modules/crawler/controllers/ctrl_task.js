@@ -48,7 +48,7 @@ exports.get = async (req) => {
     const { id } = req.params;
     let result = undefined;
     if (id) {
-      const projection = "";
+      const projection = "-valid -updatedAt -updatedBy -createdAt -createdBy -_id -__v";
       result = await TaskModel.get(id, projection);
     }
 
