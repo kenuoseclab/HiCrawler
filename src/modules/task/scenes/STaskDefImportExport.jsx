@@ -9,7 +9,8 @@ import { API_TASK_DETAIL } from '../../../util/constants';
 function STaskDefImportExport(props) {
   const [fileList, setFileList] = useState([]);
 
-  const handleExportButtonClicked = async () => {
+  const handleExportButtonClicked = async event => {
+    event.preventDefault();
     const { id } = props.match.params;
     if (id) {
       try {
@@ -18,7 +19,9 @@ function STaskDefImportExport(props) {
         const link = document.createElement('a');
         link.href = window.URL.createObjectURL(blob);
         link.download = data.basicInfo.name;
-        link.click();
+        const evt = document.createEvent('MouseEvents');
+        evt.initEvent('click', true, true);
+        link.dispatchEvent(evt);
       } catch (e) {
         message.error('下载失败。');
       }
@@ -64,7 +67,7 @@ function STaskDefImportExport(props) {
       <div>&nbsp;</div>
       <div className="btn-div">
         <Button type="primary" onClick={handleExportButtonClicked}>
-          出力
+          导出
         </Button>
       </div>
       <div className="import-title-div">
