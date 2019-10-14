@@ -84,6 +84,15 @@ class CTaskDefCollectorsForm extends React.Component {
         typeObj.functionInfo.timeZone = -(new Date().getTimezoneOffset() / 60);
       }
     }
+
+    if (field !== 'queryParamName') {
+      delete typeObj.queryParamName;
+    }
+
+    if (field !== 'pathPartIndex') {
+      delete typeObj.pathPartIndex;
+    }
+
     this.props.onChange(data.key, 'typeInfo', typeObj);
   }
 
@@ -118,7 +127,7 @@ class CTaskDefCollectorsForm extends React.Component {
     };
 
     if (v === 'ContainsStringPredicate') {
-      obj.matchMode = 'any';
+      obj.matchMode = 'ANY';
     }
 
     filterObj.predicates.push(obj);
@@ -247,11 +256,11 @@ class CTaskDefCollectorsForm extends React.Component {
       }
 
       if (!data.typeInfo || data.typeInfo.partType !== 'queryParam') {
-        items = filter(items, i => i.key !== 'pathPartIndex');
+        items = filter(items, i => i.key !== 'queryParamName');
       }
 
       if (!data.typeInfo || data.typeInfo.partType !== 'pathPart') {
-        items = filter(items, i => i.key !== 'queryParamName');
+        items = filter(items, i => i.key !== 'pathPartIndex');
       }
 
       typeForm = CFormItemFactory(items, data.typeInfo, this.handleCollectorTypeDetailChange);

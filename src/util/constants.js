@@ -160,14 +160,14 @@ export const COLLECTOR_TYPE = [
       },
       {
         title: '参数名',
-        key: 'pathPartIndex',
+        key: 'queryParamName',
         required: false,
         type: 'input',
         data: [],
       },
       {
         title: '片段位置',
-        key: 'queryParamName',
+        key: 'pathPartIndex',
         required: false,
         type: 'number',
         desc: '位置从1开始。如相对路径 news/sports.html 中，片段1为 news，片段2为 sports.html。',
