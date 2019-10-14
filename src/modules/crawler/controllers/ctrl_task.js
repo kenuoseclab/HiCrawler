@@ -69,10 +69,6 @@ exports.update = async (req) => {
     let result = undefined;
     if (id) {
       // todo check
-
-      if (detail.urls && detail.urls.url) {
-        detail.urls.urlItems = detail.urls.url.split(/[\n]/);
-      }
       const today = new Date();
       const condition = { _id: id, createdBy: name };
       result = await TaskModel.updateByCondition(condition, {...detail, updatedAt: today});

@@ -40,8 +40,7 @@ const Task = new BaseSchema({
   },
   urls:                           {
     type:                         { type: String, description: "URL集合类型", default: "PlainUrlSet" },
-    url:                          { type: String, description: "URL" },
-    urlItems:                     { type: Array,  description: "url" },
+    urls:                          { type: String, description: "URL" },
     templatedUrls:                [{
       key:                        { type: String, description: "URL" },
       template:                   { type: String, description: "URL" },
