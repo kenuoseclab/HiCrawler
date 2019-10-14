@@ -908,7 +908,7 @@ export const FILTERS_TYPE = [
         title: '匹配模式',
         key: 'matchMode',
         type: 'radio',
-        data: [{ value: 'any', name: '任意' }, { value: 'all', name: '全部' }],
+        data: [{ value: 'ANY', name: '任意' }, { value: 'ALL', name: '全部' }],
       },
       {
         title: '备选文本列表',
