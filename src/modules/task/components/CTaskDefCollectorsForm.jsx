@@ -288,6 +288,21 @@ class CTaskDefCollectorsForm extends React.Component {
         <Form.Item label="名称" required>
           <Input value={data.name || ''} onChange={e => this.handleCollectorInfoChange('name', e.target.value)} />
         </Form.Item>
+        <Form.Item
+          label={
+            <span>
+              键&nbsp;
+              <Tooltip title="采集结果保存为json时，使用此key作为json对象的属性名。">
+                <Icon type="question-circle-o" />
+              </Tooltip>
+            </span>
+          }
+        >
+          <Input
+            value={data.collectorKey || ''}
+            onChange={e => this.handleCollectorInfoChange('collectorKey', e.target.value)}
+          />
+        </Form.Item>
         <Form.Item label="分页采集模式">
           <RadioGroup
             value={data.pageCollectMode}
