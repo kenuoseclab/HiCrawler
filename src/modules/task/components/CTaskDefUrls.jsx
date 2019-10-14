@@ -150,10 +150,15 @@ class CTaskDefUrls extends React.Component {
     const temp = find(urls.templatedUrls, { key: tKey });
     if (temp) {
       temp.params = temp.params || [];
+      const pName = `参数${temp.params.length + 1}`;
+      temp.template += `/{${pName}}`;
       temp.params.push({
         key: generateUUID(),
+        name: pName,
         type: 'SequenceUrlParam',
         step: 1,
+        start: 1,
+        end: 10,
       });
     }
 
@@ -165,6 +170,10 @@ class CTaskDefUrls extends React.Component {
     urls.templatedUrls = urls.templatedUrls || [];
     const temp = find(urls.templatedUrls, { key: templateKey });
     if (temp) {
+      const param = find(temp.params, { key: paramKey });
+      if (param) {
+        temp.template = temp.template.replace(`/{${param.name}}`, '');
+      }
       temp.params = filter(temp.params, p => p.key !== paramKey);
     }
 
@@ -176,15 +185,36 @@ class CTaskDefUrls extends React.Component {
     urls.templatedUrls = urls.templatedUrls || [];
     const temp = find(urls.templatedUrls, { key: tKey });
     if (temp) {
-      const param = find(temp.params, { key: pKey });
-      if (param) {
-        param.type = e.target.value;
-        param.dateType = 'relative';
-        param.startDateOffsetOperation = 'plus';
-        param.startDateOffset = 1;
-        param.endDateOffsetOperation = 'plus';
-        param.endDateOffset = 1;
-      }
+      temp.params = temp.params.map(param => {
+        if (param.key === pKey) {
+          const newParam = {
+            type: e.target.value,
+            key: pKey,
+            name: param.name,
+          };
+          switch (newParam.type) {
+            case 'SequenceUrlParam':
+              newParam.step = 1;
+              newParam.start = 1;
+              newParam.end = 10;
+              break;
+            case 'EnumUrlParam':
+              break;
+            case 'DateUrlParam':
+              newParam.dateType = 'relative';
+              newParam.startDateOffsetOperation = 'plus';
+              newParam.startDateOffset = 1;
+              newParam.endDateOffsetOperation = 'plus';
+              newParam.endDateOffset = 1;
+              newParam.format = 'yyyyMMdd';
+              break;
+            default:
+              break;
+          }
+          return newParam;
+        }
+        return param;
+      });
     }
 
     this.commonUrlsChange(urls);

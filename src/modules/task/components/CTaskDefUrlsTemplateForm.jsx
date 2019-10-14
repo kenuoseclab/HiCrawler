@@ -23,15 +23,21 @@ function CTaskDefUrlsTemplateForm(props) {
     switch (field) {
       case 'dateType':
         if (v === 'relative') {
-          data.startDate = '';
-          data.endDate = '';
-        } else {
+          delete data.startDate;
+          delete data.endDate;
           data.startDateOffsetOperation = 'plus';
           data.startDateOffset = 1;
           data.endDateOffsetOperation = 'plus';
           data.endDateOffset = 1;
+          data.format = 'yyyyMMdd';
+        } else {
+          delete data.startDateOffsetOperation;
+          delete data.startDateOffset;
+          delete data.endDateOffsetOperation;
+          delete data.endDateOffset;
           data.startDate = new Date();
           data.endDate = new Date();
+          data.format = 'yyyyMMdd';
         }
         break;
       default:
