@@ -64,8 +64,7 @@ class CTaskDefUrls extends React.Component {
     if (urls.type === 'PlainUrlSet') {
       urls.templatedUrls = [];
     } else {
-      urls.urlItems = [];
-      urls.url = '';
+      urls.urls = '';
     }
     this.commonUrlsChange(urls);
   }
@@ -208,9 +207,9 @@ class CTaskDefUrls extends React.Component {
           <Form.Item label="网址" extra="单条或多条网址（一行一个，以http://或https://开头）">
             <TextArea
               autosize={{ minRows: 6 }}
-              value={urls.url}
+              value={urls.urls}
               placeholder="http://test/page/1&#10;http://test/page/2&#10;..."
-              onChange={e => this.handleUrlsChange('url', e.target.value)}
+              onChange={e => this.handleUrlsChange('urls', e.target.value)}
             />
           </Form.Item>
         )}
@@ -272,7 +271,7 @@ class CTaskDefUrls extends React.Component {
                                             <img src={drag} alt="drag" />
                                           </span>
                                         </div>
-                                        <div className="c-sub-form">
+                                        <div className="c-sub-form url-template">
                                           <Form.Item label="类型">
                                             <RadioGroup
                                               value={p.type}
