@@ -8,6 +8,7 @@ const { Mixed }   = Schema.Types;
 const Collector = new Schema({
   name:                           { type: String, description: "" },
   key:                            { type: String, description: "" },
+  collectorKey:                   { type: String, description: "" },
   pageCollectMode:                { type: String, description: "" },
   pageCollectResultDelimiter:     { type: String, description: "" },
   type:                           { type: String, description: "" },
