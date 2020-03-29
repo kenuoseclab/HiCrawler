@@ -9,10 +9,10 @@ export const ROUTE_ERROR = '/error';
 
 // api list
 export const API_LOGIN = '/login';
-export const API_TASK_LIST = '/task';
+export const API_TASK_LIST = '/task/definitions';
 export const API_TASK_HISTORY = '/task/history';
-export const API_TASK_NEW = '/task';
-export const API_TASK_DETAIL = '/task/detail';
+export const API_TASK_NEW = '/task/definition';
+export const API_TASK_DETAIL = '/task/definition';
 
 //
 export const DATE_FORMAT = 'YYYY-MM-DD';

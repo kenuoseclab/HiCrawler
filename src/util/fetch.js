@@ -1,4 +1,6 @@
 import fetch from 'axios';
+import qs from 'qs';
+
 import { createBrowserHistory as createHistory } from 'history';
 
 import { ROUTE_ERROR } from './constants';
@@ -7,22 +9,19 @@ import Storage from './storage';
 const history = createHistory({ forceRefresh: true });
 fetch.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
 
-const setHeaderToken = () => {
-  const token = Storage.getToken();
-  return { 'x-token-crawler': `${token}` };
-};
-
-const commonRequest = async (method, url, arr) => {
+const commonRequest = async (method, url, data) => {
   const options = {
-    headers: setHeaderToken(),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
     method,
     url,
-    ...arr,
+    data: qs.stringify(data),
   };
 
   try {
     const response = await fetch(options);
-    return response.data.data;
+    return response.data && response.data.data ? response.data.data : response.data;
   } catch (err) {
     if (err && err.response) {
       if (err.response.data.errorCode === 401 || err.response.data.errorCode === 500) {
@@ -42,13 +41,13 @@ export function get(url, params = {}) {
 }
 
 export function post(url, data = {}) {
-  return commonRequest('post', url, { data });
+  return commonRequest('post', url, data);
 }
 
 export function put(url, data = {}) {
-  return commonRequest('put', url, { data });
+  return commonRequest('put', url, data);
 }
 
 export function del(url, data = {}) {
-  return commonRequest('delete', url, { data });
+  return commonRequest('delete', url, data);
 }

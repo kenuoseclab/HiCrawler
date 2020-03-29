@@ -20,7 +20,7 @@ function STaskList(props) {
   async function getCardList() {
     try {
       const items = await get(API_TASK_LIST);
-      setCardItems(items);
+      setCardItems(items || []);
     } catch (e) {
       message.error('任务获取失败，请重新取得。');
     }
@@ -65,9 +65,9 @@ function STaskList(props) {
     <div className="task-list">
       {cardItems.map(c => {
         return (
-          <Card className="task-card" key={c._id} onClick={() => handleTaskDetailClick(c._id)}>
-            <div className="name">{c.basicInfo.name}</div>
-            <div className="date">更新日：{formatDate(c.updatedAt)}</div>
+          <Card className="task-card" key={c.id} onClick={() => handleTaskDetailClick(c.id)}>
+            <div className="name">{c.name}</div>
+            <div className="date">更新日：{formatDate(c.updateTime)}</div>
           </Card>
         );
       })}

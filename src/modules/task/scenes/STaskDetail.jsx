@@ -27,7 +27,7 @@ function STaskDetail(props) {
     if (id) {
       try {
         const taskDetail = await get(`${API_TASK_DETAIL}/${id}`);
-        setDetail(taskDetail);
+        setDetail(JSON.parse(taskDetail.definition));
       } catch (e) {
         message.error('获取任务详细失败，返回到任务一览');
         props.history.push(ROUTE_TASK_LIST);
@@ -71,7 +71,7 @@ function STaskDetail(props) {
     if (id) {
       try {
         console.log(123, detail);
-        await put(`${API_TASK_DETAIL}/${id}`, { detail });
+        await put(`${API_TASK_DETAIL}/${id}`, { definition: JSON.stringify(detail) });
       } catch (e) {
         message.error('任务编辑失败，请重新编辑');
       } finally {
@@ -89,7 +89,7 @@ function STaskDetail(props) {
           <Breadcrumb.Item>
             <Link to={ROUTE_TASK_LIST}>任务一览</Link>
           </Breadcrumb.Item>
-          <Breadcrumb.Item>{detail && detail.basicInfo && detail.basicInfo.name}</Breadcrumb.Item>
+          <Breadcrumb.Item>{detail && detail.name}</Breadcrumb.Item>
         </Breadcrumb>
         <Layout className="layout">
           <Sider width={200}>
@@ -133,6 +133,7 @@ function STaskDetail(props) {
         cancelText="取消"
         width={900}
         className="task-modal"
+        destroyOnClose
       >
         <STaskDefEdit data={detail} itemOnChange={setDetail} />
       </Modal>

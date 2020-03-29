@@ -1,21 +1,15 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
-import { Menu, Dropdown, Icon, Input, Avatar } from 'antd';
-import { intlShape, injectIntl } from 'react-intl';
+import { Menu, Icon, Input, Avatar } from 'antd';
+import { injectIntl } from 'react-intl';
 
 import Storage from '../../../util/storage';
-import { ROUTE_LOGIN, ROUTE_DASHBOARD, ROUTE_TASK_LIST, ROUTE_SETTING } from '../../../util/constants';
+import { ROUTE_DASHBOARD, ROUTE_TASK_LIST, ROUTE_SETTING } from '../../../util/constants';
 
 function CNav(props) {
-  const { history, tabKey, intl } = props;
-  const { formatMessage } = intl;
-  const user = Storage.getUser() || { name: '' };
+  const { history, tabKey } = props;
+  const user = Storage.getUser() || { name: '无名' };
   const name = `${user.name}`;
-
-  function handleLogout() {
-    Storage.clearLocalStorage();
-    history.push(ROUTE_LOGIN);
-  }
 
   function handleClick(e) {
     switch (e.key) {
@@ -33,12 +27,6 @@ function CNav(props) {
         break;
     }
   }
-
-  const menu = (
-    <Menu onClick={handleLogout}>
-      <Menu.Item>{formatMessage({ id: 'logout.button.name' })}</Menu.Item>
-    </Menu>
-  );
 
   return (
     <div className="nav">
@@ -59,12 +47,7 @@ function CNav(props) {
         </div>
         <div className="right">
           <Avatar icon="user" />
-          &nbsp;&nbsp;
-          <Dropdown overlay={menu}>
-            <a className="ant-dropdown-link">
-              <i className="icon-user" /> {name} <Icon type="down" />
-            </a>
-          </Dropdown>
+          &nbsp;&nbsp;{name}
         </div>
       </div>
     </div>
@@ -72,7 +55,6 @@ function CNav(props) {
 }
 
 CNav.propTypes = {
-  intl: intlShape.isRequired,
   tabKey: PropTypes.string,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,

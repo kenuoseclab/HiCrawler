@@ -13,7 +13,7 @@ const RadioGroup = Radio.Group;
 
 function CTaskDefBasic(props) {
   const { data, itemOnChange } = props;
-  const [basicInfo, setBasicInfo] = useState(data.basicInfo || {});
+  const [basicInfo, setBasicInfo] = useState(data || {});
 
   function handleBasicInfoChange(field, v) {
     const tempBasicInfo = { ...basicInfo };
@@ -21,9 +21,7 @@ function CTaskDefBasic(props) {
     setBasicInfo(tempBasicInfo);
 
     if (props.itemOnChange) {
-      const td = { ...data };
-      td.basicInfo = tempBasicInfo;
-      itemOnChange(td);
+      itemOnChange({ ...data, tempBasicInfo });
     }
   }
 
