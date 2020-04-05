@@ -1,11 +1,11 @@
 import React from 'react';
 // client router
 export const ROUTE_LOGIN = '/login';
-export const ROUTE_DASHBOARD = '/dashboard';
-export const ROUTE_TASK_LIST = '/task/list';
-export const ROUTE_TASK_DETAIL = '/task/detail';
-export const ROUTE_SETTING = '/setting';
-export const ROUTE_ERROR = '/error';
+export const ROUTE_DASHBOARD = '/web/dashboard';
+export const ROUTE_TASK_LIST = '/web/task/list';
+export const ROUTE_TASK_DETAIL = '/web/task/detail';
+export const ROUTE_SETTING = '/web/setting';
+export const ROUTE_ERROR = '/web/error';
 
 // api list
 export const API_LOGIN = '/login';

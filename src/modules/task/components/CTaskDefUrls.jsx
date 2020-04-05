@@ -1,6 +1,7 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
-import { Form, Input, Radio, Button, Row, Col, Icon } from 'antd';
+import { Form, Input, Radio, Button, Row, Col } from 'antd';
+import { CloseCircleOutlined } from '@ant-design/icons';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
 import { generateUUID, forEach, filter, find } from '../../../util/helper';
@@ -314,9 +315,8 @@ class CTaskDefUrls extends React.Component {
                                           </Form.Item>
                                           {isExistUrlForm && urlTemplateForm}
                                         </div>
-                                        <Icon
+                                        <CloseCircleOutlined
                                           className="icon-delete"
-                                          type="close-circle"
                                           onClick={() => this.handleRemoveParamClick(t.key, p.key)}
                                         />
                                       </div>

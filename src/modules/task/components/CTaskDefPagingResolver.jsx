@@ -1,8 +1,9 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
+import { QuestionCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { Form, Select, Icon, Tooltip } from 'antd';
+import { Form, Select, Tooltip } from 'antd';
 
 import CFormItemFactory from '../../system/components/CFormItemFactory';
 import {
@@ -221,7 +222,7 @@ class CTaskDefPagingResolver extends React.Component {
             <span>
               后处理器&nbsp;
               <Tooltip title="对上面提取的网址进行指定的处理。可以指定多个处理器。">
-                <Icon type="question-circle-o" />
+                <QuestionCircleOutlined />
               </Tooltip>
             </span>
           }
@@ -270,7 +271,7 @@ class CTaskDefPagingResolver extends React.Component {
                                 </Form.Item>
                                 {isExistProcessForm && processForm}
                               </div>
-                              <Icon type="close-circle" onClick={() => this.handleRemoveProcessClick(p.key)} />
+                              <CloseCircleOutlined onClick={() => this.handleRemoveProcessClick(p.key)} />
                             </div>
                           )}
                         </Draggable>

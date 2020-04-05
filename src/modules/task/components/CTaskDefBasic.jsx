@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import * as PropTypes from 'prop-types';
-import { Form, Input, Radio, Switch, InputNumber, Tooltip, Icon } from 'antd';
+import { Form, Input, Radio, Switch, InputNumber, Tooltip } from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 
 import CSelect from '../../system/components/CSelect';
 
@@ -21,7 +22,7 @@ function CTaskDefBasic(props) {
     setBasicInfo(tempBasicInfo);
 
     if (props.itemOnChange) {
-      itemOnChange({ ...data, tempBasicInfo });
+      itemOnChange({ ...data, ...tempBasicInfo });
     }
   }
 
@@ -35,7 +36,7 @@ function CTaskDefBasic(props) {
           <span>
             遇404停止采集&nbsp;
             <Tooltip title="访问URL返回404时，是否停止采集">
-              <Icon type="question-circle-o" />
+              <QuestionCircleOutlined />
             </Tooltip>
           </span>
         }
@@ -52,7 +53,7 @@ function CTaskDefBasic(props) {
           <span>
             渲染页面&nbsp;
             <Tooltip title="对于返回的画面，是否执行渲染并执行js">
-              <Icon type="question-circle-o" />
+              <QuestionCircleOutlined />
             </Tooltip>
           </span>
         }

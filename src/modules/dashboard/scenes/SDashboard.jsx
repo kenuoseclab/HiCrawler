@@ -1,5 +1,6 @@
 import React from 'react';
-import { Statistic, Card, Row, Col, Icon } from 'antd';
+import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
+import { Statistic, Card, Row, Col } from 'antd';
 
 function SDashboard() {
   return (
@@ -12,7 +13,7 @@ function SDashboard() {
               value={11.28}
               precision={2}
               valueStyle={{ color: '#3f8600' }}
-              prefix={<Icon type="arrow-up" />}
+              prefix={<ArrowUpOutlined />}
               suffix="%"
             />
           </Card>
@@ -24,7 +25,7 @@ function SDashboard() {
               value={9.3}
               precision={2}
               valueStyle={{ color: '#cf1322' }}
-              prefix={<Icon type="arrow-down" />}
+              prefix={<ArrowDownOutlined />}
               suffix="%"
             />
           </Card>
@@ -36,7 +37,7 @@ function SDashboard() {
               value={11.28}
               precision={2}
               valueStyle={{ color: '#3f8600' }}
-              prefix={<Icon type="arrow-up" />}
+              prefix={<ArrowUpOutlined />}
               suffix="%"
             />
           </Card>
@@ -48,7 +49,7 @@ function SDashboard() {
               value={9.3}
               precision={2}
               valueStyle={{ color: '#cf1322' }}
-              prefix={<Icon type="arrow-down" />}
+              prefix={<ArrowDownOutlined />}
               suffix="%"
             />
           </Card>

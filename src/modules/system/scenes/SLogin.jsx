@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import * as PropTypes from 'prop-types';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { intlShape, injectIntl, FormattedMessage } from 'react-intl';
-import { Form, Input, Button, message, Icon } from 'antd';
+import { Form, Input, Button, message } from 'antd';
 
 import logo from '../../../static/img/logo.png';
 import { ROUTE_DASHBOARD, API_LOGIN } from '../../../util/constants';
@@ -47,7 +48,7 @@ function SLogin(props) {
           <FormItem>
             <Input
               value={name}
-              prefix={<Icon type="user" />}
+              prefix={<UserOutlined />}
               placeholder={formatMessage({ id: 'login.label.name' })}
               onChange={e => setName(e.target.value)}
             />
@@ -57,7 +58,7 @@ function SLogin(props) {
               value={pass}
               type="password"
               autoComplete="off"
-              prefix={<Icon type="lock" />}
+              prefix={<LockOutlined />}
               placeholder={formatMessage({ id: 'login.label.password' })}
               onChange={e => setPass(e.target.value)}
             />

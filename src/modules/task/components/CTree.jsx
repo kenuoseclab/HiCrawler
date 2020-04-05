@@ -1,10 +1,13 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
-import { Icon, Tree } from 'antd';
+import { Tree } from 'antd';
+import { ProfileOutlined, PlusSquareOutlined } from '@ant-design/icons';
+
+import { forEach } from '../../../util/helper';
 
 import CTreeNodeTitle from './CTreeNodeTitle';
 
-const { TreeNode, DirectoryTree } = Tree;
+const { DirectoryTree } = Tree;
 
 function CTree(props) {
   const { items, onSelect, addOnClick, removeOnClick, onDrag } = props;
@@ -24,28 +27,23 @@ function CTree(props) {
     onDrag(info);
   }
 
-  function renderTreeNodes(data) {
-    return data.map(item => {
-      return (
-        <TreeNode
-          title={<CTreeNodeTitle node={item} onSelect={handleOnSelect} onRemove={handleRemoveOnClick} />}
-          key={item.key}
-          icon={<Icon type="profile" onClick={() => handleOnSelect(item.key)} />}
-        />
-      );
+  const treeData = [];
+  forEach(items, item => {
+    treeData.push({
+      title: <CTreeNodeTitle node={item} onSelect={handleOnSelect} onRemove={handleRemoveOnClick} />,
+      key: item.key,
+      icon: <ProfileOutlined onClick={() => handleOnSelect(item.key)} />,
     });
-  }
+  });
 
   return (
     <div className="c-tree">
       <div className="title">
         <span>采集项目{items.length > 0 ? `(${items.length})` : ''}</span>
-        <Icon type="plus-square" style={{ fontSize: '20px' }} onClick={handleAddOnClick} />
+        <PlusSquareOutlined style={{ fontSize: '18px', float: 'right' }} onClick={handleAddOnClick} />
       </div>
       <span className="line" />
-      <DirectoryTree defaultExpandAll draggable onDrop={handleOnDrag}>
-        {renderTreeNodes(items)}
-      </DirectoryTree>
+      <DirectoryTree defaultExpandAll draggable onDrop={handleOnDrag} treeData={treeData} />
     </div>
   );
 }

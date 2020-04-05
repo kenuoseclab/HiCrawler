@@ -2,7 +2,8 @@ import React from 'react';
 import * as PropTypes from 'prop-types';
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { Form, Input, Radio, Select, Icon, Tooltip } from 'antd';
+import { Form, Input, Radio, Select, Tooltip } from 'antd';
+import { QuestionCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
 
 import CFormItemFactory from '../../system/components/CFormItemFactory';
 import { COLLECTOR_TYPE, PROCESSORS_TYPE, FILTERS_TYPE, FORM_ITEM_LAYOUT } from '../../../util/constants';
@@ -293,7 +294,7 @@ class CTaskDefCollectorsForm extends React.Component {
             <span>
               键&nbsp;
               <Tooltip title="采集结果保存为json时，使用此key作为json对象的属性名。">
-                <Icon type="question-circle-o" />
+                <QuestionCircleOutlined />
               </Tooltip>
             </span>
           }
@@ -319,7 +320,7 @@ class CTaskDefCollectorsForm extends React.Component {
               <span>
                 连接符&nbsp;
                 <Tooltip title="用指定的连接符连接每一页采集到的结果。">
-                  <Icon type="question-circle-o" />
+                  <QuestionCircleOutlined />
                 </Tooltip>
               </span>
             }
@@ -355,7 +356,7 @@ class CTaskDefCollectorsForm extends React.Component {
             <span>
               后处理器&nbsp;
               <Tooltip title="对上面采集到的结果进行指定的处理。可以指定多个。">
-                <Icon type="question-circle-o" />
+                <QuestionCircleOutlined />
               </Tooltip>
             </span>
           }
@@ -403,7 +404,7 @@ class CTaskDefCollectorsForm extends React.Component {
                                 </Form.Item>
                                 {isExistProcessForm && processForm}
                               </div>
-                              <Icon type="close-circle" onClick={() => this.handleRemoveProcessClick(p.key)} />
+                              <CloseCircleOutlined onClick={() => this.handleRemoveProcessClick(p.key)} />
                             </div>
                           )}
                         </Draggable>
@@ -419,7 +420,7 @@ class CTaskDefCollectorsForm extends React.Component {
             <span>
               过滤器&nbsp;
               <Tooltip title="采集到的结果不满足指定的规则时，将被抛弃。">
-                <Icon type="question-circle-o" />
+                <QuestionCircleOutlined />
               </Tooltip>
             </span>
           }
@@ -474,7 +475,7 @@ class CTaskDefCollectorsForm extends React.Component {
                                 </Form.Item>
                                 {isExistFilterForm && filterForm}
                               </div>
-                              <Icon type="close-circle" onClick={() => this.handleRemoveFilterClick(p.key)} />
+                              <CloseCircleOutlined onClick={() => this.handleRemoveFilterClick(p.key)} />
                             </div>
                           )}
                         </Draggable>

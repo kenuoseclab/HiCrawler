@@ -1,7 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import Clipboard from 'react-clipboard.js';
-import { Form, Input, InputNumber, Radio, Select, Switch, Tooltip, Icon, DatePicker } from 'antd';
+import { Form, Input, InputNumber, Radio, Select, Switch, Tooltip, DatePicker } from 'antd';
+import { QuestionCircleOutlined, CopyOutlined } from '@ant-design/icons';
 import locale from 'antd/es/date-picker/locale/zh_CN';
 
 import CTaskDefUrlsTemplateForm from '../../task/components/CTaskDefUrlsTemplateForm';
@@ -21,7 +22,7 @@ function commonLabel(obj) {
       <span>
         {obj.title}&nbsp;
         <Tooltip title={obj.desc}>
-          <Icon type="question-circle-o" />
+          <QuestionCircleOutlined />
         </Tooltip>
       </span>
     );
@@ -52,7 +53,7 @@ export function CFormInput(obj, data, event) {
               data-clipboard-text={`{${data[obj.key] || ''}}`}
               title="拷贝 {参数名} 到粘贴板"
             >
-              <Icon type="copy" />
+              <CopyOutlined />
             </Clipboard>
           }
           value={data[obj.key] || ''}

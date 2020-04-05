@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Layout, Menu, Breadcrumb, Icon, message, Modal } from 'antd';
+import { Layout, Menu, Breadcrumb, message, Modal } from 'antd';
+import { HistoryOutlined, PlayCircleOutlined, ProjectOutlined, SettingOutlined } from '@ant-design/icons';
 
 import { ROUTE_TASK_LIST, API_TASK_DETAIL } from '../../../util/constants';
 
@@ -20,14 +21,17 @@ const { SubMenu } = Menu;
 function STaskDetail(props) {
   const [visible, setVisible] = useState(false);
   const [detail, setDetail] = useState({});
+  const [name, setName] = useState('');
   const [defaultContent, setDefaultContent] = useState(<STaskHistory />);
 
+  const { id } = props.match.params;
+
   async function fetch() {
-    const { id } = props.match.params;
     if (id) {
       try {
         const taskDetail = await get(`${API_TASK_DETAIL}/${id}`);
         setDetail(JSON.parse(taskDetail.definition));
+        setName(taskDetail.name);
       } catch (e) {
         message.error('获取任务详细失败，返回到任务一览');
         props.history.push(ROUTE_TASK_LIST);
@@ -36,6 +40,14 @@ function STaskDetail(props) {
       props.history.push(ROUTE_TASK_LIST);
     }
   }
+
+  useEffect(() => {
+    async function initData() {
+      await fetch();
+    }
+
+    initData();
+  }, [fetch, id]);
 
   async function handleMenuOnClick(e) {
     const { key } = e;
@@ -67,11 +79,16 @@ function STaskDetail(props) {
   }
 
   async function handleOk() {
-    const { id } = props.match.params;
     if (id) {
       try {
         console.log(123, detail);
-        await put(`${API_TASK_DETAIL}/${id}`, { definition: JSON.stringify(detail) });
+        const taskObj = {
+          name: detail.name,
+        };
+        delete detail.name;
+        taskObj.definition = JSON.stringify(detail);
+        await put(`${API_TASK_DETAIL}/${id}`, taskObj);
+        await fetch();
       } catch (e) {
         message.error('任务编辑失败，请重新编辑');
       } finally {
@@ -89,28 +106,28 @@ function STaskDetail(props) {
           <Breadcrumb.Item>
             <Link to={ROUTE_TASK_LIST}>任务一览</Link>
           </Breadcrumb.Item>
-          <Breadcrumb.Item>{detail && detail.name}</Breadcrumb.Item>
+          <Breadcrumb.Item>{name}</Breadcrumb.Item>
         </Breadcrumb>
         <Layout className="layout">
           <Sider width={200}>
             <Menu mode="inline" defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} onClick={handleMenuOnClick}>
               <Menu.Item key="1">
-                <Icon type="history" />
+                <HistoryOutlined />
                 <span>履历</span>
               </Menu.Item>
               <Menu.Item key="2">
-                <Icon type="play-circle" />
+                <PlayCircleOutlined />
                 <span>执行</span>
               </Menu.Item>
               <Menu.Item key="3">
-                <Icon type="setting" />
+                <SettingOutlined />
                 <span>设定</span>
               </Menu.Item>
               <SubMenu
                 key="sub1"
                 title={
                   <span>
-                    <Icon type="project" /> 定义
+                    <ProjectOutlined /> 定义
                   </span>
                 }
               >
@@ -135,7 +152,7 @@ function STaskDetail(props) {
         className="task-modal"
         destroyOnClose
       >
-        <STaskDefEdit data={detail} itemOnChange={setDetail} />
+        <STaskDefEdit data={{ name, ...detail }} itemOnChange={setDetail} />
       </Modal>
     </Layout>
   );

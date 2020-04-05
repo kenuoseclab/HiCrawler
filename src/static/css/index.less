@@ -165,7 +165,8 @@ h6 {
 .c-select .ant-input {
   position: relative;
   width: calc(100% - 36px);
-  top: -40px;
+  top: -32px;
+  display: contents;
 }
 
 .error-wrapper {
@@ -239,11 +240,16 @@ h6 {
   font-size: 12px;
 }
 
-.c-tree-node {
-  display: inline-flex;
+.c-tree .ant-tree-node-content-wrapper {
+  display: flex;
+  padding: 6px;
 }
 
-.c-tree-node span {
+.c-tree-node {
+  display: flex;
+}
+
+.c-tree-node .t-title {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

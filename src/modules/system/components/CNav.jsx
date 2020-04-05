@@ -1,6 +1,7 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
-import { Menu, Icon, Input, Avatar } from 'antd';
+import { UserOutlined, SearchOutlined } from '@ant-design/icons';
+import { Menu, Input } from 'antd';
 import { injectIntl } from 'react-intl';
 
 import Storage from '../../../util/storage';
@@ -34,7 +35,7 @@ function CNav(props) {
         <div className="logo">壁虎・采集器</div>
         <div className="left">
           <div className="search">
-            <Input placeholder="检索" prefix={<Icon type="search" />} />
+            <Input placeholder="检索" prefix={<SearchOutlined />} />
           </div>
           <div className="menu">
             <Menu onClick={handleClick} selectedKeys={[tabKey]} mode="horizontal">
@@ -46,7 +47,7 @@ function CNav(props) {
           </div>
         </div>
         <div className="right">
-          <Avatar icon="user" />
+          <UserOutlined />
           &nbsp;&nbsp;{name}
         </div>
       </div>
